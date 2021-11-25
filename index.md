@@ -77,11 +77,13 @@ You should see the rendered example above update accordingly.
 
 ## No interpolation occurs outside the Vue app entry point
 
-This message appears literrally:
+This message appears verbatim:
 
 ```html
 <h3>{{ message }}</h3>
 ```
+
+because it is outside the element to wich Vue has been anchored.
 
 <h3>{{ message }}</h3>
 
@@ -134,10 +136,166 @@ Here we are encountering something new.
   <strong>directive</strong>. 
 2. Directives are prefixed with <code>v-</code> to indicate that they are special attributes
   provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. 
-3. Here, it is basically saying **keep this element’s <code>title</code> attribute up-to-date with the <code>message</code> property on the Vue instance**.
+3. Here, it is basically saying **keep this element’s <code>title</code> attribute** 
+   up-to-date with the <code>message</code> property on the Vue instance.
 
 If you open up your JavaScript console again and enter 
 
 <code>app2.message = 'some new message'</code>, 
 
 you’ll once again see that the bound HTML - in this case the <code>title</code> attribute - has been updated.
+
+
+## Conditionals 
+
+It’s easy to toggle the presence of an element, too:
+
+```html
+<div id="app-3">
+  <span v-if="seen">Now you see me</span>
+</div>
+
+<script>
+var app3 = new Vue({
+  el: '#app-3',
+  data: {
+    seen: true
+  }
+})
+</script>
+```
+
+This example doesn't work due to `pandoc`modifying the directive `v-if`. 
+Go to the HTML and change it.
+
+
+
+<div id="app-3">
+  <span v-if="seen">Now you see me</span>
+</div>
+
+<script>
+var app3 = new Vue({
+  el: '#app-3',
+  data: {
+    seen: true
+  }
+})
+</script>
+
+
+
+## Loops: v-for
+
+There are quite a few other directives, each with its own special functionality. 
+
+For example, the <code>v-for</code> directive can be used for displaying a list of items using the data from an Array:
+
+```html
+<div id="app-4">
+  <ol>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ol>
+</div>
+
+<script>
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]
+  }
+})
+</script>
+```
+
+<div id="app-4">
+  <ol>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ol>
+</div>
+
+<script>
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]
+  }
+})
+</script>
+
+
+## Handling User Input
+
+
+```html
+<div id="app-5">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<script>
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    message: 'Hello Vue.js!'
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
+})
+</script>
+```
+
+<div id="app-5">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<script>
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    message: 'Hello Vue.js!'
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
+})
+</script>
+
+
+## v-model
+
+
+```html
+Vue also provides the v-model directive that makes two-way binding between form input and app state a breeze:
+
+<script>
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</script>
+```
