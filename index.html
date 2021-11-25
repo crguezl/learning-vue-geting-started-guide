@@ -1,4 +1,6 @@
-<p>This notes are from my reading of the <a href="https://vuejs.org/v2/guide/#Getting-Started">Getting Started</a> guide of Vue.js (v2)</p>
+<h1 id="introduction-to-vue.js">Introduction to Vue.js</h1>
+<p>This are my notes from reading of the <a href="https://vuejs.org/v2/guide/#Getting-Started">Getting Started</a> guide of Vue.js (v2)</p>
+<p>Open the deployment in GitHub pages <a href="https://crguezl.github.io/learning-vue-geting-started-guide/" class="uri">https://crguezl.github.io/learning-vue-geting-started-guide/</a> of this <code>README.md</code></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- development version, includes helpful console warnings --&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -7,7 +9,16 @@
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    {{ message }}</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/h2&gt;</span></span></code></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> app <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app&#39;</span><span class="op">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">message</span><span class="op">:</span> <span class="st">&#39;Hello Vue!&#39;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <!-- development version, includes helpful console warnings -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <h2>
@@ -15,7 +26,6 @@
 <pre><code>{{ message }}</code></pre>
 </div>
 </h2>
-<p>We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, and everything is now <strong>reactive</strong>.</p>
 <script>
   var app = new Vue({
     el: '#app',
@@ -24,11 +34,13 @@
     }
   })
 </script>
+<p>We have already created our very first Vue app!</p>
+<p>This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, and everything is now<strong>reactive</strong>!.</p>
 <p>
 How do we know?
 <ul>
 <li>
-Open your browser’s JavaScript console (right now, on this page) and
+Open your browser’s JavaScript console (right now, <a href="https://crguezl.github.io/learning-vue-geting-started-guide/" target="_blank">on the GH page</a>) and
 </li>
 <li>
 set <code>app.message</code> to a different value.

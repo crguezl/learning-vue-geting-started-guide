@@ -1,4 +1,9 @@
-This notes are from my reading of the [Getting Started](https://vuejs.org/v2/guide/#Getting-Started) guide of Vue.js (v2)
+# Introduction to Vue.js
+
+This are my notes from reading of the [Getting Started](https://vuejs.org/v2/guide/#Getting-Started) guide of Vue.js (v2)
+
+Open the deployment in GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of this `README.md`
+
 
 ```html
 <!-- development version, includes helpful console warnings -->
@@ -10,6 +15,15 @@ This notes are from my reading of the [Getting Started](https://vuejs.org/v2/gui
     {{ message }}
   </div>
 </h2>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue!'
+    }
+  })
+</script>
 ```
 
 <!-- development version, includes helpful console warnings -->
@@ -22,10 +36,6 @@ This notes are from my reading of the [Getting Started](https://vuejs.org/v2/gui
   </div>
 </h2>
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has
-done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, and everything is now
-<strong>reactive</strong>.
-
 <script>
   var app = new Vue({
     el: '#app',
@@ -35,10 +45,18 @@ done a lot of work under the hood. <strong>The data and the DOM are now linked</
   })
 </script>
 
+We have already created our very first Vue app! 
+
+This looks pretty similar to rendering a string template, but Vue has
+done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, 
+and everything is now<strong>reactive</strong>!.
+
+
 <p>
   How do we know?
 <ul>
-  <li>Open your browser’s JavaScript console (right now, on this page) and </li>
+  <li>Open your browser’s JavaScript console (right now, 
+  <a href="https://crguezl.github.io/learning-vue-geting-started-guide/" target="_blank">on the GH page</a>) and </li>
   <li> set <code>app.message</code> to a
     different value. </li>
 </ul>
