@@ -119,7 +119,8 @@ Here we define a second entry point for a second Vue app object:
 <p>
   Here we are encountering something new. The <code>v-bind</code> attribute you are seeing is called a
   <strong>directive</strong>. Directives are prefixed with <code>v-</code> to indicate that they are special attributes
-  provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is
-  basically saying “keep this element’s <code>title</code> attribute up-to-date with the <code>message</code> property
-  on the Vue instance.
+  provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. 
 </p>
+
+Here, it is basically saying 
+**keep this element’s <code>title</code> attribute up-to-date with the <code>message</code> propert on the Vue instance**.
