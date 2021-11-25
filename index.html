@@ -1,6 +1,7 @@
 <h1 id="introduction-to-vue.js">Introduction to Vue.js</h1>
 <p>This are my notes from reading of the <a href="https://vuejs.org/v2/guide/#Getting-Started">Getting Started</a> guide of Vue.js (v2)</p>
 <p>Open the deployment in GitHub pages <a href="https://crguezl.github.io/learning-vue-geting-started-guide/" class="uri">https://crguezl.github.io/learning-vue-geting-started-guide/</a> of this <code>README.md</code></p>
+<h2 id="simple-example">Simple example</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- development version, includes helpful console warnings --&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -36,6 +37,7 @@
 </script>
 <p>We have already created our very first Vue app!</p>
 <p>This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, and everything is now <strong>reactive</strong>!.</p>
+<h3 id="check-in-the-developers-tools">Check in the developer’s tools</h3>
 <p>
 How do we know?
 <ul>
@@ -48,16 +50,30 @@ set <code>app.message</code> to a different value.
 </ul>
 You should see the rendered example above update accordingly.
 </p>
-<h2>
-No interpolation occurs outside the Vue app entry point
-</h2>
+<h2 id="no-interpolation-occurs-outside-the-vue-app-entry-point">No interpolation occurs outside the Vue app entry point</h2>
 <h3>
 {{ message }}
 </h3>
-<h2>
-The v-bind directive
-</h2>
+<h2 id="the-v-bind-directive">The v-bind directive</h2>
 <p>Here we define a second entry point for a second Vue app object:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-2&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">v-bind:title</span><span class="ot">=</span><span class="st">&quot;message&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;strong&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      Hover your mouse over me for a few seconds</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      to see my dynamically bound title!</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/strong&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/span&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> app2 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app-2&#39;</span><span class="op">,</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">message</span><span class="op">:</span> <span class="st">&#39;You loaded this page on &#39;</span> <span class="op">+</span> <span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toLocaleString</span>()</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <div id="app-2">
 <p><span v-bind:title="message"> <strong> Hover your mouse over me for a few seconds to see my dynamically bound title! </strong> </span></p>
 </div>

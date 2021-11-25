@@ -4,6 +4,7 @@ This are my notes from reading of the [Getting Started](https://vuejs.org/v2/gui
 
 Open the deployment in GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of this `README.md`
 
+## Simple example
 
 ```html
 <!-- development version, includes helpful console warnings -->
@@ -51,6 +52,7 @@ This looks pretty similar to rendering a string template, but Vue has
 done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, 
 and everything is now <strong>reactive</strong>!.
 
+### Check in the developer's tools
 
 <p>
   How do we know?
@@ -65,15 +67,17 @@ You should see the rendered example above update accordingly.
 </p>
 
 
-<h2>No interpolation occurs outside the Vue app entry point</h2>
+## No interpolation occurs outside the Vue app entry point
 
 
 <h3>{{ message }}</h3>
 
-<h2>The v-bind directive</h2>
+
+## The v-bind directive
 
 Here we define a second entry point for a second Vue app object:
 
+```html
 <div id="app-2">
   <span v-bind:title="message">
     <strong>
@@ -83,6 +87,25 @@ Here we define a second entry point for a second Vue app object:
   </span>
 </div>
 
+
+<script>
+  var app2 = new Vue({
+    el: '#app-2',
+    data: {
+      message: 'You loaded this page on ' + new Date().toLocaleString()
+    }
+  })
+</script>
+```
+
+<div id="app-2">
+  <span v-bind:title="message">
+    <strong>
+      Hover your mouse over me for a few seconds
+      to see my dynamically bound title!
+    </strong>
+  </span>
+</div>
 
 <script>
   var app2 = new Vue({
