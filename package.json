@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "pandoc README.md --o index.html",
-    "push": "git ci -am save && git push"
+    "push": "npm start; git ci -am save && git push"
   },
   "repository": {
     "type": "git",
