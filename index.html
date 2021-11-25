@@ -1,17 +1,21 @@
+<p>This notes are from my reading of the <a href="https://vuejs.org/v2/guide/#Getting-Started">Getting Started</a> guide of Vue.js (v2)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- development version, includes helpful console warnings --&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h2&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    {{ message }}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/h2&gt;</span></span></code></pre></div>
 <!-- development version, includes helpful console warnings -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
-
 <h2>
-  <div id="app">
-    {{ message }}
-  </div>
+<div id="app">
+<pre><code>{{ message }}</code></pre>
+</div>
 </h2>
-
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has
-done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, and everything is now
-<strong>reactive</strong>.
-
+<p>We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, and everything is now <strong>reactive</strong>.</p>
 <script>
   var app = new Vue({
     el: '#app',
@@ -20,38 +24,31 @@ done a lot of work under the hood. <strong>The data and the DOM are now linked</
     }
   })
 </script>
-
 <p>
-  How do we know?
+How do we know?
 <ul>
-  <li>Open your browser’s JavaScript console (right now, on this page) and </li>
-  <li> set <code>app.message</code> to a
-    different value. </li>
+<li>
+Open your browser’s JavaScript console (right now, on this page) and
+</li>
+<li>
+set <code>app.message</code> to a different value.
+</li>
 </ul>
-
 You should see the rendered example above update accordingly.
 </p>
-
-
-<h2>No interpolation occurs outside the Vue app entry point</h2>
-
-
-<h3>{{ message }}</h3>
-
-<h2>The v-bind directive</h2>
-
-Here we define a second entry point for a second Vue app object:
-
+<h2>
+No interpolation occurs outside the Vue app entry point
+</h2>
+<h3>
+{{ message }}
+</h3>
+<h2>
+The v-bind directive
+</h2>
+<p>Here we define a second entry point for a second Vue app object:</p>
 <div id="app-2">
-  <span v-bind:title="message">
-    <strong>
-      Hover your mouse over me for a few seconds
-      to see my dynamically bound title!
-    </strong>
-  </span>
+<p><span v-bind:title="message"> <strong> Hover your mouse over me for a few seconds to see my dynamically bound title! </strong> </span></p>
 </div>
-
-
 <script>
   var app2 = new Vue({
     el: '#app-2',
@@ -60,11 +57,6 @@ Here we define a second entry point for a second Vue app object:
     }
   })
 </script>
-
 <p>
-  Here we are encountering something new. The <code>v-bind</code> attribute you are seeing is called a
-  <strong>directive</strong>. Directives are prefixed with <code>v-</code> to indicate that they are special attributes
-  provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is
-  basically saying “keep this element’s <code>title</code> attribute up-to-date with the <code>message</code> property
-  on the Vue instance.
+Here we are encountering something new. The <code>v-bind</code> attribute you are seeing is called a <strong>directive</strong>. Directives are prefixed with <code>v-</code> to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying “keep this element’s <code>title</code> attribute up-to-date with the <code>message</code> property on the Vue instance.
 </p>

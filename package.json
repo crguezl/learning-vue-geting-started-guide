@@ -4,7 +4,8 @@
   "description": "<https://vuejs.org/v2/guide/#Getting-Started>",
   "main": "index.js",
   "scripts": {
-    "start": "pandoc index.md --o index.html"
+    "start": "pandoc README.md --o index.html",
+    "push": "git ci -am save && git push"
   },
   "repository": {
     "type": "git",
