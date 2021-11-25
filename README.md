@@ -1,10 +1,16 @@
-# Introduction to Vue.js
+---
+title: Introduction to Vue.js
+author: SYTWS
+css: index.css
+---
 
 This are my notes from reading of the [Getting Started](https://vuejs.org/v2/guide/#Getting-Started) guide of Vue.js (v2)
 
 Open the deployment in GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of this `README.md`
 
 ## Simple example
+
+We have inserted this HTML code into this markdown page and then used [pandoc](https://pandpc.org) to translate it to HTML:
 
 ```html
 <!-- development version, includes helpful console warnings -->
