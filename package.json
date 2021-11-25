@@ -1,0 +1,20 @@
+{
+  "name": "hello",
+  "version": "1.0.0",
+  "description": "<https://vuejs.org/v2/guide/#Getting-Started>",
+  "main": "index.js",
+  "scripts": {
+    "start": "pandoc index.md --o index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crguezl/learning-vue-geting-started-guide.git"
+  },
+  "keywords": [],
+  "author": "Casiano Rodriguez Leon <crguezl@ull.edu.es> (https://crguezl.github.io/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crguezl/learning-vue-geting-started-guide/issues"
+  },
+  "homepage": "https://github.com/crguezl/learning-vue-geting-started-guide#readme"
+}
