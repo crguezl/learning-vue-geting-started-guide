@@ -4,9 +4,11 @@ author: SYTWS
 css: index.css
 ---
 
-This are my notes from reading of the [Getting Started](https://vuejs.org/v2/guide/#Getting-Started) guide of Vue.js (v2)
+This are my notes written in markdown from reading of the [Getting Started](https://vuejs.org/v2/guide/#Getting-Started) guide of Vue.js (v2)
 
-Open the deployment in GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of this `README.md`
+They have been translated using pandoc.
+
+Tosee the result, open the deployment in the  GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of this repo.
 
 ## Simple example
 
