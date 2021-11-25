@@ -77,9 +77,13 @@ You should see the rendered example above update accordingly.
 
 ## No interpolation occurs outside the Vue app entry point
 
+This message appears literrally:
+
+```html
+<h3>{{ message }}</h3>
+```
 
 <h3>{{ message }}</h3>
-
 
 ## The v-bind directive
 
