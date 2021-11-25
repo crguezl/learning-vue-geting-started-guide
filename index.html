@@ -89,5 +89,8 @@ You should see the rendered example above update accordingly.
 <ol type="1">
 <li>The <code>v-bind</code> attribute you are seeing is called a <strong>directive</strong>.</li>
 <li>Directives are prefixed with <code>v-</code> to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM.</li>
-<li>Here, it is basically saying <strong>keep this element’s <code>title</code> attribute up-to-date with the <code>message</code> propert on the Vue instance</strong>.</li>
+<li>Here, it is basically saying <strong>keep this element’s <code>title</code> attribute up-to-date with the <code>message</code> property on the Vue instance</strong>.</li>
 </ol>
+<p>If you open up your JavaScript console again and enter</p>
+<p><code>app2.message = ‘some new message’</code>,</p>
+<p>you’ll once again see that the bound HTML - in this case the <code>title</code> attribute - has been updated.</p>

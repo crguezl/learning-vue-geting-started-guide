@@ -122,4 +122,10 @@ Here we are encountering something new.
   <strong>directive</strong>. 
 2. Directives are prefixed with <code>v-</code> to indicate that they are special attributes
   provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. 
-3. Here, it is basically saying **keep this element’s <code>title</code> attribute up-to-date with the <code>message</code> propert on the Vue instance**.
+3. Here, it is basically saying **keep this element’s <code>title</code> attribute up-to-date with the <code>message</code> property on the Vue instance**.
+
+If you open up your JavaScript console again and enter 
+
+<code>app2.message = 'some new message'</code>, 
+
+you’ll once again see that the bound HTML - in this case the <code>title</code> attribute - has been updated.
