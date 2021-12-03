@@ -319,3 +319,5 @@ var app6 = new Vue({
   }
 })
 </script>
+
+## Composing with Components
