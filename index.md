@@ -3,7 +3,9 @@ title: Introduction to Vue.js
 author: SYTWS
 css: index.css
 ---
-
+<!--
+https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attributes-how-to-prevent-this
+-->
 This are my notes written in markdown from reading of the [Getting Started](https://vuejs.org/v2/guide/#Getting-Started) guide of Vue.js (v2)
 
 They have been translated using pandoc.
@@ -39,7 +41,7 @@ We have inserted this HTML code into this markdown page and then used [pandoc](h
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 
-<h2>
+<h2 class="execution">
   <div id="app">
     {{ message }}
   </div>
@@ -85,7 +87,9 @@ This message appears verbatim:
 
 because it is outside the element to wich Vue has been anchored.
 
-<h3>{{ message }}</h3>
+<h3 class="execution">
+{{ message }}
+</h3>
 
 ## The v-bind directive
 
@@ -112,7 +116,7 @@ Here we define a second entry point for a second Vue app object:
 </script>
 ```
 
-<div id="app-2">
+<div id="app-2" class="execution">
   <span v-bind:title="message">
     <strong>
       Hover your mouse over me for a few seconds
@@ -170,7 +174,7 @@ Go to the HTML and change it.
 
 
 
-<div id="app-3">
+<div id="app-3" class="execution">
   <span v-if="seen">Now you see me</span>
 </div>
 
@@ -283,14 +287,16 @@ var app5 = new Vue({
 ## v-model
 
 
-```html
-Vue also provides the v-model directive that makes two-way binding between form input and app state a breeze:
+Vue also provides the v-model directive that makes ***two-way binding** between 
+**form input** and **app state** a breeze:
 
-<script>
+```html
 <div id="app-6">
   <p>{{ message }}</p>
   <input v-model="message">
 </div>
+
+<script>
 var app6 = new Vue({
   el: '#app-6',
   data: {
@@ -299,3 +305,17 @@ var app6 = new Vue({
 })
 </script>
 ```
+
+<div id="app-6" class="execution">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+
+<script>
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</script>

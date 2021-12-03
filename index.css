@@ -326,3 +326,10 @@
       page-break-after: avoid;
     }
   }
+
+.execution {
+   border: 2px solid rgb(19, 4, 4);
+   border-radius: 2px;
+   margin-top: 1em;
+   margin-bottom: 40px;
+}

@@ -88,6 +88,9 @@
 <h1 class="title">Introduction to Vue.js</h1>
 <p class="author">SYTWS</p>
 </header>
+<!--
+https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attributes-how-to-prevent-this
+-->
 <p>This are my notes written in markdown from reading of the <a href="https://vuejs.org/v2/guide/#Getting-Started">Getting Started</a> guide of Vue.js (v2)</p>
 <p>They have been translated using pandoc.</p>
 <p>Tosee the result, open the deployment in the GitHub pages <a href="https://crguezl.github.io/learning-vue-geting-started-guide/" class="uri">https://crguezl.github.io/learning-vue-geting-started-guide/</a> of this repo.</p>
@@ -113,7 +116,7 @@
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <!-- development version, includes helpful console warnings -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<h2>
+<h2 class="execution">
 <div id="app">
 <pre><code>{{ message }}</code></pre>
 </div>
@@ -145,7 +148,7 @@ You should see the rendered example above update accordingly.
 <p>This message appears verbatim:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h3&gt;</span>{{ message }}<span class="kw">&lt;/h3&gt;</span></span></code></pre></div>
 <p>because it is outside the element to wich Vue has been anchored.</p>
-<h3>
+<h3 class="execution">
 {{ message }}
 </h3>
 <h2 id="the-v-bind-directive">The v-bind directive</h2>
@@ -168,7 +171,7 @@ You should see the rendered example above update accordingly.
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  })</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
-<div id="app-2">
+<div id="app-2" class="execution">
 <p><span v-bind:title="message"> <strong> Hover your mouse over me for a few seconds to see my dynamically bound title! </strong> </span></p>
 </div>
 <script>
@@ -203,8 +206,8 @@ You should see the rendered example above update accordingly.
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <p>This example doesn’t work due to <code>pandoc</code>modifying the directive <code>v-if</code>. Go to the HTML and change it.</p>
-<div id="app-3">
-<p><span data-v-if="seen">Now you see me</span></p>
+<div id="app-3" class="execution">
+<p><span v-if="seen">Now you see me</span></p>
 </div>
 <script>
 var app3 = new Vue({
@@ -295,19 +298,33 @@ var app5 = new Vue({
 })
 </script>
 <h2 id="v-model">v-model</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Vue also provides the v-model directive that makes two-way binding between form input and app state a breeze:</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div id<span class="op">=</span><span class="st">&quot;app-6&quot;</span><span class="op">&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span>{{ message }}<span class="op">&lt;/</span>p<span class="op">&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>input v<span class="op">-</span>model<span class="op">=</span><span class="st">&quot;message&quot;</span><span class="op">&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> app6 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app-6&#39;</span><span class="op">,</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">message</span><span class="op">:</span> <span class="st">&#39;Hello Vue!&#39;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<p>Vue also provides the v-model directive that makes *<strong>two-way binding</strong> between <strong>form input</strong> and <strong>app state</strong> a breeze:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-6&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>{{ message }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;input</span> <span class="er">v-model</span><span class="ot">=</span><span class="st">&quot;message&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> app6 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app-6&#39;</span><span class="op">,</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">message</span><span class="op">:</span> <span class="st">&#39;Hello Vue!&#39;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div id="app-6" class="execution">
+<p>
+{{ message }}
+</p>
+<p><input v-model="message"></p>
+</div>
+<script>
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</script>
 </body>
 </html>
