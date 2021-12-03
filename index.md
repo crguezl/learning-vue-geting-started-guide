@@ -287,7 +287,7 @@ var app5 = new Vue({
 ## v-model
 
 
-Vue also provides the v-model directive that makes ***two-way binding** between 
+Vue also provides the v-model directive that makes **two-way binding** between 
 **form input** and **app state** a breeze:
 
 ```html
