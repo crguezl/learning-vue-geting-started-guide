@@ -49,6 +49,14 @@ When you create a Vue instance, you pass in an options object See the [API].
 
 [API]: https://vuejs.org/v2/api/#Options-Data
 
+-   [data](https://vuejs.org/v2/api/#data){.section-link}
+-   [props](https://vuejs.org/v2/api/#props){.section-link}
+-   [propsData](https://vuejs.org/v2/api/#propsData){.section-link}
+-   [computed](https://vuejs.org/v2/api/#computed){.section-link}
+-   [methods](https://vuejs.org/v2/api/#methods){.section-link}
+-   [watch](https://vuejs.org/v2/api/#watch){.section-link}
+
+
 A Vue application consists of a root Vue instance created with `new Vue`, optionally organized into a tree of nested, reusable components. 
 
 For example, a todo app’s component tree might look like this:
