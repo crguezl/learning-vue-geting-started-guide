@@ -124,7 +124,7 @@ because it is outside the element to wich Vue has been anchored.
 {{ message }}
 </h3>
 
-## The v-bind directive
+## The v-bind directive {#v-bind-directive}
 
 Here we define a second entry point for a second Vue app object:
 
@@ -354,5 +354,118 @@ var app6 = new Vue({
 </script>
 
 ## Composing with Components
+
+The component system is another important concept in Vue, 
+because it’s an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. 
+
+If we think about it, almost any type of application interface can be abstracted into a tree of components:
+
+![](assets/images/components.png)
+
+
+In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
+
+```js
+// Define a new component called todo-item
+Vue.component('todo-item', {
+  template: '<li>This is a todo</li>'
+})
+
+let app = new Vue(...)
+```
+
+Now you can compose it in another component’s template:
+
+```html
+<ol>
+  <!-- Create an instance of the todo-item component -->
+  <todo-item></todo-item>
+</ol>
+```
+
+But this would render the same text for every todo, which is not super interesting. 
+
+*We should be able to pass data from the parent scope into child components.*
+
+Let’s modify the component definition to make it accept a **[prop]**:
+
+[prop]: https://vuejs.org/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props
+
+```js 
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
+```
+The `todo-item` component now accepts a
+"[prop]", which is like a custom attribute.
+This [prop] is called `todo`.
+
+Now we can pass the `todo` into each repeated component using [v-bind](#v-bind-directive):
+
+```html
+<div id="app-7">
+  <ol>
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id"
+    ></todo-item>
+  </ol>
+</div>
+```
+
+Now we provide each `todo-item` with the todo object
+it's representing, so that its content can be dynamic.
+
+We also need to provide each component with a "`key`",
+which will be explained later.
+
+```js 
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
+
+var app7 = new Vue({
+  el: '#app-7',
+  data: {
+    groceryList: [
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
+    ]
+  }
+})
+```
+<div id="app-7" class="execution">
+  <ol>
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id"
+    ></todo-item>
+  </ol>
+</div>
+
+<script>
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
+
+var app7 = new Vue({
+  el: '#app-7',
+  data: {
+    groceryList: [
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
+    ]
+  }
+})
+</script>
+
+
 
 ## References
