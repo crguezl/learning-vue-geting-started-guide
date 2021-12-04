@@ -73,3 +73,5 @@ Root Instance
       ├─ TodosButtonClear
       └─ TodoListStatistics
 ```
+
+All Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
