@@ -46,7 +46,7 @@ var vm = new Vue({
 })
 ```
 
-Although not strictly associated with the MVVM pattern, Vue’s design was partly inspired by it. As a convention, we often use the variable vm (short for ViewModel) to refer to our Vue instance.
+Although not strictly associated with the MVVM pattern, Vue’s design was partly inspired by it. As a convention, we often use the variable vm (short for ViewModel) to refer to our Vue instance. [@vuestart]
 
 When you create a Vue instance, you pass in an options object. See the [API]. 
 
@@ -175,3 +175,38 @@ vm.$watch('a', function (newValue, oldValue) {
 ```
 
 See [Instance Properties](https://vuejs.org/v2/api/#Instance-Properties) in the API Reference.
+
+## Instance Lifecycle Hooks
+
+Each Vue instance goes through a series of initialization steps when it’s created - for example, 
+
+1. it needs to set up data observation, 
+2. compile the template, 
+3. mount the instance to the DOM, and 
+4. update the DOM when data changes. 
+ 
+Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
+
+For example, the **`created`** hook can be used to run code after an instance is created:
+
+```js
+new Vue({
+  data: {
+    a: 1
+  },
+  created: function () {
+    // `this` points to the vm instance
+    console.log('a is: ' + this.a)
+  }
+})
+// => "a is: 1"
+```
+
+There are also other hooks which will be called at different stages of the instance’s lifecycle, such as 
+`mounted`, 
+`updated`, and 
+`destroyed`. 
+
+All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it.
+
+## References
