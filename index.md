@@ -1,17 +1,49 @@
 ---
 title: Introduction to Vue.js
 subtitle: Course 21/22
-author: Casiano.
+author: Casiano
+date:  \today
 css: index.css
+link-citations: true
+#urlcolor: "blue"
+# csl: "./acm.csl"
+# output: powerpoint_presentation
+references:
+- type: article-journal
+  id: WatsonCrick1953
+  author:
+  - family: Watson
+    given: J. D.
+  - family: Crick
+    given: F. H. C.
+  issued:
+    date-parts:
+    - - 1953
+      - 4
+      - 25
+  title: 'Molecular structure of nucleic acids: a structure for
+    deoxyribose nucleic acid'
+  title-short: Molecular structure of nucleic acids
+  container-title: Nature
+  volume: 171
+  issue: 4356
+  page: 737-738
+  DOI: 10.1038/171737a0
+  URL: https://www.nature.com/articles/171737a0
+  language: en-GB
+nocite: |
+    @djirdeh2018fullstack
+---
+
 ---
 <!--
 https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attributes-how-to-prevent-this
 -->
 This are my notes written in markdown from reading of the [Getting Started](https://vuejs.org/v2/guide/#Getting-Started) guide of Vue.js (v2)
 
-They have been translated using pandoc.
+They have been ellaborated using pandoc.
 
-Tosee the result, open the deployment in the  GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of this repo.
+To see the result, you can open the deployment in the  GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of the repo containing the notes.
 
 ## Simple example
 
@@ -322,3 +354,5 @@ var app6 = new Vue({
 </script>
 
 ## Composing with Components
+
+## References

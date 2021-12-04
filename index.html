@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Casiano." />
+  <meta name="author" content="Casiano" />
   <title>Introduction to Vue.js</title>
   <style>
     code{white-space: pre-wrap;}
@@ -77,6 +77,25 @@
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
   </style>
   <link rel="stylesheet" href="index.css" />
   <!--[if lt IE 9]>
@@ -87,14 +106,31 @@
 <header id="title-block-header">
 <h1 class="title">Introduction to Vue.js</h1>
 <p class="subtitle">Course 21/22</p>
-<p class="author">Casiano.</p>
+<p class="author">Casiano</p>
 </header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#simple-example">Simple example</a>
+<ul>
+<li><a href="#check-in-the-developers-tools">Check in the developer’s tools</a></li>
+</ul></li>
+<li><a href="#no-interpolation-occurs-outside-the-vue-app-entry-point">No interpolation occurs outside the Vue app entry point</a></li>
+<li><a href="#the-v-bind-directive">The v-bind directive</a></li>
+<li><a href="#conditionals">Conditionals</a></li>
+<li><a href="#loops-v-for">Loops: v-for</a></li>
+<li><a href="#handling-user-input">Handling User Input</a></li>
+<li><a href="#v-model">v-model</a></li>
+<li><a href="#composing-with-components">Composing with Components</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</nav>
+<hr />
 <!--
 https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attributes-how-to-prevent-this
 -->
 <p>This are my notes written in markdown from reading of the <a href="https://vuejs.org/v2/guide/#Getting-Started">Getting Started</a> guide of Vue.js (v2)</p>
-<p>They have been translated using pandoc.</p>
-<p>Tosee the result, open the deployment in the GitHub pages <a href="https://crguezl.github.io/learning-vue-geting-started-guide/" class="uri">https://crguezl.github.io/learning-vue-geting-started-guide/</a> of this repo.</p>
+<p>They have been ellaborated using pandoc.</p>
+<p>To see the result, you can open the deployment in the GitHub pages <a href="https://crguezl.github.io/learning-vue-geting-started-guide/" class="uri">https://crguezl.github.io/learning-vue-geting-started-guide/</a> of the repo containing the notes.</p>
 <h2 id="simple-example">Simple example</h2>
 <p>We have inserted this HTML code into this markdown page and then used <a href="https://pandpc.org">pandoc</a> to translate it to HTML:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- development version, includes helpful console warnings --&gt;</span></span>
@@ -328,5 +364,11 @@ var app6 = new Vue({
 })
 </script>
 <h2 id="composing-with-components">Composing with Components</h2>
+<h2 class="unnumbered" id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">
+Djirdeh, H., N. Murray, and A. Lerner. 2018. <em>Fullstack Vue: The Complete Guide to Vue.js and Friends</em>. Fullstack.io. <a href="https://books.google.es/books?id=G9s2tgEACAAJ">https://books.google.es/books?id=G9s2tgEACAAJ</a>.
+</div>
+</div>
 </body>
 </html>
