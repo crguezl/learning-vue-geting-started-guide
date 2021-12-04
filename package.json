@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "remove-data": "sed -ne 's/data-v-if/v-if/;p' temp.html > introduction.html; rm temp.html",
-    "pandoc": "pandoc --from markdown --toc --bibliography=biblio.bib --citeproc --to html -s introduction.md --o temp.html",
-    "start": "npm run pandoc; npm run remove-data",
+    "introduction": "pandoc --from markdown --toc --bibliography=biblio.bib --citeproc --to html -s introduction.md --o temp.html",
+    "the-vue-instance": "pandoc --from markdown --toc --bibliography=biblio.bib --citeproc --to html -s the-vue-instance.md --o the-vue-instance.html",
+    "start": "npm run index; npm run introduction; npm run remove-data",
+    "index": "pandoc --from markdown --bibliography=biblio.bib --citeproc  -s index.md --o index.html",
     "push": "npm start; git ci -am save && git push"
   },
   "repository": {
