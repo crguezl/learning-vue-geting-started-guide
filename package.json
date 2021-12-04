@@ -4,7 +4,9 @@
   "description": "<https://vuejs.org/v2/guide/#Getting-Started>",
   "main": "index.js",
   "scripts": {
-    "start": "pandoc --from markdown --toc --bibliography=biblio.bib --citeproc --to html -s index.md --o temp.html; sed -ne 's/data-v-if/v-if/;p' temp.html > index.html; rm temp.html",
+    "remove-data": "sed -ne 's/data-v-if/v-if/;p' temp.html > index.html; rm temp.html",
+    "pandoc": "pandoc --from markdown --toc --bibliography=biblio.bib --citeproc --to html -s index.md --o temp.html",
+    "start": "npm run pandoc; npm run remove-data",
     "push": "npm start; git ci -am save && git push"
   },
   "repository": {
