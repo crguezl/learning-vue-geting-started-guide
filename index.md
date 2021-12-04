@@ -46,4 +46,4 @@ At the current time (December 2021), this notes are experimental, since the HTML
 To see the result, you can open the deployment in the  GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of the repo containing the notes.
 
 1. [Introduction](introduction.html)
-2. [The Vue Instance](the-vue-instance)
+2. [The Vue Instance](the-vue-instance.html)
