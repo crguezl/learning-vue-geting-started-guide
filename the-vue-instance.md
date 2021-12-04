@@ -45,9 +45,11 @@ var vm = new Vue({
 
 Although not strictly associated with the MVVM pattern, Vue’s design was partly inspired by it. As a convention, we often use the variable vm (short for ViewModel) to refer to our Vue instance.
 
-When you create a Vue instance, you pass in an options object See the [API]. 
+When you create a Vue instance, you pass in an options object. See the [API]. 
 
 [API]: https://vuejs.org/v2/api/#Options-Data
+
+These are the main proeprties of the options object:
 
 -   [data](https://vuejs.org/v2/api/#data){.section-link}
 -   [props](https://vuejs.org/v2/api/#props){.section-link}
