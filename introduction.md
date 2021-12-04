@@ -5,6 +5,7 @@ author: Casiano
 date:  \today
 css: index.css
 link-citations: true
+toc-title: Table of Contents
 #urlcolor: "blue"
 # csl: "./acm.csl"
 # output: powerpoint_presentation
