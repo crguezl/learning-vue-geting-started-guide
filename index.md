@@ -469,6 +469,7 @@ var app7 = new Vue({
 })
 </script>
 
+Open the console and to `app7.groceryList` a new item. See what happens.
 
 
 ## References
