@@ -1,6 +1,7 @@
 ---
 title: Introduction to Vue.js
-author: SYTWS
+subtitle: Course 21/22
+author: Casiano.
 css: index.css
 ---
 <!--
