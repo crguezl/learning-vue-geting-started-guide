@@ -379,7 +379,9 @@ Now you can compose it in another component’s template:
 ```html
 <ol>
   <!-- Create an instance of the todo-item component -->
-  <todo-item></todo-item>
+  <todo-item
+    v-for="item in groceryList">
+  </todo-item>
 </ol>
 ```
 
@@ -397,8 +399,9 @@ Vue.component('todo-item', {
   template: '<li>{{ todo.text }}</li>'
 })
 ```
+
 The `todo-item` component now accepts a
-"[prop]", which is like a custom attribute.
+"[prop]", which is like a *custom attribute*.
 This [prop] is called `todo`.
 
 Now we can pass the `todo` into each repeated component using [v-bind](#v-bind-directive):
@@ -415,8 +418,8 @@ Now we can pass the `todo` into each repeated component using [v-bind](#v-bind-d
 </div>
 ```
 
-Now we provide each `todo-item` with the todo object
-it's representing, so that its content can be dynamic.
+Now when using the  `todo-item`  we bind the `todo` property  to the 
+`item`  in the `groceryList` array so that its content can be dynamic.
 
 We also need to provide each component with a "`key`",
 which will be explained later.

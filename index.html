@@ -377,8 +377,10 @@ var app6 = new Vue({
 <p>Now you can compose it in another component’s template:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;ol&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Create an instance of the todo-item component --&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;todo-item&gt;&lt;/todo-item&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/ol&gt;</span></span></code></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;todo-item</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    v-for=</span><span class="st">&quot;item in groceryList&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/todo-item&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/ol&gt;</span></span></code></pre></div>
 <p>But this would render the same text for every todo, which is not super interesting.</p>
 <p><em>We should be able to pass data from the parent scope into child components.</em></p>
 <p>Let’s modify the component definition to make it accept a <strong><a href="https://vuejs.org/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props">prop</a></strong>:</p>
@@ -386,7 +388,7 @@ var app6 = new Vue({
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> [<span class="st">&#39;todo&#39;</span>]<span class="op">,</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">template</span><span class="op">:</span> <span class="st">&#39;&lt;li&gt;{{ todo.text }}&lt;/li&gt;&#39;</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<p>The <code>todo-item</code> component now accepts a “<a href="https://vuejs.org/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props">prop</a>,” which is like a custom attribute. This <a href="https://vuejs.org/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props">prop</a> is called <code>todo</code>.</p>
+<p>The <code>todo-item</code> component now accepts a “<a href="https://vuejs.org/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props">prop</a>,” which is like a <em>custom attribute</em>. This <a href="https://vuejs.org/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props">prop</a> is called <code>todo</code>.</p>
 <p>Now we can pass the <code>todo</code> into each repeated component using <a href="#v-bind-directive">v-bind</a>:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-7&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;ol&gt;</span></span>
@@ -397,7 +399,7 @@ var app6 = new Vue({
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&gt;&lt;/todo-item&gt;</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/ol&gt;</span></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<p>Now we provide each <code>todo-item</code> with the todo object it’s representing, so that its content can be dynamic.</p>
+<p>Now when using the <code>todo-item</code> we bind the <code>todo</code> property to the <code>item</code> in the <code>groceryList</code> array so that its content can be dynamic.</p>
 <p>We also need to provide each component with a “<code>key</code>,” which will be explained later.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;todo-item&#39;</span><span class="op">,</span> {</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> [<span class="st">&#39;todo&#39;</span>]<span class="op">,</span></span>
