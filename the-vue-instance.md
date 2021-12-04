@@ -170,3 +170,5 @@ vm.$watch('a', function (newValue, oldValue) {
   // This callback will be called when `vm.a` changes
 })
 ```
+
+See [Instance Properties](https://vuejs.org/v2/api/#Instance-Properties) in the API Reference.
