@@ -173,6 +173,26 @@ The double mustaches interprets the data as plain text, not HTML. In order to ou
 
 The contents of the span will be replaced with the value of the `rawHtml` property, interpreted as plain HTML - data bindings are ignored. 
 
+See this example:
+
+```html 
+<h2 class="execution">
+  <div id="appXXX5">
+ <p>Using mustaches: {{ rawHtml }}</p>
+ <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+  </div>
+</h2>
+
+<script>
+  var appXXX5 = new Vue({
+    el: '#appXXX5',
+    data: {
+      rawHtml: '<i>Hello</i> <b>Vue</b>!'
+    }
+  })
+</script>
+```
+
 <h2 class="execution">
   <div id="appXXX5">
  <p>Using mustaches: {{ rawHtml }}</p>
