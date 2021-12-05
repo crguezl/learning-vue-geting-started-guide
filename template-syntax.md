@@ -103,6 +103,8 @@ var appXXX2 = new Vue({
 })
 </script>
 
+See the video [@renderfunctions] for more details.
+
 ### Interpolations
 
 

@@ -39,7 +39,7 @@ var vm = new Vue({
 
 Result:
 
-<div id="example">
+<div id="example" class="execution">
   <p>Original message: "{{ message }}"</p>
   <p>Computed reversed message: "{{ reversedMessage }}"</p>
 </div>
