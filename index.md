@@ -59,4 +59,6 @@ The [TOC](#toc) up there shows what I have already read.
 
 !include template-syntax.md
 
+!include computed-properties-and-watchers.md
+
 ## References
