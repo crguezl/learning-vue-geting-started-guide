@@ -35,7 +35,11 @@ Say you want to generate anchored headings:
 </div>
 ```
 
-In this case, we have to know the [v-slot](https://vuejs.org/v2/guide/components-slots.html) directive and that children are stored on the component instance at `$slots.default`. 
+In this case, we have to know a few things:
+
+1. The [v-slot](https://vuejs.org/v2/guide/components-slots.html) directive and
+2. That children of a component are stored on the component instance at `this.$slots.default`,
+   
 
 ```js
 

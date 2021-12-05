@@ -648,7 +648,11 @@ var app7 = new Vue({
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/a&gt;&lt;/anchored-heading&gt;</span></span>
 <span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  This is the last section ...</span>
 <span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<p>In this case, we have to know the <a href="https://vuejs.org/v2/guide/components-slots.html">v-slot</a> directive and that children are stored on the component instance at <code>$slots.default</code>.</p>
+<p>In this case, we have to know a few things:</p>
+<ol type="1">
+<li>The <a href="https://vuejs.org/v2/guide/components-slots.html">v-slot</a> directive and</li>
+<li>That children of a component are stored on the component instance at <code>this.$slots.default</code>,</li>
+</ol>
 <div class="sourceCode" id="cb25"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>script<span class="op">&gt;</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;anchored-heading&#39;</span><span class="op">,</span> {</span>
