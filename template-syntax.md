@@ -122,6 +122,29 @@ You can also perform one-time interpolations that do not update on data change b
 <span v-once>This will never change: {{ msg }}</span>
 ``` 
 
+Check this example:
+
+```html
+<h2 class="execution">
+  <div id="appXXX4">
+  <span>Message: {{ msg }}</span>
+  <br/>
+  <span v-once>This will never change: {{ msg }}</span>
+  </div>
+</h2>
+
+<script>
+  var appXXX4 = new Vue({
+    el: '#appXXX4',
+    data: {
+      msg: 'Hello Vue!'
+    }
+  })
+</script>
+```
+
+
+
 <h2 class="execution">
   <div id="appXXX4">
   <span>Message: {{ msg }}</span>
