@@ -1,4 +1,4 @@
-## Introduction to Vue.js
+## Introduction to Vue.js {#introduction}
 
 ### Simple example
 

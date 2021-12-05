@@ -113,7 +113,7 @@
 <ul>
 <li><a href="#my-notes-to-the-vue.js-guide">My Notes to the Vue.js Guide</a>
 <ul>
-<li><a href="#introduction-to-vue.js">Introduction to Vue.js</a>
+<li><a href="#introduction">Introduction to Vue.js</a>
 <ul>
 <li><a href="#simple-example">Simple example</a></li>
 <li><a href="#no-interpolation-occurs-outside-the-vue-app-entry-point">No interpolation occurs outside the Vue app entry point</a></li>
@@ -135,6 +135,7 @@
 <ul>
 <li><a href="#an-introduction-to-render-functions">An Introduction to Render Functions</a></li>
 <li><a href="#interpolations">Interpolations</a></li>
+<li><a href="#directives">Directives</a></li>
 </ul></li>
 <li><a href="#references">References</a></li>
 </ul></li>
@@ -152,7 +153,7 @@ https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attr
 <li>Run <code>npm start</code> to compile the sources and open the resulting <code>index.html</code> file</li>
 </ol>
 <p>The <a href="#toc">TOC</a> up there shows what I have already read.</p>
-<h2 id="introduction-to-vue.js">Introduction to Vue.js</h2>
+<h2 id="introduction">Introduction to Vue.js</h2>
 <h3 id="simple-example">Simple example</h3>
 <p>We have inserted this HTML code into this markdown page and then used <a href="https://pandpc.org">pandoc</a> to translate it to HTML:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- development version, includes helpful console warnings --&gt;</span></span>
@@ -780,7 +781,7 @@ Using v-html directive: <span v-html="rawHtml"></span>
     }
   })
 </script>
-<p>Note that you cannot use <code>v-html</code>to compose template partials, because Vue is not a string-based templating engine.</p>
+<p>Note that you cannot use <code>v-html</code> to compose template partials, because Vue is not a string-based templating engine.</p>
 <p>Instead, components are preferred as the fundamental unit for UI reuse and composition.</p>
 <div class="tip">
 <p>Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to XSS vulnerabilities.</p>
@@ -813,6 +814,21 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <p><strong>Template expressions are sandboxed</strong> and only have access to a whitelist of globals such as <code>Math</code> and <code>Date</code>.</p>
 <p><em>You should not attempt to access user-defined globals</em> in template expressions.</p>
 </div>
+<h3 id="directives">Directives</h3>
+<p>Directives are special attributes with the <code>v-</code> prefix.</p>
+<p><strong>Directive attribute values are expected to be a single JavaScript expression</strong> (with the exception of <code>v-for</code>, which will be discussed later).</p>
+<p><strong>A directive’s job is to reactively apply side effects to the DOM when the value of its expression changes</strong>.</p>
+<p>Let’s review the example we saw in the <a href="#introduction">introduction</a>:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">v-if</span><span class="ot">=</span><span class="st">&quot;seen&quot;</span><span class="kw">&gt;</span>Now you see me<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
+<p>Here, the <code>v-if</code> directive would remove/insert the <code>&lt;p&gt;</code> element based on the truthiness of the value of the expression <code>seen</code>.</p>
+<h4 id="arguments">Arguments</h4>
+<p>Some directives can take an <em>argument</em>, denoted by a colon after the directive name.</p>
+<p>For example, the <code>v-bind</code> directive is used to reactively update an HTML attribute:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:href</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<p>Here <code>href</code> is the argument, which tells the <code>v-bind</code>directive to bind the element’s <code>href</code> attribute to the value of the expression <code>url</code>.</p>
+<p>Another example is the <code>v-on</code> directive, which listens to DOM events:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-on:click</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<p>Here the argument is the event name to listen to.</p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">
