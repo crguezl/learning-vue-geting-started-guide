@@ -806,7 +806,8 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- flow control won&#39;t work either, use ternary expressions --&gt;</span></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>{{ if (ok) { return message } }}</span></code></pre></div>
-<p>Template expressions are sandboxed and only have access to a whitelist of globals such as Math and Date. You should not attempt to access user-defined globals in template expressions.</p>
+<p><strong>Template expressions are sandboxed</strong> and only have access to a whitelist of globals such as <code>Math</code> and <code>Date</code>.</p>
+<p><em>You should not attempt to access user-defined globals</em> in template expressions.</p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">

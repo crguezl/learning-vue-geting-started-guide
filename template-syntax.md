@@ -267,4 +267,6 @@ One restriction is that each binding can only contain one single expression, so 
 {{ if (ok) { return message } }}
 ```
 
-Template expressions are sandboxed and only have access to a whitelist of globals such as Math and Date. You should not attempt to access user-defined globals in template expressions.
+**Template expressions are sandboxed** and only have access to a whitelist of globals such as `Math` and `Date`. 
+
+*You should not attempt to access user-defined globals* in template expressions.
