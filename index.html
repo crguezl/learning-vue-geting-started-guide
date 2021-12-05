@@ -138,7 +138,10 @@
 <li><a href="#directives">Directives</a></li>
 <li><a href="#shorthands">Shorthands</a></li>
 </ul></li>
-<li><a href="#computed-properties-and-watchers">Computed Properties and Watchers</a></li>
+<li><a href="#computed-properties-and-watchers">Computed Properties and Watchers</a>
+<ul>
+<li><a href="#basic-example">Basic Example</a></li>
+</ul></li>
 <li><a href="#references">References</a></li>
 </ul></li>
 </ul>
@@ -889,6 +892,37 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays message in reverse. The problem is made worse when you want to include the reversed message in your template more than once.</p>
 <p>That’s why for any complex logic, you should use a computed property.</p>
+<h3 id="basic-example">Basic Example</h3>
+<div class="sourceCode" id="cb46"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;example&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Original message: &quot;{{ message }}&quot;<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Computed reversed message: &quot;{{ reversedMessage }}&quot;<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#example&#39;</span><span class="op">,</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">message</span><span class="op">:</span> <span class="st">&#39;Hello&#39;</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">computed</span><span class="op">:</span> {</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// a computed getter</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reversedMessage</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>      <span class="co">// `this` points to the vm instance</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">message</span><span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">reverse</span>()<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;&#39;</span>)</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<p>Result:</p>
+<p>Here we have declared a computed property <code>reversedMessage</code>.</p>
+<p>The function we provided will be used as the getter function for the property <code>vm.reversedMessage</code>:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(vm<span class="op">.</span><span class="at">reversedMessage</span>) <span class="co">// =&gt; &#39;olleH&#39;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">message</span> <span class="op">=</span> <span class="st">&#39;Goodbye&#39;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(vm<span class="op">.</span><span class="at">reversedMessage</span>) <span class="co">// =&gt; &#39;eybdooG&#39;</span></span></code></pre></div>
+<p>You can open the console and play with the example vm yourself. The value of <code>vm.reversedMessage</code> is always dependent on the value of <code>vm.message</code>.</p>
+<p>You can data-bind to computed properties in templates just like a normal property.</p>
+<p>Vue is aware that <code>vm.reversedMessage</code> depends on <code>vm.message</code>, so it will update any bindings that depend on <code>vm.reversedMessage</code> when <code>vm.message</code> changes.</p>
+<p>And the best part is that we’ve created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.</p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">
