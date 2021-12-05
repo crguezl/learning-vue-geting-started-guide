@@ -629,7 +629,68 @@ var app7 = new Vue({
 <p>All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.</p>
 <p>Under the hood, Vue compiles the templates into Virtual DOM<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> render functions.</p>
 <p>Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.</p>
-<p>If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, <a href="https://vuejs.org/v2/guide/render-function.html">you can also directly write render functions instead of templates</a>, with optional JSX support.</p>
+<p>If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, <a href="https://vuejs.org/v2/guide/render-function.html">you can also directly write <strong>render functions</strong> instead of templates</a>, with optional JSX support.</p>
+<p>Here follows an example using a render function. Say you want to generate anchored headings:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-XXX2&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span> <span class="kw">&lt;a</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;hello&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;#hello&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    Section Hello</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/a&gt;&lt;/anchored-heading&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  Blah blah</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="kw">&gt;</span> <span class="kw">&lt;a</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;world&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;#world&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    Subsection world</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/a&gt;&lt;/anchored-heading&gt;</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  More blah ...</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span> <span class="kw">&lt;a</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;bye-world&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;#bye-world&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    Section Bye world</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/a&gt;&lt;/anchored-heading&gt;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  This is the last section ...</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<p>In this case, we have to know the <a href="https://vuejs.org/v2/guide/components-slots.html">v-slot</a> directive and that children are stored on the component instance at <code>$slots.default</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>script<span class="op">&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;anchored-heading&#39;</span><span class="op">,</span> {</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">render</span><span class="op">:</span> <span class="kw">function</span> (createElement) {</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">createElement</span>(</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39;h&#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">level</span><span class="op">,</span>   </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">$slots</span><span class="op">.</span><span class="at">default</span> <span class="co">// array of children</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> {</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">level</span><span class="op">:</span> {</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span> <span class="bu">String</span><span class="op">,</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">required</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> appXXX2 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app-XXX2&#39;</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>script<span class="op">&gt;</span></span></code></pre></div>
+<p>The example produces the following output:</p>
+<div id="app-XXX2" class="execution">
+<p><anchored-heading level="1"> <a name="hello" href="#hello"> Section Hello </a></anchored-heading> Blah blah <anchored-heading level="2"> <a name="world" href="#world"> Subsection world </a></anchored-heading> More blah … <anchored-heading level="1"> <a name="bye-world" href="#bye-world"> Section Bye world </a></anchored-heading> This is the last section …</p>
+</div>
+<script>
+Vue.component('anchored-heading', {
+  render: function (createElement) {
+    return createElement(
+      'h' + this.level,   
+      this.$slots.default // array of children
+    )
+  },
+  props: {
+    level: {
+      type: String,
+      required: true
+    }
+  }
+})
+
+var appXXX2 = new Vue({
+  el: '#app-XXX2'
+})
+</script>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">
