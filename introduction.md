@@ -1,43 +1,6 @@
----
-title: Introduction to Vue.js
-subtitle: Course 21/22
-author: Casiano
-date:  \today
-css: index.css
-link-citations: true
-toc-title: Table of Contents
-#urlcolor: "blue"
-# csl: "./acm.csl"
-# output: powerpoint_presentation
-references:
-- type: article-journal
-  id: WatsonCrick1953
-  author:
-  - family: Watson
-    given: J. D.
-  - family: Crick
-    given: F. H. C.
-  issued:
-    date-parts:
-    - - 1953
-      - 4
-      - 25
-  title: 'Molecular structure of nucleic acids: a structure for
-    deoxyribose nucleic acid'
-  title-short: Molecular structure of nucleic acids
-  container-title: Nature
-  volume: 171
-  issue: 4356
-  page: 737-738
-  DOI: 10.1038/171737a0
-  URL: https://www.nature.com/articles/171737a0
-  language: en-GB
-nocite: |
-    @djirdeh2018fullstack
----
+## Introduction to Vue.js
 
-
-## Simple example
+### Simple example
 
 We have inserted this HTML code into this markdown page and then used [pandoc](https://pandpc.org) to translate it to HTML:
 
@@ -87,7 +50,7 @@ This looks pretty similar to rendering a string template, but Vue has
 done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, 
 and everything is now <strong>reactive</strong>!.
 
-### Check in the developer's tools
+#### Check in the developer's tools
 
 <p>
   How do we know?
@@ -102,7 +65,7 @@ You should see the rendered example above update accordingly.
 </p>
 
 
-## No interpolation occurs outside the Vue app entry point
+### No interpolation occurs outside the Vue app entry point
 
 This message appears verbatim:
 
@@ -116,7 +79,7 @@ because it is outside the element to wich Vue has been anchored.
 {{ message }}
 </h3>
 
-## The v-bind directive {#v-bind-directive}
+### The v-bind directive {#v-bind-directive}
 
 Here we define a second entry point for a second Vue app object:
 
@@ -175,7 +138,7 @@ If you open up your JavaScript console again and enter
 you’ll once again see that the bound HTML - in this case the <code>title</code> attribute - has been updated.
 
 
-## Conditionals 
+### Conditionals 
 
 It’s easy to toggle the presence of an element, too:
 
@@ -214,7 +177,7 @@ var app3 = new Vue({
 
 
 
-## Loops: v-for
+### Loops: v-for
 
 There are quite a few other directives, each with its own special functionality. 
 
@@ -265,7 +228,7 @@ var app4 = new Vue({
 </script>
 
 
-## Handling User Input
+### Handling User Input
 
 
 ```html
@@ -309,7 +272,7 @@ var app5 = new Vue({
 </script>
 
 
-## v-model
+### v-model
 
 
 Vue also provides the v-model directive that makes **two-way binding** between 
@@ -345,7 +308,7 @@ var app6 = new Vue({
 })
 </script>
 
-## Composing with Components
+### Composing with Components
 
 The component system is another important concept in Vue, 
 because it’s an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. 
@@ -363,21 +326,60 @@ Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
 
-let app = new Vue(...)
+var appXXX = new Vue({
+  el: '#app-XXX',
+  data: {
+    groceryList: [
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
+    ]
+  }
+})
+
 ```
 
 Now you can compose it in another component’s template:
 
 ```html
-<ol>
-  <!-- Create an instance of the todo-item component -->
-  <todo-item
-    v-for="item in groceryList">
-  </todo-item>
-</ol>
+<div id="app-XXX">
+  <ol>
+    <todo-item
+      v-for="item in groceryList"
+    ></todo-item>
+  </ol>
+</div>
 ```
 
-But this would render the same text for every todo, which is not super interesting. 
+But this would render the same text for every todo, which is not super interesting: 
+
+<div id="app-XXX" class="execution">
+  <ol>
+    <todo-item
+      v-for="item in groceryList"
+    ></todo-item>
+  </ol>
+</div>
+
+
+<script>
+// Define a new component called todo-item
+Vue.component('todo-item', {
+  template: '<li>This is a todo</li>'
+})
+
+var appXXX = new Vue({
+  el: '#app-XXX',
+  data: {
+    groceryList: [
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
+    ]
+  }
+})
+</script>
+
 
 *We should be able to pass data from the parent scope into child components.*
 
@@ -481,4 +483,3 @@ We will talk more about components later, but here’s an (imaginary) example of
 </div>
 ```
 
-## References

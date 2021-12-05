@@ -4,12 +4,14 @@
   "description": "<https://vuejs.org/v2/guide/#Getting-Started>",
   "main": "index.js",
   "scripts": {
-    "remove-data": "sed -ne 's/data-v-if/v-if/;p' temp.html > introduction.html; rm temp.html",
+    "install-pandoc-dependencies": "pip install --user pandoc-include",
+    "remove-data": "sed -ne 's/data-v-if/v-if/;p' temp.html > index.html; rm temp.html",
     "introduction": "pandoc --from markdown --toc --bibliography=biblio.bib --citeproc --to html -s introduction.md --o temp.html",
     "the-vue-instance": "pandoc --from markdown --toc --bibliography=biblio.bib --citeproc --to html -s the-vue-instance.md --o the-vue-instance.html",
-    "start": "npm run index; npm run introduction; npm run remove-data; npm run the-vue-instance",
+    "start": "npm run compile; npm run remove-data",
     "index": "pandoc --from markdown --bibliography=biblio.bib --citeproc  -s index.md --o index.html",
-    "push": "npm start; git ci -am save && git push"
+    "push": "npm start; git ci -am save && git push",
+    "compile": "pandoc --toc --filter pandoc-include --from markdown --bibliography=biblio.bib --citeproc  -s index.md --o temp.html"
   },
   "repository": {
     "type": "git",

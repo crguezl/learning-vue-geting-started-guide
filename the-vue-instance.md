@@ -1,42 +1,6 @@
----
-title: The Vue Instance
-subtitle: Course 21/22
-author: Casiano
-date:  \today
-css: index.css
-link-citations: true
-toc-title: Table of Contents
-#urlcolor: "blue"
-# csl: "./acm.csl"
-# output: powerpoint_presentation
-references:
-- type: article-journal
-  id: WatsonCrick1953
-  author:
-  - family: Watson
-    given: J. D.
-  - family: Crick
-    given: F. H. C.
-  issued:
-    date-parts:
-    - - 1953
-      - 4
-      - 25
-  title: 'Molecular structure of nucleic acids: a structure for
-    deoxyribose nucleic acid'
-  title-short: Molecular structure of nucleic acids
-  container-title: Nature
-  volume: 171
-  issue: 4356
-  page: 737-738
-  DOI: 10.1038/171737a0
-  URL: https://www.nature.com/articles/171737a0
-  language: en-GB
-nocite: |
-    @djirdeh2018fullstacks
---- 
+## The Vue Instance
 
-## Creating a Vue Instance 
+### Creating a Vue Instance 
 
 Every Vue application starts by creating a new Vue instance with the Vue function:
 
@@ -46,13 +10,13 @@ var vm = new Vue({
 })
 ```
 
-Although not strictly associated with the MVVM pattern, Vue’s design was partly inspired by it. As a convention, we often use the variable vm (short for ViewModel) to refer to our Vue instance. [@vuestart]
+Although not strictly associated with the MVVM pattern, Vue’s design was partly inspired by it. As a convention, we often use the variable `vm` (short for *ViewModel*) to refer to our Vue instance. [@vuestart]
 
 When you create a Vue instance, you pass in an options object. See the [API]. 
 
 [API]: https://vuejs.org/v2/api/#Options-Data
 
-These are the main proeprties of the options object:
+These are the main properties of the options object:
 
 -   [data](https://vuejs.org/v2/api/#data){.section-link}
 -   [props](https://vuejs.org/v2/api/#props){.section-link}
@@ -79,7 +43,7 @@ Root Instance
 
 All Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
 
-## Data and methods
+### Data and methods
 
 When a Vue instance is created, 
 it adds all the properties found in its `data` object to Vue’s reactivity system.
@@ -109,7 +73,7 @@ data.a = 3
 vm.a // => 3
 ```
 
-When this data changes, the view will re-render. 
+**When this data changes, the view will re-render**. 
 
 It should be noted that properties in data are only reactive if they existed when the instance was created. That means if you add a new property, like:
 
@@ -176,7 +140,7 @@ vm.$watch('a', function (newValue, oldValue) {
 
 See [Instance Properties](https://vuejs.org/v2/api/#Instance-Properties) in the API Reference.
 
-## Instance Lifecycle Hooks
+### Instance Lifecycle Hooks
 
 Each Vue instance goes through a series of initialization steps when it’s created - for example, 
 
@@ -209,11 +173,9 @@ There are also other hooks which will be called at different stages of the insta
 
 All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it.
 
-## Lifecycle Diagram
+### Lifecycle Diagram
 
-Below is a diagram for the instance lifecycle. You don’t need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.
+Below is a diagram for the instance lifecycle. You don’t need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.  A helpful resource to understand it, is the YouTube video [@lifecycle]
 
-![](assets/images/lifecycle.png)
+[![](assets/images/lifecycle.png)](https://youtu.be/bWHJeIzVCqA)
 
-
-## References
