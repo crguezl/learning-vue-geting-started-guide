@@ -143,7 +143,7 @@ Check this example:
 </script>
 ```
 
-
+Open the  dev tools, try to change `appXXX4.msg` and see what happens:
 
 <h2 class="execution">
   <div id="appXXX4">
