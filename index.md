@@ -48,7 +48,7 @@ At the current time (December 2021), this notes are experimental, since the HTML
 
 To see the result, you can 
 
-1. open the deployment in the  GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of the repo containing the notes.
+1. Open the deployment in the  GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of the repo containing the notes or
 2. Run `npm start`to compile the sources and open the resulting `index.html` file
 
 !include introduction.md
