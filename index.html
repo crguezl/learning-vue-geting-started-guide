@@ -131,9 +131,11 @@
 <li><a href="#instance-lifecycle-hooks">Instance Lifecycle Hooks</a></li>
 <li><a href="#lifecycle-diagram">Lifecycle Diagram</a></li>
 </ul></li>
-<li><a href="#template-syntax">Template Syntax</a></li>
+<li><a href="#template-syntax">Template Syntax</a>
+<ul>
 <li><a href="#an-introduction-to-render-functions">An Introduction to Render Functions</a></li>
 <li><a href="#interpolations">Interpolations</a></li>
+</ul></li>
 <li><a href="#references">References</a></li>
 </ul></li>
 </ul>
@@ -631,7 +633,7 @@ var app7 = new Vue({
 <p>All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.</p>
 <p>Under the hood, Vue compiles the templates into Virtual DOM<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> render functions.</p>
 <p>Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.</p>
-<h2 id="an-introduction-to-render-functions">An Introduction to Render Functions</h2>
+<h3 id="an-introduction-to-render-functions">An Introduction to Render Functions</h3>
 <p>If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, <a href="https://vuejs.org/v2/guide/render-function.html">you can also directly write <strong>render functions</strong> instead of templates</a>, with optional JSX support.</p>
 <p>Here follows an example using a render function. Say you want to generate anchored headings:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-XXX2&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
@@ -698,7 +700,62 @@ var appXXX2 = new Vue({
   el: '#app-XXX2'
 })
 </script>
-<h2 id="interpolations">Interpolations</h2>
+<h3 id="interpolations">Interpolations</h3>
+<h4 id="text">Text</h4>
+<p>The most basic form of data binding is text interpolation using the <em>Mustache</em> syntax (double curly braces):</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span&gt;</span>Message: {{ msg }}<span class="kw">&lt;/span&gt;</span></span></code></pre></div>
+<p>The mustache tag will be replaced with the value of the <code>msg</code> property on the corresponding data object. It will also be updated whenever the data object’s <code>msg</code> property changes.</p>
+<p>You can also perform one-time interpolations that do not update on data change by using the <code>v-once</code> directive, but keep in mind this will also affect any other bindings on the same node:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span</span> <span class="er">v-once</span><span class="kw">&gt;</span>This will never change: {{ msg }}<span class="kw">&lt;/span&gt;</span></span></code></pre></div>
+<h2 class="execution">
+<div id="appXXX4">
+<span>Message: {{ msg }}</span> <br/> <span v-once="">This will never change: {{ msg }}</span>
+</div>
+</h2>
+<script>
+  var appXXX4 = new Vue({
+    el: '#appXXX4',
+    data: {
+      msg: 'Hello Vue!'
+    }
+  })
+</script>
+<h4 id="raw-html">Raw HTML</h4>
+<p>The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the <code>v-html</code> directive:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using mustaches: {{ rawHtml }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using v-html directive: <span class="kw">&lt;span</span> <span class="er">v-html</span><span class="ot">=</span><span class="st">&quot;rawHtml&quot;</span><span class="kw">&gt;&lt;/span&gt;&lt;/p&gt;</span></span></code></pre></div>
+<p>The contents of the span will be replaced with the value of the <code>rawHtml</code> property, interpreted as plain HTML - data bindings are ignored.</p>
+<p>Note that you cannot use <code>v-html</code>to compose template partials, because Vue is not a string-based templating engine.</p>
+<p>Instead, components are preferred as the fundamental unit for UI reuse and composition.</p>
+<p>Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to XSS vulnerabilities.</p>
+<p>Only use HTML interpolation on trusted content and never on user-provided content.</p>
+<h4 id="attributes">Attributes</h4>
+<p>Mustaches cannot be used inside HTML attributes. Instead, use a v-bind directive:</p>
+<pre><code>&lt;div v-bind:id=&quot;dynamicId&quot;&gt;&lt;/div&gt;
+In the case of boolean attributes, where their mere existence implies true, v-bind works a little differently. In this example:
+
+&lt;button v-bind:disabled=&quot;isButtonDisabled&quot;&gt;Button&lt;/button&gt;
+If isButtonDisabled has the value of null, undefined, or false, the disabled attribute will not even be included in the rendered &lt;button&gt; element.
+
+#### Using JavaScript Expressions
+
+So far we’ve only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
+
+{{ number + 1 }}
+
+{{ ok ? &#39;YES&#39; : &#39;NO&#39; }}
+
+{{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}
+
+&lt;div v-bind:id=&quot;&#39;list-&#39; + id&quot;&gt;&lt;/div&gt;
+These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain one single expression, so the following will NOT work:
+
+&lt;!-- this is a statement, not an expression: --&gt;
+{{ var a = 1 }}
+
+&lt;!-- flow control won&#39;t work either, use ternary expressions --&gt;
+{{ if (ok) { return message } }}
+Template expressions are sandboxed and only have access to a whitelist of globals such as Math and Date. You should not attempt to access user-defined globals in template expressions.</code></pre>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">
