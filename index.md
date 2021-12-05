@@ -51,6 +51,8 @@ To see the result, you can
 1. Open the deployment in the  GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of the repo containing the notes or
 2. Run `npm start` to compile the sources and open the resulting `index.html` file
 
+The [TOC](#toc) up there shows what I have already read.
+
 !include introduction.md
 
 !include the-vue-instance.md

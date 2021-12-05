@@ -216,9 +216,11 @@ because Vue is not a string-based templating engine.
 
 Instead, components are preferred as the fundamental unit for UI reuse and composition.
 
+:::  tip
 Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to XSS vulnerabilities. 
 
 Only use HTML interpolation on trusted content and never on user-provided content.
+:::
 
 #### Attributes
 
@@ -267,6 +269,8 @@ One restriction is that each binding can only contain one single expression, so 
 {{ if (ok) { return message } }}
 ```
 
+::: tip
 **Template expressions are sandboxed** and only have access to a whitelist of globals such as `Math` and `Date`. 
 
 *You should not attempt to access user-defined globals* in template expressions.
+:::
