@@ -743,6 +743,24 @@ var appXXX2 = new Vue({
 <div class="sourceCode" id="cb29"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using mustaches: {{ rawHtml }}<span class="kw">&lt;/p&gt;</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using v-html directive: <span class="kw">&lt;span</span> <span class="er">v-html</span><span class="ot">=</span><span class="st">&quot;rawHtml&quot;</span><span class="kw">&gt;&lt;/span&gt;&lt;/p&gt;</span></span></code></pre></div>
 <p>The contents of the span will be replaced with the value of the <code>rawHtml</code> property, interpreted as plain HTML - data bindings are ignored.</p>
+<h2 class="execution">
+<div id="appXXX5">
+<p>
+Using mustaches: {{ rawHtml }}
+</p>
+<p>
+Using v-html directive: <span v-html="rawHtml"></span>
+</p>
+</div>
+</h2>
+<script>
+  var appXXX5 = new Vue({
+    el: '#appXXX5',
+    data: {
+      rawHtml: '<i>Hello</i> <b>Vue</b>!'
+    }
+  })
+</script>
 <p>Note that you cannot use <code>v-html</code>to compose template partials, because Vue is not a string-based templating engine.</p>
 <p>Instead, components are preferred as the fundamental unit for UI reuse and composition.</p>
 <p>Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to XSS vulnerabilities.</p>
