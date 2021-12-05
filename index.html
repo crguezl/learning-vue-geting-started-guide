@@ -914,6 +914,29 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <p>Result:</p>
+<div id="example">
+<p>
+Original message: “{{ message }}”
+</p>
+<p>
+Computed reversed message: “{{ reversedMessage }}”
+</p>
+</div>
+<script>
+var vm = new Vue({
+  el: '#example',
+  data: {
+    message: 'Hello'
+  },
+  computed: {
+    // a computed getter
+    reversedMessage: function () {
+      // `this` points to the vm instance
+      return this.message.split('').reverse().join('')
+    }
+  }
+})
+</script>
 <p>Here we have declared a computed property <code>reversedMessage</code>.</p>
 <p>The function we provided will be used as the getter function for the property <code>vm.reversedMessage</code>:</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(vm<span class="op">.</span><span class="at">reversedMessage</span>) <span class="co">// =&gt; &#39;olleH&#39;</span></span>
