@@ -176,35 +176,37 @@ The contents of the span will be replaced with the value of the `rawHtml` proper
 See this example:
 
 ```html 
-<h2 class="execution">
+<div class="execution">
   <div id="appXXX5">
- <p>Using mustaches: {{ rawHtml }}</p>
- <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+   <p>Using mustaches: {{ rawHtml }}</p>
+   <p>Using v-html directive: <span v-html="rawHtml"></span></p>
   </div>
-</h2>
+</div>
 
 <script>
   var appXXX5 = new Vue({
     el: '#appXXX5',
     data: {
-      rawHtml: '<i>Hello</i> <b>Vue</b>!'
+      rawHtml: '<i>Hello</i> {{ text }} <b>Vue</b>!',
+      text: "Chazam!"
     }
   })
 </script>
 ```
 
-<h2 class="execution">
+<div class="execution">
   <div id="appXXX5">
- <p>Using mustaches: {{ rawHtml }}</p>
- <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+   <p>Using mustaches: {{ rawHtml }}</p>
+   <p>Using v-html directive: <span v-html="rawHtml"></span></p>
   </div>
-</h2>
+</div>
 
 <script>
   var appXXX5 = new Vue({
     el: '#appXXX5',
     data: {
-      rawHtml: '<i>Hello</i> <b>Vue</b>!'
+      rawHtml: '<i>Hello</i> {{ text }} <b>Vue</b>!',
+      text: "Chazam!"
     }
   })
 </script>
