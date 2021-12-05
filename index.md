@@ -55,4 +55,6 @@ To see the result, you can
 
 !include the-vue-instance.md
 
+!include template-syntax.md
+
 ## References

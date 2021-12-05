@@ -131,6 +131,7 @@
 <li><a href="#instance-lifecycle-hooks">Instance Lifecycle Hooks</a></li>
 <li><a href="#lifecycle-diagram">Lifecycle Diagram</a></li>
 </ul></li>
+<li><a href="#template-syntax">Template Syntax</a></li>
 <li><a href="#references">References</a></li>
 </ul></li>
 </ul>
@@ -623,6 +624,12 @@ var app7 = new Vue({
 <h3 id="lifecycle-diagram">Lifecycle Diagram</h3>
 <p>Below is a diagram for the instance lifecycle. You don’t need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference. A helpful resource to understand it, is the YouTube video <span class="citation" data-cites="lifecycle">(<a href="#ref-lifecycle" role="doc-biblioref">edutechional 2018</a>)</span></p>
 <p><a href="https://youtu.be/bWHJeIzVCqA"><img src="./assets/images/lifecycle.png" /></a></p>
+<h2 id="template-syntax">Template Syntax</h2>
+<p>Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance’s data.</p>
+<p>All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.</p>
+<p>Under the hood, Vue compiles the templates into Virtual DOM<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> render functions.</p>
+<p>Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.</p>
+<p>If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, <a href="https://vuejs.org/v2/guide/render-function.html">you can also directly write render functions instead of templates</a>, with optional JSX support.</p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">
@@ -635,5 +642,11 @@ edutechional. 2018. <span>“Easy Way to Understand the VueJS Component Lifecycl
 Vue. 2021. <span>“Vue: Getting Started (V2).”</span> <a href="https://vuejs.org/v2/guide/#Getting-Started">https://vuejs.org/v2/guide/#Getting-Started</a>.
 </div>
 </div>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>The virtual DOM (VDOM) is a programming concept where an ideal, or <em>virtual</em>, representation of a UI is kept in memory and synced with the “real” DOM by a library like Vue or React<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 </body>
 </html>
