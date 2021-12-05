@@ -311,3 +311,56 @@ Another example is the `v-on` directive, which listens to DOM events:
 
 Here the argument is the event name to listen to. 
 
+#### Dynamic Arguments
+
+
+Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
+
+
+Note that there are some constraints to the argument expression, as explained
+in the "Dynamic Argument Expression Constraints" section below.
+
+```html
+<a v-bind:[attributeName]="url"> ... </a>
+```
+
+Here `attributeName` will be dynamically evaluated as a JavaScript expression, 
+and its evaluated value will be used as the final value for the argument. 
+
+For example, if your Vue instance has a `data` property, `attributeName`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+
+Similarly, you can use dynamic arguments to bind a handler 
+to a dynamic event name:
+
+```html
+<a v-on:[eventName]="doSomething"> ... </a>
+```
+
+In this example, when `eventName`‘s value is `"focus"`, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+
+##### Dynamic Argument Value Constraints
+
+Dynamic arguments are expected to evaluate to a string, with the exception of `null`. 
+The special value `null` can be used to explicitly remove the binding. 
+Any other non-string value will trigger a warning.
+
+##### Dynamic Argument Expression Constraints
+
+Dynamic argument expressions have some syntax constraints because certain characters, such as spaces and quotes, are invalid inside HTML attribute names. For example, the following is invalid:
+
+```html
+<!-- This will trigger a compiler warning. -->
+<a v-bind:['foo' + bar]="value"> ... </a>
+```
+
+The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
+
+When using in-DOM templates (i.e., templates written directly in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:
+
+```html
+<!--
+This will be converted to v-bind:[someattr] in in-DOM templates.
+Unless you have a "someattr" property in your instance, your code won't work.
+-->
+<a v-bind:[someAttr]="value"> ... </a>
+```
