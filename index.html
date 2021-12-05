@@ -851,6 +851,10 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">Unless you have a &quot;someattr&quot; property in your instance, your code won&#39;t work.</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:[someAttr]</span><span class="ot">=</span><span class="st">&quot;value&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<h4 id="modifiers">Modifiers</h4>
+<p>Modifiers are special postfixes <strong>denoted by a dot</strong>, which indicate that a directive should be bound in some special way.</p>
+<p>For example, the <code>.prevent</code> modifier tells the <code>v-on</code> directive to call event <code>.preventDefault()</code> on the triggered event:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;form</span> <span class="er">v-on:submit.prevent</span><span class="ot">=</span><span class="st">&quot;onSubmit&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/form&gt;</span></span></code></pre></div>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">

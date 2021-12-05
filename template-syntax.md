@@ -364,3 +364,13 @@ Unless you have a "someattr" property in your instance, your code won't work.
 -->
 <a v-bind:[someAttr]="value"> ... </a>
 ```
+#### Modifiers
+
+Modifiers are special postfixes **denoted by a dot**, which indicate that a directive should be bound in some special way. 
+
+For example, the `.prevent` modifier tells the `v-on` directive to call event 
+`.preventDefault()` on the triggered event:
+
+```html
+<form v-on:submit.prevent="onSubmit"> ... </form>
+```
