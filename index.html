@@ -136,6 +136,7 @@
 <li><a href="#an-introduction-to-render-functions">An Introduction to Render Functions</a></li>
 <li><a href="#interpolations">Interpolations</a></li>
 <li><a href="#directives">Directives</a></li>
+<li><a href="#shorthands">Shorthands</a></li>
 </ul></li>
 <li><a href="#references">References</a></li>
 </ul></li>
@@ -855,6 +856,31 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <p>Modifiers are special postfixes <strong>denoted by a dot</strong>, which indicate that a directive should be bound in some special way.</p>
 <p>For example, the <code>.prevent</code> modifier tells the <code>v-on</code> directive to call event <code>.preventDefault()</code> on the triggered event:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;form</span> <span class="er">v-on:submit.prevent</span><span class="ot">=</span><span class="st">&quot;onSubmit&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/form&gt;</span></span></code></pre></div>
+<h3 id="shorthands">Shorthands</h3>
+<p>The <code>v-</code> prefix serves as a visual cue for identifying Vue-specific attributes in your templates.</p>
+<p>This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives.</p>
+<p>At the same time, the need for the <code>v-</code> prefix becomes less important when you are building a SPA, where Vue manages every template.</p>
+<p>Therefore, Vue provides special shorthands for two of the most often used directives, <code>v-bind</code> and <code>v-on</code>:</p>
+<h4 id="v-bind-shorthand">v-bind Shorthand</h4>
+<div class="sourceCode" id="cb43"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- full syntax --&gt;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:href</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- shorthand --&gt;</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">:href</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- shorthand with dynamic argument (2.6.0+) --&gt;</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">:[key]</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<h4 id="v-on-shorthand">v-on Shorthand</h4>
+<div class="sourceCode" id="cb44"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- full syntax --&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-on:click</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- shorthand --&gt;</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">@click</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- shorthand with dynamic argument (2.6.0+) --&gt;</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">@[event]</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<p>They may look a bit different from normal HTML, but <code>:</code> and <code>@</code> are valid characters for attribute names and all Vue-supported browsers can parse it correctly.</p>
+<p>In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.</p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">
