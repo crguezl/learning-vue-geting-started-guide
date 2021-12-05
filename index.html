@@ -784,18 +784,15 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <p>Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to XSS vulnerabilities.</p>
 <p>Only use HTML interpolation on trusted content and never on user-provided content.</p>
 <h4 id="attributes">Attributes</h4>
-<p>Mustaches cannot be used inside HTML attributes. Instead, use a v-bind directive:</p>
-<pre><code>&lt;div v-bind:id=&quot;dynamicId&quot;&gt;&lt;/div&gt;
-In the case of boolean attributes, where their mere existence implies true, v-bind works a little differently. In this example:
-
-&lt;button v-bind:disabled=&quot;isButtonDisabled&quot;&gt;Button&lt;/button&gt;
-If isButtonDisabled has the value of null, undefined, or false, the disabled attribute will not even be included in the rendered &lt;button&gt; element.
-
-#### Using JavaScript Expressions
-
-So far we’ve only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
-
-{{ number + 1 }}
+<p>Mustaches cannot be used inside HTML attributes. Instead, use a <code>v-bind</code> directive:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">v-bind:id</span><span class="ot">=</span><span class="st">&quot;dynamicId&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></span></code></pre></div>
+<p>In the case of boolean attributes, where their mere existence implies <code>true</code>, <code>v-bind</code> works a little differently.</p>
+<p>In this example:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;button</span> <span class="er">v-bind:disabled</span><span class="ot">=</span><span class="st">&quot;isButtonDisabled&quot;</span><span class="kw">&gt;</span>Button<span class="kw">&lt;/button&gt;</span></span></code></pre></div>
+<p>If <code>isButtonDisabled</code> has the value of <code>null</code>, <code>undefined</code>, or <code>false</code>, the disabled attribute will not even be included in the rendered <code>&lt;button&gt;</code> element.</p>
+<h4 id="using-javascript-expressions">Using JavaScript Expressions</h4>
+<p>So far we’ve only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:</p>
+<pre><code>{{ number + 1 }}
 
 {{ ok ? &#39;YES&#39; : &#39;NO&#39; }}
 

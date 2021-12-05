@@ -222,19 +222,30 @@ Only use HTML interpolation on trusted content and never on user-provided conten
 
 #### Attributes
 
-Mustaches cannot be used inside HTML attributes. Instead, use a v-bind directive:
+Mustaches cannot be used inside HTML attributes. Instead, use a `v-bind` directive:
 
-```
+```html
 <div v-bind:id="dynamicId"></div>
-In the case of boolean attributes, where their mere existence implies true, v-bind works a little differently. In this example:
+```
 
+In the case of boolean attributes, where their mere existence implies `true`,
+`v-bind` works a little differently. 
+
+In this example:
+
+```html
 <button v-bind:disabled="isButtonDisabled">Button</button>
-If isButtonDisabled has the value of null, undefined, or false, the disabled attribute will not even be included in the rendered <button> element.
+```
+
+If `isButtonDisabled` has the value of `null`, `undefined`, or `false`, 
+the disabled attribute will not even be included in the rendered 
+`<button>` element.
 
 #### Using JavaScript Expressions
 
 So far we’ve only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
 
+```
 {{ number + 1 }}
 
 {{ ok ? 'YES' : 'NO' }}
