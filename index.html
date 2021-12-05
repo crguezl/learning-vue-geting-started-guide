@@ -792,21 +792,21 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <p>If <code>isButtonDisabled</code> has the value of <code>null</code>, <code>undefined</code>, or <code>false</code>, the disabled attribute will not even be included in the rendered <code>&lt;button&gt;</code> element.</p>
 <h4 id="using-javascript-expressions">Using JavaScript Expressions</h4>
 <p>So far we’ve only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:</p>
-<pre><code>{{ number + 1 }}
-
-{{ ok ? &#39;YES&#39; : &#39;NO&#39; }}
-
-{{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}
-
-&lt;div v-bind:id=&quot;&#39;list-&#39; + id&quot;&gt;&lt;/div&gt;
-These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain one single expression, so the following will NOT work:
-
-&lt;!-- this is a statement, not an expression: --&gt;
-{{ var a = 1 }}
-
-&lt;!-- flow control won&#39;t work either, use ternary expressions --&gt;
-{{ if (ok) { return message } }}
-Template expressions are sandboxed and only have access to a whitelist of globals such as Math and Date. You should not attempt to access user-defined globals in template expressions.</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>{{ number + 1 }}</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>{{ ok ? &#39;YES&#39; : &#39;NO&#39; }}</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>{{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">v-bind:id</span><span class="ot">=</span><span class="st">&quot;&#39;list-&#39; + id&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></span></code></pre></div>
+<p>These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance.</p>
+<p>One restriction is that each binding can only contain one single expression, so the following will NOT work:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- this is a statement, not an expression: --&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>{{ var a = 1 }}</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- flow control won&#39;t work either, use ternary expressions --&gt;</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>{{ if (ok) { return message } }}</span></code></pre></div>
+<p>Template expressions are sandboxed and only have access to a whitelist of globals such as Math and Date. You should not attempt to access user-defined globals in template expressions.</p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">

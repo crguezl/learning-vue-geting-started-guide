@@ -245,7 +245,7 @@ the disabled attribute will not even be included in the rendered
 
 So far we’ve only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
 
-```
+```html
 {{ number + 1 }}
 
 {{ ok ? 'YES' : 'NO' }}
@@ -253,12 +253,18 @@ So far we’ve only been binding to simple property keys in our templates. But V
 {{ message.split('').reverse().join('') }}
 
 <div v-bind:id="'list-' + id"></div>
-These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain one single expression, so the following will NOT work:
+```
 
+These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. 
+
+One restriction is that each binding can only contain one single expression, so the following will NOT work:
+
+```html
 <!-- this is a statement, not an expression: -->
 {{ var a = 1 }}
 
 <!-- flow control won't work either, use ternary expressions -->
 {{ if (ok) { return message } }}
-Template expressions are sandboxed and only have access to a whitelist of globals such as Math and Date. You should not attempt to access user-defined globals in template expressions.
 ```
+
+Template expressions are sandboxed and only have access to a whitelist of globals such as Math and Date. You should not attempt to access user-defined globals in template expressions.
