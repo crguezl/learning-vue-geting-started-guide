@@ -301,7 +301,7 @@ For example, the `v-bind` directive is used to reactively update an HTML attribu
 <a v-bind:href="url"> ... </a>
 ```
 
-Here `href` is the argument, which tells the `v-bind `directive to bind the element’s `href` attribute to the value of the expression `url`.
+Here `href` is the argument, which tells the `v-bind ` directive to bind the element’s `href` attribute to the value of the expression `url`.
 
 Another example is the `v-on` directive, which listens to DOM events:
 
