@@ -132,6 +132,8 @@
 <li><a href="#lifecycle-diagram">Lifecycle Diagram</a></li>
 </ul></li>
 <li><a href="#template-syntax">Template Syntax</a></li>
+<li><a href="#an-introduction-to-render-functions">An Introduction to Render Functions</a></li>
+<li><a href="#interpolations">Interpolations</a></li>
 <li><a href="#references">References</a></li>
 </ul></li>
 </ul>
@@ -629,6 +631,7 @@ var app7 = new Vue({
 <p>All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.</p>
 <p>Under the hood, Vue compiles the templates into Virtual DOM<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> render functions.</p>
 <p>Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.</p>
+<h2 id="an-introduction-to-render-functions">An Introduction to Render Functions</h2>
 <p>If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, <a href="https://vuejs.org/v2/guide/render-function.html">you can also directly write <strong>render functions</strong> instead of templates</a>, with optional JSX support.</p>
 <p>Here follows an example using a render function. Say you want to generate anchored headings:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-XXX2&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
@@ -691,6 +694,7 @@ var appXXX2 = new Vue({
   el: '#app-XXX2'
 })
 </script>
+<h2 id="interpolations">Interpolations</h2>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">

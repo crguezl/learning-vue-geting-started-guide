@@ -10,6 +10,8 @@ Under the hood, Vue compiles the templates into Virtual DOM[^virtualDom] render 
 
 Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
 
+## An Introduction to Render Functions 
+
 If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, [you can also directly write **render functions** instead of templates](https://vuejs.org/v2/guide/render-function.html), with optional JSX support.
 
 
@@ -96,3 +98,5 @@ var appXXX2 = new Vue({
   el: '#app-XXX2'
 })
 </script>
+
+## Interpolations
