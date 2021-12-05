@@ -138,6 +138,7 @@
 <li><a href="#directives">Directives</a></li>
 <li><a href="#shorthands">Shorthands</a></li>
 </ul></li>
+<li><a href="#computed-properties-and-watchers">Computed Properties and Watchers</a></li>
 <li><a href="#references">References</a></li>
 </ul></li>
 </ul>
@@ -881,6 +882,13 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">@[event]</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
 <p>They may look a bit different from normal HTML, but <code>:</code> and <code>@</code> are valid characters for attribute names and all Vue-supported browsers can parse it correctly.</p>
 <p>In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.</p>
+<h2 id="computed-properties-and-watchers">Computed Properties and Watchers</h2>
+<p>In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;example&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  {{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<p>At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays message in reverse. The problem is made worse when you want to include the reversed message in your template more than once.</p>
+<p>That’s why for any complex logic, you should use a computed property.</p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">
