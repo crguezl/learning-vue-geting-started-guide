@@ -179,7 +179,7 @@ Below is a diagram for the instance lifecycle. You don’t need to fully underst
 
 [![](assets/images/lifecycle.png)](https://youtu.be/bWHJeIzVCqA)
 
-### Exercise
+### Exercise: The instance lifecycle
 
 A helpful resource to understand the instance lifecycle is the YouTube video [@lifecycle]. 
 Watch the video and reproduce the steps. Leave the resulting code in the folder `lifecycle` of the assignment repo.
