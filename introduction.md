@@ -492,4 +492,4 @@ We will talk more about components later, but here’s an (imaginary) example of
 
 ### Exercise 
 
-Follow the tutorial at [@vuejsfundamentals], reproduce the examples and leave the results in folder `vuejsfundamentals`
+Follow the tutorial at [@vuejsfundamentals], reproduce the examples and leave the results in folder `vuejsfundamentals` of the assignment repo
