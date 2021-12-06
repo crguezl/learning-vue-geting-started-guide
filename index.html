@@ -659,8 +659,10 @@ var app7 = new Vue({
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>In this case, we have to know a few things:</p>
 <ol type="1">
-<li>The <a href="https://vuejs.org/v2/guide/components-slots.html">v-slot</a> directive and</li>
 <li>That children of a component are stored on the component instance at <code>this.$slots.default</code>,</li>
+<li>How it works the <a href="https://vuejs.org/v2/guide/render-function.html#createElement-Arguments">createElement</a> function passed to <code>render</code><br />
+</li>
+<li>The <a href="https://vuejs.org/v2/guide/components-slots.html"><code>v-slot</code></a> directive and</li>
 </ol>
 <div class="sourceCode" id="cb25"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>script<span class="op">&gt;</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;anchored-heading&#39;</span><span class="op">,</span> {</span>
