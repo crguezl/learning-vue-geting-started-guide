@@ -650,7 +650,7 @@ var app7 = new Vue({
 <p>If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, <a href="https://vuejs.org/v2/guide/render-function.html">you can also directly write <strong>render functions</strong> instead of templates</a>, with optional JSX support.</p>
 <p>Here follows an example using a render function. Say you want to generate anchored headings:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-XXX2&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span> SectionHello<span class="kw">&lt;/anchored-heading&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span>Section Hello<span class="kw">&lt;/anchored-heading&gt;</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  Begining Blah blah ... </span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="kw">&gt;</span>Subsection World<span class="kw">&lt;/anchored-heading&gt;</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  Blah blah in subsection ...</span>
@@ -693,7 +693,7 @@ var app7 = new Vue({
 <span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>script<span class="op">&gt;</span></span></code></pre></div>
 <p>The example produces the following output:</p>
 <div id="app-XXX2" class="execution">
-<p><anchored-heading level="1"> SectionHello </anchored-heading> Begining Blah blah … <anchored-heading level="2"> Subsection World </anchored-heading> Blah blah in subsection … <anchored-heading level="1"> Section Bye </anchored-heading> Blah blah final …</p>
+<p><anchored-heading level="1">Section Hello</anchored-heading> Begining Blah blah … <anchored-heading level="2">Subsection World</anchored-heading> Blah blah in subsection … <anchored-heading level="1">Section Bye</anchored-heading> Blah blah final …</p>
 </div>
 <script>
 Vue.component('anchored-heading', {
