@@ -64,6 +64,11 @@ and everything is now <strong>reactive</strong>!.
 You should see the rendered example above update accordingly.
 </p>
 
+#### Exercise
+
+Install Google Chrome extension for Vue
+
+[![](assets/images/vue-chrome-extension.png)](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
 ### No interpolation occurs outside the Vue app entry point
 

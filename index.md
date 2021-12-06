@@ -8,7 +8,7 @@ link-citations: true
 toc-title: Table of Contents
 #urlcolor: "blue"
 #csl: "./acm.csl"
-csl: "./ieee.csl"
+#csl: "./ieee.csl"
 # https://github.com/citation-style-language/styles
 # output: powerpoint_presentation
 references:
