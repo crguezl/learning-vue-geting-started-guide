@@ -158,7 +158,7 @@ var app3 = new Vue({
 ```
 
 ::: tip
-**About this notes**: This example didn't work due to `pandoc` modifying the directive `v-if` inside the source to `data-v-if`. I had to remove the `data-`prefix to make it work.
+**About this notes**: This example didn't work due to `pandoc` modifying the directive `v-if` inside the source to `data-v-if`. I had to remove the `data-` prefix to make it work.
 :::
 
 
