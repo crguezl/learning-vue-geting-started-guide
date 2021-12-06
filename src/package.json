@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "install-pandoc-dependencies": "pip install --user pandoc-include",
-    "remove-data": "scripts/remove-data-prefix.sh temp.html index.html",
+    "remove-data": "scripts/remove-data-prefix.sh temp.html ../index.html",
     "start": "npm run xargs; npm run remove-data",
     "push": "npm start; git ci -am save && git push",
     "xargs": "xargs -t pandoc < pandoc-options.txt"
