@@ -6,12 +6,9 @@
   "scripts": {
     "install-pandoc-dependencies": "pip install --user pandoc-include",
     "remove-data": "sed -E -ne 's/data-v-([a-z]+)/v-\\1/;p' temp.html > index.html; rm temp.html",
-    "introduction": "pandoc --from markdown --toc --bibliography=biblio.bib --citeproc --to html -s introduction.md --o temp.html",
-    "the-vue-instance": "pandoc --from markdown --toc --bibliography=biblio.bib --citeproc --to html -s the-vue-instance.md --o the-vue-instance.html",
-    "start": "npm run compile; npm run remove-data",
-    "index": "pandoc --from markdown --bibliography=biblio.bib --citeproc  -s index.md --o index.html",
+    "start": "npm run xargs; npm run remove-data",
     "push": "npm start; git ci -am save && git push",
-    "compile": "pandoc --toc --filter pandoc-include --from markdown --bibliography=biblio.bib --citeproc  -s index.md --o temp.html"
+    "xargs": "xargs pandoc < pandoc-options.txt"
   },
   "repository": {
     "type": "git",
