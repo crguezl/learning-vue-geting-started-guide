@@ -144,10 +144,8 @@
 </ul></li>
 <li><a href="#computed-properties-and-watchers">Computed Properties and Watchers</a>
 <ul>
-<li><a href="#basic-example">Basic Example</a></li>
-<li><a href="#computed-caching-vs-methods">Computed Caching vs Methods</a></li>
-<li><a href="#computed-vs-watched-property">Computed vs Watched Property</a></li>
-<li><a href="#computed-setter">Computed Setter</a></li>
+<li><a href="#computed-properties">Computed Properties</a></li>
+<li><a href="#watchers">Watchers</a></li>
 </ul></li>
 <li><a href="#references">References</a></li>
 </ul></li>
@@ -920,13 +918,14 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <p>They may look a bit different from normal HTML, but <code>:</code> and <code>@</code> are valid characters for attribute names and all Vue-supported browsers can parse it correctly.</p>
 <p>In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.</p>
 <h2 id="computed-properties-and-watchers">Computed Properties and Watchers</h2>
+<h3 id="computed-properties">Computed Properties</h3>
 <p>In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;example&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  {{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays message in reverse. The problem is made worse when you want to include the reversed message in your template more than once.</p>
 <p>That’s why for any complex logic, you should use a computed property.</p>
-<h3 id="basic-example">Basic Example</h3>
+<h4 id="basic-example">Basic Example</h4>
 <div class="sourceCode" id="cb46"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;example&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Original message: &quot;{{ message }}&quot;<span class="kw">&lt;/p&gt;</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Computed reversed message: &quot;{{ reversedMessage }}&quot;<span class="kw">&lt;/p&gt;</span></span>
@@ -980,7 +979,7 @@ var vm = new Vue({
 <p>You can data-bind to computed properties in templates just like a normal property.</p>
 <p>Vue is aware that <code>vm.reversedMessage</code> depends on <code>vm.message</code>, so it will update any bindings that depend on <code>vm.reversedMessage</code> when <code>vm.message</code> changes.</p>
 <p>And the best part is that we’ve created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.</p>
-<h3 id="computed-caching-vs-methods">Computed Caching vs Methods</h3>
+<h4 id="computed-caching-vs-methods">Computed Caching vs Methods</h4>
 <p>You may have noticed we can achieve the same result by invoking a method in the expression:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>p<span class="op">&gt;</span>Reversed message<span class="op">:</span> <span class="st">&quot;{{ reverseMessage() }}&quot;</span><span class="op">&lt;/</span>p<span class="op">&gt;</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">// in component</span></span>
@@ -1004,7 +1003,7 @@ var vm = new Vue({
 <p>Imagine we have an expensive computed property <code>A</code>, which requires looping through a huge Array and doing a lot of computations.</p>
 <p>Then we may have other computed properties that in turn depend on <code>A</code>.</p>
 <p>Without caching, we would be executing <code>A</code>’s getter many more times than necessary! In cases where you do not want caching, use a method instead.</p>
-<h3 id="computed-vs-watched-property">Computed vs Watched Property</h3>
+<h4 id="computed-vs-watched-property">Computed vs Watched Property</h4>
 <p>Vue does provide a more generic way to observe and react to data changes on a Vue instance: <strong>watch properties</strong>.</p>
 <p>When you have some data that needs to change based on some other data, it is tempting to overuse watch. However, it is often a better idea to use a computed property rather than an imperative watch callback. Consider this example:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;demo&quot;</span><span class="kw">&gt;</span>{{ fullName }}<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
@@ -1038,7 +1037,7 @@ var vm = new Vue({
 <span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>Much better, isn’t it?</p>
-<h3 id="computed-setter">Computed Setter</h3>
+<h4 id="computed-setter">Computed Setter</h4>
 <p>Computed properties are by default getter-only, but you can also provide a setter when you need it:</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>computed<span class="op">:</span> {</span>
@@ -1057,6 +1056,133 @@ var vm = new Vue({
 <span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span></code></pre></div>
 <p>Now when you run <code>vm.fullName = 'John Doe'</code>, the setter will be invoked and <code>vm.firstName</code> and <code>vm.lastName</code> will be updated accordingly.</p>
+<h3 id="watchers">Watchers</h3>
+<p>While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary.</p>
+<p>That’s why Vue provides a more generic way to react to data changes through the <code>watch</code> option.</p>
+<p>This is most useful when you want to perform asynchronous or expensive operations in response to changing data.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;watch-example&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    Ask a yes/no question:</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;input</span> <span class="er">v-model</span><span class="ot">=</span><span class="st">&quot;question&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>{{ answer }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Since there is already a rich ecosystem of ajax libraries    --&gt;</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- and collections of general-purpose utility methods, Vue core --&gt;</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- is able to remain small by not reinventing them. This also   --&gt;</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- gives you the freedom to use what you&#39;re familiar with.      --&gt;</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> watchExampleVM <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#watch-example&#39;</span><span class="op">,</span></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">question</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span></span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">answer</span><span class="op">:</span> <span class="st">&#39;I cannot give you an answer until you ask a question!&#39;</span></span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">watch</span><span class="op">:</span> {</span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// whenever question changes, this function will run</span></span>
+<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">question</span><span class="op">:</span> <span class="kw">function</span> (newQuestion<span class="op">,</span> oldQuestion) {</span>
+<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Waiting for you to stop typing...&#39;</span></span>
+<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="fu">debouncedGetAnswer</span>()</span>
+<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">created</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb54-29"><a href="#cb54-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">// _.debounce is a function provided by lodash to limit how</span></span>
+<span id="cb54-30"><a href="#cb54-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// often a particularly expensive operation can be run.</span></span>
+<span id="cb54-31"><a href="#cb54-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">// In this case, we want to limit how often we access</span></span>
+<span id="cb54-32"><a href="#cb54-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// yesno.wtf/api, waiting until the user has completely</span></span>
+<span id="cb54-33"><a href="#cb54-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">// finished typing before making the ajax request. To learn</span></span>
+<span id="cb54-34"><a href="#cb54-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">// more about the _.debounce function (and its cousin</span></span>
+<span id="cb54-35"><a href="#cb54-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// _.throttle), visit: https://lodash.com/docs#debounce</span></span>
+<span id="cb54-36"><a href="#cb54-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">debouncedGetAnswer</span> <span class="op">=</span> _<span class="op">.</span><span class="fu">debounce</span>(<span class="kw">this</span><span class="op">.</span><span class="at">getAnswer</span><span class="op">,</span> <span class="dv">500</span>)</span>
+<span id="cb54-37"><a href="#cb54-37" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb54-38"><a href="#cb54-38" aria-hidden="true" tabindex="-1"></a>  <span class="dt">methods</span><span class="op">:</span> {</span>
+<span id="cb54-39"><a href="#cb54-39" aria-hidden="true" tabindex="-1"></a>    <span class="dt">getAnswer</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb54-40"><a href="#cb54-40" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="kw">this</span><span class="op">.</span><span class="at">question</span><span class="op">.</span><span class="fu">indexOf</span>(<span class="st">&#39;?&#39;</span>) <span class="op">===</span> <span class="op">-</span><span class="dv">1</span>) {</span>
+<span id="cb54-41"><a href="#cb54-41" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Questions usually contain a question mark. ;-)&#39;</span></span>
+<span id="cb54-42"><a href="#cb54-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb54-43"><a href="#cb54-43" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb54-44"><a href="#cb54-44" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Thinking...&#39;</span></span>
+<span id="cb54-45"><a href="#cb54-45" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> vm <span class="op">=</span> <span class="kw">this</span></span>
+<span id="cb54-46"><a href="#cb54-46" aria-hidden="true" tabindex="-1"></a>      axios<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;https://yesno.wtf/api&#39;</span>)</span>
+<span id="cb54-47"><a href="#cb54-47" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">then</span>(<span class="kw">function</span> (response) {</span>
+<span id="cb54-48"><a href="#cb54-48" aria-hidden="true" tabindex="-1"></a>          vm<span class="op">.</span><span class="at">answer</span> <span class="op">=</span> _<span class="op">.</span><span class="fu">capitalize</span>(response<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">answer</span>)</span>
+<span id="cb54-49"><a href="#cb54-49" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb54-50"><a href="#cb54-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">catch</span>(<span class="kw">function</span> (error) {</span>
+<span id="cb54-51"><a href="#cb54-51" aria-hidden="true" tabindex="-1"></a>          vm<span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Error! Could not reach the API. &#39;</span> <span class="op">+</span> error</span>
+<span id="cb54-52"><a href="#cb54-52" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb54-53"><a href="#cb54-53" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb54-54"><a href="#cb54-54" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb54-55"><a href="#cb54-55" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb54-56"><a href="#cb54-56" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<p>Result:</p>
+<div id="watch-example" class="execution">
+<p>
+Ask a yes/no question: <input v-model="question">
+</p>
+<p>
+{{ answer }}
+</p>
+</div>
+<!-- Since there is already a rich ecosystem of ajax libraries    -->
+<!-- and collections of general-purpose utility methods, Vue core -->
+<!-- is able to remain small by not reinventing them. This also   -->
+<!-- gives you the freedom to use what you're familiar with.      -->
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script>
+var watchExampleVM = new Vue({
+  el: '#watch-example',
+  data: {
+    question: '',
+    answer: 'I cannot give you an answer until you ask a question!'
+  },
+  watch: {
+    // whenever question changes, this function will run
+    question: function (newQuestion, oldQuestion) {
+      this.answer = 'Waiting for you to stop typing...'
+      this.debouncedGetAnswer()
+    }
+  },
+  created: function () {
+    // _.debounce is a function provided by lodash to limit how
+    // often a particularly expensive operation can be run.
+    // In this case, we want to limit how often we access
+    // yesno.wtf/api, waiting until the user has completely
+    // finished typing before making the ajax request. To learn
+    // more about the _.debounce function (and its cousin
+    // _.throttle), visit: https://lodash.com/docs#debounce
+    this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+  },
+  methods: {
+    getAnswer: function () {
+      if (this.question.indexOf('?') === -1) {
+        this.answer = 'Questions usually contain a question mark. ;-)'
+        return
+      }
+      this.answer = 'Thinking...'
+      var vm = this
+      axios.get('https://yesno.wtf/api')
+        .then(function (response) {
+          vm.answer = _.capitalize(response.data.answer)
+        })
+        .catch(function (error) {
+          vm.answer = 'Error! Could not reach the API. ' + error
+        })
+    }
+  }
+})
+</script>
+<p>In this case, using the <code>watch</code> option allows us</p>
+<ol type="1">
+<li>to perform an asynchronous operation (accessing an API),</li>
+<li>limit how often we perform that operation, and</li>
+<li>set intermediary states until we get a final answer.</li>
+</ol>
+<p>None of that would be possible with a computed property.</p>
+<p>In addition to the watch option, you can also use the imperative <a href="https://vuejs.org/v2/api/#vm-watch"><code>vm.$watch</code> API</a>.</p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-djirdeh2018fullstack" class="csl-entry" role="doc-biblioentry">

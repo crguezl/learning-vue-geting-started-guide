@@ -1,5 +1,7 @@
 ## Computed Properties and Watchers
 
+### Computed Properties
+
 In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example:
 
 ```html
@@ -12,7 +14,7 @@ At this point, the template is no longer simple and declarative. You have to loo
 
 That’s why for any complex logic, you should use a computed property.
 
-### Basic Example
+#### Basic Example
 
 ```html
 <div id="example">
@@ -79,7 +81,7 @@ Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will updat
 
 And the best part is that we’ve created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.
 
-### Computed Caching vs Methods
+#### Computed Caching vs Methods
 
 You may have noticed we can achieve the same result by invoking a method in the expression:
 
@@ -122,7 +124,7 @@ Then we may have other computed properties that in turn depend on `A`.
 
 Without caching, we would be executing `A`’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
 
-### Computed vs Watched Property
+#### Computed vs Watched Property
 
 Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. 
 
@@ -169,7 +171,7 @@ var vm = new Vue({
 
 Much better, isn’t it?
 
-### Computed Setter
+#### Computed Setter
 
 Computed properties are by default getter-only, but you can also provide a setter when you need it:
 
@@ -193,3 +195,143 @@ computed: {
 ```
 
 Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+
+### Watchers
+
+While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. 
+
+That’s why Vue provides a more generic way to react to data changes through the `watch` option. 
+
+This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+
+For example:
+
+```html
+<div id="watch-example">
+  <p>
+    Ask a yes/no question:
+    <input v-model="question">
+  </p>
+  <p>{{ answer }}</p>
+</div>
+<!-- Since there is already a rich ecosystem of ajax libraries    -->
+<!-- and collections of general-purpose utility methods, Vue core -->
+<!-- is able to remain small by not reinventing them. This also   -->
+<!-- gives you the freedom to use what you're familiar with.      -->
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script>
+var watchExampleVM = new Vue({
+  el: '#watch-example',
+  data: {
+    question: '',
+    answer: 'I cannot give you an answer until you ask a question!'
+  },
+  watch: {
+    // whenever question changes, this function will run
+    question: function (newQuestion, oldQuestion) {
+      this.answer = 'Waiting for you to stop typing...'
+      this.debouncedGetAnswer()
+    }
+  },
+  created: function () {
+    // _.debounce is a function provided by lodash to limit how
+    // often a particularly expensive operation can be run.
+    // In this case, we want to limit how often we access
+    // yesno.wtf/api, waiting until the user has completely
+    // finished typing before making the ajax request. To learn
+    // more about the _.debounce function (and its cousin
+    // _.throttle), visit: https://lodash.com/docs#debounce
+    this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+  },
+  methods: {
+    getAnswer: function () {
+      if (this.question.indexOf('?') === -1) {
+        this.answer = 'Questions usually contain a question mark. ;-)'
+        return
+      }
+      this.answer = 'Thinking...'
+      var vm = this
+      axios.get('https://yesno.wtf/api')
+        .then(function (response) {
+          vm.answer = _.capitalize(response.data.answer)
+        })
+        .catch(function (error) {
+          vm.answer = 'Error! Could not reach the API. ' + error
+        })
+    }
+  }
+})
+</script>
+```
+
+Result:
+
+
+<div id="watch-example" class="execution">
+  <p>
+    Ask a yes/no question:
+    <input v-model="question">
+  </p>
+  <p>{{ answer }}</p>
+</div>
+<!-- Since there is already a rich ecosystem of ajax libraries    -->
+<!-- and collections of general-purpose utility methods, Vue core -->
+<!-- is able to remain small by not reinventing them. This also   -->
+<!-- gives you the freedom to use what you're familiar with.      -->
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script>
+var watchExampleVM = new Vue({
+  el: '#watch-example',
+  data: {
+    question: '',
+    answer: 'I cannot give you an answer until you ask a question!'
+  },
+  watch: {
+    // whenever question changes, this function will run
+    question: function (newQuestion, oldQuestion) {
+      this.answer = 'Waiting for you to stop typing...'
+      this.debouncedGetAnswer()
+    }
+  },
+  created: function () {
+    // _.debounce is a function provided by lodash to limit how
+    // often a particularly expensive operation can be run.
+    // In this case, we want to limit how often we access
+    // yesno.wtf/api, waiting until the user has completely
+    // finished typing before making the ajax request. To learn
+    // more about the _.debounce function (and its cousin
+    // _.throttle), visit: https://lodash.com/docs#debounce
+    this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+  },
+  methods: {
+    getAnswer: function () {
+      if (this.question.indexOf('?') === -1) {
+        this.answer = 'Questions usually contain a question mark. ;-)'
+        return
+      }
+      this.answer = 'Thinking...'
+      var vm = this
+      axios.get('https://yesno.wtf/api')
+        .then(function (response) {
+          vm.answer = _.capitalize(response.data.answer)
+        })
+        .catch(function (error) {
+          vm.answer = 'Error! Could not reach the API. ' + error
+        })
+    }
+  }
+})
+</script>
+
+In this case, using the `watch` option allows us 
+
+1. to perform an asynchronous operation (accessing an API), 
+2. limit how often we perform that operation, and 
+3. set intermediary states until we get a final answer. 
+
+None of that would be possible with a computed property.
+
+In addition to the watch option, you can also use the imperative 
+[`vm.$watch` API](https://vuejs.org/v2/api/#vm-watch).
