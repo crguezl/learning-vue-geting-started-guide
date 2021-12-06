@@ -20,17 +20,11 @@ Say you want to generate anchored headings:
 
 ```html
 <div id="app-XXX2" class="execution">
-  <anchored-heading level="1">
-    SectionHello
-  </anchored-heading>
+  <anchored-heading level="1"> SectionHello</anchored-heading>
   Begining Blah blah ... 
-  <anchored-heading level="2">
-    Subsection World
-  </anchored-heading>
+  <anchored-heading level="2">Subsection World</anchored-heading>
   Blah blah in subsection ...
-    <anchored-heading level="1">
-    Section Bye
-  </anchored-heading>
+    <anchored-heading level="1">Section Bye</anchored-heading>
   Blah blah final ...
 </div>
 ```
