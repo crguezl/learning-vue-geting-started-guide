@@ -108,7 +108,7 @@ var appXXX2 = new Vue({
 ### Exercise: Introduction to Render Functions
 
 See the video [@renderfunctions]. Reproduce the steps.
-Leave the result in the folder `renderfunctions`of the assignment repo.
+Leave the result in the folder `renderfunctions` of the assignment repo.
 
 ### Interpolations
 
