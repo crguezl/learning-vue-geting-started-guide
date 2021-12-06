@@ -34,7 +34,7 @@ In this case, we have to know a few things:
 1. That children of a component are stored on the component instance at `this.$slots.default`,
 2. That `render`  has to produce the VDOM element using its argument `createElement`
 3. How it works the [createElement](https://vuejs.org/v2/guide/render-function.html#createElement-Arguments) function passed to `render`  
-4. The [`v-slot`](https://vuejs.org/v2/guide/components-slots.html) directive and
+4. It is also convenient to know about the [`v-slot`](https://vuejs.org/v2/guide/components-slots.html) directive 
 
 ```js
 <script>
