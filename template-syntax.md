@@ -53,8 +53,6 @@ Vue.component('anchored-heading', {
                           href: `#${name}`
                        }
                     },  text) ],
-     
-      // this.$slots.default // array of children
     )
   },
   props: [ "level" ]
