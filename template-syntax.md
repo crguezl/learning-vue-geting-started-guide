@@ -20,18 +20,18 @@ Say you want to generate anchored headings:
 
 ```html
 <div id="app-XXX2" class="execution">
-  <anchored-heading level="1"> <a name="hello" href="#hello">
-    Section Hello
-  </a></anchored-heading>
-  Blah blah
-  <anchored-heading level="2"> <a name="world" href="#world">
-    Subsection world
-  </a></anchored-heading>
-  More blah ...
-  <anchored-heading level="1"> <a name="bye-world" href="#bye-world">
-    Section Bye world
-  </a></anchored-heading>
-  This is the last section ...
+  <anchored-heading level="1">
+    SectionHello
+  </anchored-heading>
+  Begining Blah blah ... 
+  <anchored-heading level="2">
+    Subsection World
+  </anchored-heading>
+  Blah blah in subsection ...
+    <anchored-heading level="1">
+    Section Bye
+  </anchored-heading>
+  Blah blah final ...
 </div>
 ```
 
@@ -42,21 +42,28 @@ In this case, we have to know a few things:
    
 
 ```js
-
 <script>
 Vue.component('anchored-heading', {
   render: function (createElement) {
+    let default0 = this.$slots.default[0];
+    let text = default0.text;
+    console.log(default0);
+
+    let name = text.replace(/\s+/g,'').replace(/\W+/g,'-');
     return createElement(
       'h' + this.level,   
-      this.$slots.default // array of children
+      [ createElement('a', 
+                    { attrs: 
+                       { 
+                          name: name, 
+                          href: `#${name}`
+                       }
+                    },  text) ],
+     
+      // this.$slots.default // array of children
     )
   },
-  props: {
-    level: {
-      type: String,
-      required: true
-    }
-  }
+  props: [ "level" ]
 })
 
 var appXXX2 = new Vue({
@@ -68,34 +75,42 @@ var appXXX2 = new Vue({
 The example produces the following output:
 
 <div id="app-XXX2" class="execution">
-  <anchored-heading level="1"> <a name="hello" href="#hello">
-    Section Hello
-  </a></anchored-heading>
-  Blah blah
-  <anchored-heading level="2"> <a name="world" href="#world">
-    Subsection world
-  </a></anchored-heading>
-  More blah ...
-  <anchored-heading level="1"> <a name="bye-world" href="#bye-world">
-    Section Bye world
-  </a></anchored-heading>
-  This is the last section ...
+  <anchored-heading level="1">
+    SectionHello
+  </anchored-heading>
+  Begining Blah blah ... 
+  <anchored-heading level="2">
+    Subsection World
+  </anchored-heading>
+  Blah blah in subsection ...
+    <anchored-heading level="1">
+    Section Bye
+  </anchored-heading>
+  Blah blah final ...
 </div>
 
 <script>
 Vue.component('anchored-heading', {
   render: function (createElement) {
+    let default0 = this.$slots.default[0];
+    let text = default0.text;
+    console.log(default0);
+
+    let name = text.replace(/\s+/g,'').replace(/\W+/g,'-');
     return createElement(
       'h' + this.level,   
-      this.$slots.default // array of children
+      [ createElement('a', 
+                    { attrs: 
+                       { 
+                          name: name, 
+                          href: `#${name}`
+                       }
+                    },  text) ],
+     
+      // this.$slots.default // array of children
     )
   },
-  props: {
-    level: {
-      type: String,
-      required: true
-    }
-  }
+  props: [ "level" ]
 })
 
 var appXXX2 = new Vue({
