@@ -70,6 +70,8 @@ Install Google Chrome extension for Vue
 
 [![](assets/images/vue-chrome-extension.png)](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
+Remember to config the extension to allow  `file://` access
+
 ### No interpolation occurs outside the Vue app entry point
 
 This message appears verbatim:
