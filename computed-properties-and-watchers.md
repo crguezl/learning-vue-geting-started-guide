@@ -122,3 +122,49 @@ Then we may have other computed properties that in turn depend on `A`.
 
 Without caching, we would be executing `A`’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
 
+### Computed vs Watched Property
+
+Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. 
+
+When you have some data that needs to change based on some other data, it is tempting to overuse watch. However, it is often a better idea to use a computed property rather than an imperative watch callback. Consider this example:
+
+```html
+<div id="demo">{{ fullName }}</div>
+```
+```js
+var vm = new Vue({
+  el: '#demo',
+  data: {
+    firstName: 'Foo',
+    lastName: 'Bar',
+    fullName: 'Foo Bar'
+  },
+  watch: {
+    firstName: function (val) {
+      this.fullName = val + ' ' + this.lastName
+    },
+    lastName: function (val) {
+      this.fullName = this.firstName + ' ' + val
+    }
+  }
+})
+```
+
+The above code is imperative and repetitive. Compare it with a computed property version:
+
+```js
+var vm = new Vue({
+  el: '#demo',
+  data: {
+    firstName: 'Foo',
+    lastName: 'Bar'
+  },
+  computed: {
+    fullName: function () {
+      return this.firstName + ' ' + this.lastName
+    }
+  }
+})
+```
+
+Much better, isn’t it?
