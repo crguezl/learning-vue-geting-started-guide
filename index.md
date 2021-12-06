@@ -59,9 +59,9 @@ At the current time (December 2021), this notes are experimental, since the HTML
 To see the result, you can 
 
 1. Open the deployment in the  GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of the repo [crguezl/learning-vue-geting-started-guide](https://github.com/crguezl/learning-vue-geting-started-guide) containing the notes or
-2. Run `npm start` to compile the sources and open the resulting `index.html` file
-
-The [TOC](#toc) up there shows what I have already read.
+2. To install it locally, fork the repo. You have to have `pandoc` installed and  then
+   1. Run `npm install-pandoc-dependencies` to install `pandoc-include` 
+   2. Run `npm start` to compile the sources and open the resulting `index.html` file
 
 !include introduction.md
 
