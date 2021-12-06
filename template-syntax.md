@@ -32,21 +32,22 @@ Say you want to generate anchored headings:
 In this case, we have to know a few things:
 
 1. That children of a component are stored on the component instance at `this.$slots.default`,
-1. How it works the [createElement](https://vuejs.org/v2/guide/render-function.html#createElement-Arguments) function passed to `render`  
-1. The [`v-slot`](https://vuejs.org/v2/guide/components-slots.html) directive and
+2. That `render`  has to produce the VDOM element using its argument `createElement`
+3. How it works the [createElement](https://vuejs.org/v2/guide/render-function.html#createElement-Arguments) function passed to `render`  
+4. The [`v-slot`](https://vuejs.org/v2/guide/components-slots.html) directive and
 
 ```js
 <script>
 Vue.component('anchored-heading', {
   render: function (createElement) {
-    let default0 = this.$slots.default[0];
-    let text = default0.text;
+    let default0 = this.$slots.default[0]; 
+    let text = default0.text; // The text between the brackets
     console.log(default0);
 
     let name = text.replace(/\s+/g,'').replace(/\W+/g,'-');
     return createElement(
       'h' + this.level,   
-      [ createElement('a', 
+      [ createElement('a', // Building the child 
                     { attrs: 
                        { 
                           name: name, 
