@@ -71,4 +71,8 @@ The [TOC](#toc) up there shows what I have already read.
 
 !include computed-properties-and-watchers.md
 
+## Exercise: Vuejs Fundamentals
+
+Follow the tutorial at [@vuejsfundamentals], reproduce the examples and leave the results in folder `vuejsfundamentals` of the assignment repo
+
 ## References
