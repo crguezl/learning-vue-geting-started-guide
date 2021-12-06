@@ -175,7 +175,11 @@ All lifecycle hooks are called with their `this` context pointing to the Vue ins
 
 ### Lifecycle Diagram
 
-Below is a diagram for the instance lifecycle. You don’t need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.  A helpful resource to understand it, is the YouTube video [@lifecycle]
+Below is a diagram for the instance lifecycle. You don’t need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.  
 
 [![](assets/images/lifecycle.png)](https://youtu.be/bWHJeIzVCqA)
+
+### Exercise
+
+A helpful resource to understand it, is the YouTube video [@lifecycle]
 

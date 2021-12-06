@@ -116,6 +116,7 @@
 <li><a href="#introduction">Introduction to Vue.js</a>
 <ul>
 <li><a href="#simple-example">Simple example</a></li>
+<li><a href="#exercise-install-google-chrome-extension-for-vue">Exercise: Install Google Chrome extension for Vue</a></li>
 <li><a href="#no-interpolation-occurs-outside-the-vue-app-entry-point">No interpolation occurs outside the Vue app entry point</a></li>
 <li><a href="#v-bind-directive">The v-bind directive</a></li>
 <li><a href="#conditionals">Conditionals</a></li>
@@ -123,7 +124,7 @@
 <li><a href="#handling-user-input">Handling User Input</a></li>
 <li><a href="#v-model">v-model</a></li>
 <li><a href="#composing-with-components">Composing with Components</a></li>
-<li><a href="#exercise-1">Exercise</a></li>
+<li><a href="#exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</a></li>
 </ul></li>
 <li><a href="#the-vue-instance">The Vue Instance</a>
 <ul>
@@ -131,6 +132,7 @@
 <li><a href="#data-and-methods">Data and methods</a></li>
 <li><a href="#instance-lifecycle-hooks">Instance Lifecycle Hooks</a></li>
 <li><a href="#lifecycle-diagram">Lifecycle Diagram</a></li>
+<li><a href="#exercise">Exercise</a></li>
 </ul></li>
 <li><a href="#template-syntax">Template Syntax</a>
 <ul>
@@ -214,7 +216,7 @@ set <code>app.message</code> to a different value.
 </ul>
 You should see the rendered example above update accordingly.
 </p>
-<h4 id="exercise">Exercise</h4>
+<h3 id="exercise-install-google-chrome-extension-for-vue">Exercise: Install Google Chrome extension for Vue</h3>
 <p>Install Google Chrome extension for Vue</p>
 <p><a href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd"><img src="./assets/images/vue-chrome-extension.png" /></a></p>
 <p>Remember to config the extension to allow <code>file://</code> access</p>
@@ -526,7 +528,7 @@ var app7 = new Vue({
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;app-content&gt;&lt;/app-content&gt;</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/app-view&gt;</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<h3 id="exercise-1">Exercise</h3>
+<h3 id="exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</h3>
 <p>Follow the tutorial at <span class="citation" data-cites="vuejsfundamentals">(<a href="#ref-vuejsfundamentals" role="doc-biblioref">VueSchool 2018</a>)</span>, reproduce the examples and leave the results in folder <code>vuejsfundamentals</code> of the assignment repo</p>
 <h2 id="the-vue-instance">The Vue Instance</h2>
 <h3 id="creating-a-vue-instance">Creating a Vue Instance</h3>
@@ -646,8 +648,10 @@ var app7 = new Vue({
 <p>There are also other hooks which will be called at different stages of the instance’s lifecycle, such as <code>mounted</code>, <code>updated</code>, and <code>destroyed</code>.</p>
 <p>All lifecycle hooks are called with their <code>this</code> context pointing to the Vue instance invoking it.</p>
 <h3 id="lifecycle-diagram">Lifecycle Diagram</h3>
-<p>Below is a diagram for the instance lifecycle. You don’t need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference. A helpful resource to understand it, is the YouTube video <span class="citation" data-cites="lifecycle">(<a href="#ref-lifecycle" role="doc-biblioref">edutechional 2018</a>)</span></p>
+<p>Below is a diagram for the instance lifecycle. You don’t need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.</p>
 <p><a href="https://youtu.be/bWHJeIzVCqA"><img src="./assets/images/lifecycle.png" /></a></p>
+<h3 id="exercise">Exercise</h3>
+<p>A helpful resource to understand it, is the YouTube video <span class="citation" data-cites="lifecycle">(<a href="#ref-lifecycle" role="doc-biblioref">edutechional 2018</a>)</span></p>
 <h2 id="template-syntax">Template Syntax</h2>
 <p>Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance’s data.</p>
 <p>All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.</p>

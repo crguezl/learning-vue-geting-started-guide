@@ -64,7 +64,7 @@ and everything is now <strong>reactive</strong>!.
 You should see the rendered example above update accordingly.
 </p>
 
-#### Exercise
+### Exercise: Install Google Chrome extension for Vue
 
 Install Google Chrome extension for Vue
 
@@ -490,6 +490,6 @@ We will talk more about components later, but here’s an (imaginary) example of
 </div>
 ```
 
-### Exercise 
+### Exercise: Vuejs Fundamentals
 
 Follow the tutorial at [@vuejsfundamentals], reproduce the examples and leave the results in folder `vuejsfundamentals` of the assignment repo
