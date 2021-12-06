@@ -1,5 +1,5 @@
 ---
-title: My Notes to the Vue.js Guide
+title: My Notes to the **Essentials** Section of the *Vue.js Guide*
 subtitle: Course 21/22
 author: Casiano
 date:  \today
@@ -38,7 +38,7 @@ nocite: |
     @djirdeh2018fullstacks
 --- 
 
-# My Notes to the Vue.js Guide
+# My Notes to the  **Essentials** Section of the *Vue.js Guide*
 
 <!--
 https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attributes-how-to-prevent-this
