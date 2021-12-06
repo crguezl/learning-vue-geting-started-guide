@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "install-pandoc-dependencies": "pip install --user pandoc-include",
-    "remove-data": "sed -E -ne 's/data-v-([a-z]+)/v-\\1/;p' temp.html > index.html; rm temp.html",
+    "remove-data": "scripts/remove-data-prefix.sh temp.html index.html",
     "start": "npm run xargs; npm run remove-data",
     "push": "npm start; git ci -am save && git push",
-    "xargs": "xargs pandoc < pandoc-options.txt"
+    "xargs": "xargs -t pandoc < pandoc-options.txt"
   },
   "repository": {
     "type": "git",
