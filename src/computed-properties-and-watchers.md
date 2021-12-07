@@ -47,7 +47,7 @@ Result:
 </div>
 
 <script>
-var vm = new Vue({
+let vm = new Vue({
   el: '#example',
   data: {
     message: 'Hello'
