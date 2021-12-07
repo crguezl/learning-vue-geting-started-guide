@@ -37,6 +37,7 @@ At the core of Vue.js is a system that enables us to declaratively render data t
 <!-- development version, includes helpful console warnings -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
+**Execution:**
 
 <h2 class="execution">
   <div id="app">
@@ -77,7 +78,7 @@ You should see the rendered example above update accordingly.
 
 Install Google Chrome extension for Vue
 
-[![](assets/images/vue-chrome-extension.png)](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+[<img src="assets/images/vue-chrome-extension.png" width="70%"/>](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
 Remember to config the extension to allow  `file://` access
 
@@ -90,6 +91,8 @@ This message appears verbatim:
 ```
 
 because it is outside the element to wich Vue has been anchored.
+
+**Execution:**
 
 <h3 class="execution">
 {{ message }}
@@ -119,6 +122,8 @@ Here we define a second entry point for a second Vue app object:
   })
 </script>
 ```
+
+**Execution:**
 
 <div id="app-2" class="execution">
   <span v-bind:title="message">
@@ -177,6 +182,7 @@ var app3 = new Vue({
 **About this notes**: This example initially didn't work due to `pandoc` modifying the directive `v-if` inside the source to `data-v-if`. I had to remove the `data-` prefix to make it work. The same happens with some other directives.
 :::
 
+**Execution:**
 
 <div id="app-3" class="execution">
   <span v-if="seen">Now you see me</span>
@@ -310,6 +316,8 @@ var app6 = new Vue({
 </script>
 ```
 
+**Execution:**
+
 <div id="app-6" class="execution">
   <p>{{ message }}</p>
   <input v-model="message">
@@ -331,7 +339,7 @@ because it’s an abstraction that allows us to build large-scale applications c
 
 If we think about it, almost any type of application interface can be abstracted into a tree of components:
 
-![](assets/images/components.png)
+<img src="assets/images/components.png" width="60%" />
 
 
 In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
@@ -368,6 +376,8 @@ Now you can compose it in another component’s template:
 ```
 
 But this would render the same text for every todo, which is not super interesting: 
+
+**Execution:**
 
 <div id="app-XXX" class="execution">
   <ol>
@@ -451,6 +461,9 @@ var app7 = new Vue({
   }
 })
 ```
+
+**Execution:**
+
 <div id="app-7" class="execution">
   <ol>
     <todo-item
