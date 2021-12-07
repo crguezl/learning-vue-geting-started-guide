@@ -658,7 +658,7 @@ var app7 = new Vue({
 <p>All lifecycle hooks are called with their <code>this</code> context pointing to the Vue instance invoking it.</p>
 <h3 id="lifecycle-diagram">Lifecycle Diagram</h3>
 <p>Below is a diagram for the instance lifecycle. You don’t need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.</p>
-<p><a href="https://youtu.be/bWHJeIzVCqA"><img src="./assets/images/lifecycle.png" /></a></p>
+<p><a href="https://youtu.be/bWHJeIzVCqA"><img src="./src/assets/images/lifecycle.png" /></a></p>
 <h3 id="exercise-the-instance-lifecycle">Exercise: The instance lifecycle</h3>
 <p>A helpful resource to understand the instance lifecycle is the YouTube video <span class="citation" data-cites="lifecycle">(<a href="#ref-lifecycle" role="doc-biblioref">edutechional 2018</a>)</span>. Watch the video and reproduce the steps. Leave the resulting code in the folder <code>lifecycle</code> of the assignment repo.</p>
 <h2 id="template-syntax">Template Syntax</h2>
@@ -1182,6 +1182,11 @@ var watchExampleVM = new Vue({
   }
 })
 </script>
+<p>This is an example of how to use a lifecycle hook seen in section <a href="#lifecycle">Lifecycle Diagram</a>.</p>
+<p>When the Vue instance is created the <code>created</code> hook allows us to create the <code>debouncedGetAnswer</code> method from the <code>getAnswer</code> method.</p>
+<p>Lodash method <a href="https://lodash.com/docs/4.17.15#debounce">debounce</a></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>_<span class="op">.</span><span class="fu">debounce</span>(func<span class="op">,</span> [wait<span class="op">=</span><span class="dv">0</span>]<span class="op">,</span> [options<span class="op">=</span>{}])</span></code></pre></div>
+<p>creates a debounced function that delays invoking <code>func</code> until after <code>wait</code> milliseconds have elapsed since the last time the debounced function was invoked.</p>
 <p>In this case, using the <code>watch</code> option allows us</p>
 <ol type="1">
 <li>to perform an asynchronous operation (accessing an API),</li>

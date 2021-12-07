@@ -327,6 +327,19 @@ var watchExampleVM = new Vue({
 })
 </script>
 
+This is an example of how to use a lifecycle hook seen in section [Lifecycle Diagram](#lifecycle).
+
+When the Vue instance is created the `created` hook allows us to create the 
+`debouncedGetAnswer` method from the `getAnswer` method.
+
+Lodash method [debounce](https://lodash.com/docs/4.17.15#debounce) 
+
+```js
+_.debounce(func, [wait=0], [options={}])
+```
+
+creates a debounced function that delays invoking `func` until after `wait` milliseconds have elapsed since the last time the debounced function was invoked.
+
 In this case, using the `watch` option allows us 
 
 1. to perform an asynchronous operation (accessing an API), 
@@ -337,3 +350,6 @@ None of that would be possible with a computed property.
 
 In addition to the watch option, you can also use the imperative 
 [`vm.$watch` API](https://vuejs.org/v2/api/#vm-watch).
+
+
+
