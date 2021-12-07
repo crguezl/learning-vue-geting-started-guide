@@ -1182,7 +1182,7 @@ var watchExampleVM = new Vue({
   }
 })
 </script>
-<p>Remember that <code>v-model</code> is a two-way binding for form inputs. It combines <code>v-bind</code>, which brings a JavaScript value from <code>.data</code> into the template, and <code>v-on:input</code> to update the JavaScript value.</p>
+<p>Remember that <code>v-model</code> is a two-way binding for form inputs. It combines <code>v-bind</code>, which brings a JavaScript value from <code>.data</code> into the template, and <code>v-on:input</code> to update the JavaScript value. <code>v-model</code> works with all the basic HTML input types (<code>text</code>, <code>textarea</code>, <code>number</code>, <code>radio</code>, <code>checkbox</code>, <code>select</code>).</p>
 <p>In this example this bidirectional behavior of <code>v-model</code> constitutes a problem since each time the user press a key the input changes potentially producing a call to <code>question</code>.</p>
 <p>This is an example of how to use a lifecycle hook seen in section <a href="#lifecycle-diagram">Lifecycle Diagram</a>.</p>
 <p>When the Vue instance is created the <code>created</code> hook allows us to create the <code>debouncedGetAnswer</code> method from the <code>getAnswer</code> method.</p>
