@@ -382,6 +382,18 @@ In this case, using the `watch` option allows us
 
 None of that would be possible with a computed property.
 
+The `watch`entry of the Vue instance has to be an object where 
+
+1. keys are expressions to watch and 
+2. values are the corresponding callbacks. 
+3. The value can also be a string of a method name, or an Object that contains additional options. 
+4. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+
+Note that you should not use an arrow function to define a watcher (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue))`. 
+
+The reason is arrow functions bind the parent context, so this will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.
+
+
 In addition to the `watch` option, you can also use the imperative 
 [`vm.$watch` API](https://vuejs.org/v2/api/#vm-watch).
 

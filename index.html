@@ -1214,6 +1214,15 @@ calling <code>axios.get('https://yesno.wtf/api')</code> for each pressed key. So
 <li>Set intermediary states until we get a final answer.</li>
 </ol>
 <p>None of that would be possible with a computed property.</p>
+<p>The <code>watch</code>entry of the Vue instance has to be an object where</p>
+<ol type="1">
+<li>keys are expressions to watch and</li>
+<li>values are the corresponding callbacks.</li>
+<li>The value can also be a string of a method name, or an Object that contains additional options.</li>
+<li>The Vue instance will call <code>$watch()</code> for each entry in the object at instantiation.</li>
+</ol>
+<p>Note that you should not use an arrow function to define a watcher (e.g. <code>searchQuery: newValue =&gt; this.updateAutocomplete(newValue))</code>.</p>
+<p>The reason is arrow functions bind the parent context, so this will not be the Vue instance as you expect and <code>this.updateAutocomplete</code> will be undefined.</p>
 <p>In addition to the <code>watch</code> option, you can also use the imperative <a href="https://vuejs.org/v2/api/#vm-watch"><code>vm.$watch</code> API</a>.</p>
 <h2 id="exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</h2>
 <p>Follow the tutorial at <span class="citation" data-cites="vuejsfundamentals">(<a href="#ref-vuejsfundamentals" role="doc-biblioref">VueSchool 2018</a>)</span>, reproduce the examples and leave the results in folder <code>vuejsfundamentals</code> of the assignment repo</p>
