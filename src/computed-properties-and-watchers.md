@@ -328,7 +328,9 @@ var watchExampleVM = new Vue({
 </script>
 
 Remember that `v-model` is a two-way binding for form inputs. 
-It combines `v-bind`, which brings a JavaScript value from `.data` into the template, and `v-on:input` to update the JavaScript value. `v-model` works with all the basic HTML input types (`text`, `textarea`, `number`, `radio`, `checkbox`, `select`).
+It combines `v-bind`, which brings a JavaScript value from `.data` into the template, and `v-on:input` to update the JavaScript value. 
+
+The `v-model` directive works with all the basic HTML input types (`text`, `textarea`, `number`, `radio`, `checkbox`, `select`).
 
 In this example this bidirectional behavior of `v-model` constitutes a problem since each time the user press a key the input changes and so producing a call to the watch function associated to changes in `question`.
 
