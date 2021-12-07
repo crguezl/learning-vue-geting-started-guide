@@ -332,19 +332,45 @@ It combines `v-bind`, which brings a JavaScript value from `.data` into the temp
 
 In this example this bidirectional behavior of `v-model` constitutes a problem since each time the user press a key the input changes and so producing a call to the watch function associated to changes in `question`.
 
+```js
+  watch: {
+    // whenever question changes, this function will run
+    question: function (newQuestion, oldQuestion) {
+      this.answer = 'Waiting for you to stop typing...'
+      this.debouncedGetAnswer()
+    }
+  },
+  ```
 
-This is an example of how to use a lifecycle hook seen in section [Lifecycle Diagram](#lifecycle-diagram).
+If we instead were calling directly `this.getAnwser()` then there is the risk of  
+calling `axios.get('https://yesno.wtf/api')` for each pressed key.
+Something has to be done regarding this problem.
 
-When the Vue instance is created the `created` hook allows us to create the 
-`debouncedGetAnswer` method from the `getAnswer` method.
+This is an example of how to use a lifecycle hook seen in section [Lifecycle Diagram](#lifecycle-diagram). When the Vue instance is created we use the `created` hook to create the `debouncedGetAnswer` method from the `getAnswer` method:
 
-The Lodash method [debounce](https://lodash.com/docs/4.17.15#debounce) 
+```js
+  created: function () {
+    this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+  },
+```
+
+The call to the Lodash method [`_.debounce(this.getAnswer, 500)`](https://lodash.com/docs/4.17.15#debounce) 
 
 ```js
 _.debounce(func, [wait=0], [options={}])
 ```
 
 creates a debounced function that delays invoking `func` until after `wait` milliseconds have elapsed since the last time the debounced function was invoked.
+
+That alleviates the risk to throttle the network. Furthermore, inside `getAnswer` we check for the presence of a `?` character:
+
+```js
+      if (this.question.indexOf('?') === -1) {
+        this.answer = 'Questions usually contain a question mark. ;-)'
+        return
+      }
+```
+Doing nothing until the question mark appears.
 
 In this case, using the `watch` option allows us 
 
