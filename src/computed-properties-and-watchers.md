@@ -382,7 +382,7 @@ In this case, using the `watch` option allows us
 
 None of that would be possible with a computed property.
 
-The `watch`entry of the Vue instance has to be an object where 
+The `watch` entry of the Vue instance has to be an object where 
 
 1. **keys** are expressions to watch and 
 2. **values** are the corresponding callbacks. 
