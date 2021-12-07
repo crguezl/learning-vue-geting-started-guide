@@ -374,13 +374,13 @@ Doing nothing until the question mark appears.
 
 In this case, using the `watch` option allows us 
 
-1. to perform an asynchronous operation (accessing an API), 
-2. limit how often we perform that operation, and 
-3. set intermediary states until we get a final answer. 
+1. To perform an asynchronous operation (accessing an API), 
+2. With additional effort, to limit how often we perform that operation, and 
+3. Set intermediary states until we get a final answer. 
 
 None of that would be possible with a computed property.
 
-In addition to the watch option, you can also use the imperative 
+In addition to the `watch` option, you can also use the imperative 
 [`vm.$watch` API](https://vuejs.org/v2/api/#vm-watch).
 
 
