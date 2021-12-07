@@ -327,12 +327,18 @@ var watchExampleVM = new Vue({
 })
 </script>
 
+Remember that `v-model` is a two-way binding for form inputs. 
+It combines `v-bind`, which brings a JavaScript value from `.data` into the template, and `v-on:input` to update the JavaScript value.
+
+In this example this bidirectional behavior of `v-model` constitutes a problem since each time the user press a key the input changes potentially producing a call to `question`.
+
+
 This is an example of how to use a lifecycle hook seen in section [Lifecycle Diagram](#lifecycle-diagram).
 
 When the Vue instance is created the `created` hook allows us to create the 
 `debouncedGetAnswer` method from the `getAnswer` method.
 
-Lodash method [debounce](https://lodash.com/docs/4.17.15#debounce) 
+The Lodash method [debounce](https://lodash.com/docs/4.17.15#debounce) 
 
 ```js
 _.debounce(func, [wait=0], [options={}])

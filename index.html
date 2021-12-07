@@ -1182,9 +1182,11 @@ var watchExampleVM = new Vue({
   }
 })
 </script>
+<p>Remember that <code>v-model</code> is a two-way binding for form inputs. It combines <code>v-bind</code>, which brings a JavaScript value from <code>.data</code> into the template, and <code>v-on:input</code> to update the JavaScript value.</p>
+<p>In this example this bidirectional behavior of <code>v-model</code> constitutes a problem since each time the user press a key the input changes potentially producing a call to <code>question</code>.</p>
 <p>This is an example of how to use a lifecycle hook seen in section <a href="#lifecycle-diagram">Lifecycle Diagram</a>.</p>
 <p>When the Vue instance is created the <code>created</code> hook allows us to create the <code>debouncedGetAnswer</code> method from the <code>getAnswer</code> method.</p>
-<p>Lodash method <a href="https://lodash.com/docs/4.17.15#debounce">debounce</a></p>
+<p>The Lodash method <a href="https://lodash.com/docs/4.17.15#debounce">debounce</a></p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>_<span class="op">.</span><span class="fu">debounce</span>(func<span class="op">,</span> [wait<span class="op">=</span><span class="dv">0</span>]<span class="op">,</span> [options<span class="op">=</span>{}])</span></code></pre></div>
 <p>creates a debounced function that delays invoking <code>func</code> until after <code>wait</code> milliseconds have elapsed since the last time the debounced function was invoked.</p>
 <p>In this case, using the <code>watch</code> option allows us</p>
