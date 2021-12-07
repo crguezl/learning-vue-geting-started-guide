@@ -78,7 +78,7 @@ You should see the rendered example above update accordingly.
 
 Install Google Chrome extension for Vue
 
-[![](assets/images/vue-chrome-extension.png){width="70%}](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+[![](assets/images/vue-chrome-extension.png){width="70%"}](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
 Remember to config the extension to allow  `file://` access
 
