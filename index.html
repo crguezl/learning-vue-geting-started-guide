@@ -1184,7 +1184,7 @@ var watchExampleVM = new Vue({
 </script>
 <p>Remember that <code>v-model</code> is a two-way binding for form inputs. It combines <code>v-bind</code>, which brings a JavaScript value from <code>.data</code> into the template, and <code>v-on:input</code> to update the JavaScript value.</p>
 <p>The <code>v-model</code> directive works with all the basic HTML input types (<code>text</code>, <code>textarea</code>, <code>number</code>, <code>radio</code>, <code>checkbox</code>, <code>select</code>).</p>
-<p>In this example this bidirectional behavior of <code>v-model</code> constitutes a problem since each time the user press a key the input changes producing a call to the watch function associated to changes in <code>question</code> 😢.</p>
+<p>In this example this bidirectional behavior of <code>v-model</code> constitutes a problem since each time the user press a key the input changes producing a call to the watch handler function associated to changes in <code>question</code> 😢.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>  watch<span class="op">:</span> {</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// whenever question changes, this function will run</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">question</span><span class="op">:</span> <span class="kw">function</span> (newQuestion<span class="op">,</span> oldQuestion) {</span>
