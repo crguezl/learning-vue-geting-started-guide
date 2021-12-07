@@ -78,7 +78,7 @@ You should see the rendered example above update accordingly.
 
 Install Google Chrome extension for Vue
 
-[<img src="assets/images/vue-chrome-extension.png" width="70%"/>](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+[![](assets/images/vue-chrome-extension.png){width="70%}](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
 Remember to config the extension to allow  `file://` access
 
@@ -339,7 +339,7 @@ because it’s an abstraction that allows us to build large-scale applications c
 
 If we think about it, almost any type of application interface can be abstracted into a tree of components:
 
-<img src="assets/images/components.png" width="60%" />
+![](assets/images/components.png){width="60%"}
 
 
 In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:

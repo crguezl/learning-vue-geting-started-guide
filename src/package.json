@@ -9,7 +9,8 @@
     "start": "npm run xargs; npm run remove-data",
     "push": "npm start; git ci -am save && git push",
     "xargs": "xargs -t pandoc < pandoc-options.txt",
-    "local": "open ../index.html"
+    "local": "open ../index.html",
+    "pdf": "xargs -t pandoc < pandoc-options-pdf.txt"
   },
   "repository": {
     "type": "git",
