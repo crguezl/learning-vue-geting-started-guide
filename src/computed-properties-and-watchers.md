@@ -97,7 +97,7 @@ methods: {
 }
 ```
 
-Instead of a computed property, we can define the same function as a method. 
+Instead of a **computed** property, we can define the same function as a **method**. 
 For the end result, the two approaches are indeed exactly the same. 
 
 However, the difference between methods and the computed properties is that the **computed properties are cached based on their reactive dependencies**. 

@@ -995,7 +995,7 @@ let vm = new Vue({
 <span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">message</span><span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">reverse</span>()<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;&#39;</span>)</span>
 <span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>Instead of a computed property, we can define the same function as a method. For the end result, the two approaches are indeed exactly the same.</p>
+<p>Instead of a <strong>computed</strong> property, we can define the same function as a <strong>method</strong>. For the end result, the two approaches are indeed exactly the same.</p>
 <p>However, the difference between methods and the computed properties is that the <strong>computed properties are cached based on their reactive dependencies</strong>.</p>
 <p><strong>A computed property will only re-evaluate when some of its reactive dependencies have changed</strong>.</p>
 <p>This means as long as message has not changed, multiple access to the <code>reversedMessage</code> computed property will immediately return the previously computed result without having to run the function again.</p>
