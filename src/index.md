@@ -64,6 +64,8 @@ To see the result, you can
    1. Run `npm install-pandoc-dependencies` to install `pandoc-include` 
    2. Run `npm start` to compile the sources and open the resulting `index.html` file. 
 
+[You can download the pdf version of this document here](index.pdf) or by clicking in the left upper corner.
+
 !include introduction.md
 
 !include the-vue-instance.md
