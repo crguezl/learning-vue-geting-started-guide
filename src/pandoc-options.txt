@@ -1,4 +1,6 @@
+--template ../toc-sidebar.html
 --toc 
+-B ../nav 
 --filter pandoc-include 
 --from markdown 
 --bibliography=biblio.bib

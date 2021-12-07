@@ -3,7 +3,7 @@ title: Annotated Reading of the **Essentials** Section of the *Vue.js Guide*
 subtitle: From section *Introduction* to section *Computed Properties and Watchers* 
 author: Casiano
 date:  \today
-css: index.css
+#css: index.css
 link-citations: true
 toc-title: Table of Contents
 #urlcolor: "blue"
