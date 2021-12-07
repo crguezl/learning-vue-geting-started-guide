@@ -327,7 +327,7 @@ var watchExampleVM = new Vue({
 })
 </script>
 
-This is an example of how to use a lifecycle hook seen in section [Lifecycle Diagram](#lifecycle).
+This is an example of how to use a lifecycle hook seen in section [Lifecycle Diagram](#lifecycle-diagram).
 
 When the Vue instance is created the `created` hook allows us to create the 
 `debouncedGetAnswer` method from the `getAnswer` method.
