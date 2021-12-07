@@ -399,4 +399,8 @@ In addition to the `watch` option, you can also use the imperative
 [`vm.$watch` API](https://vuejs.org/v2/api/#vm-watch).
 
 
+### Exercise
+
+Read *Examining Update Events with Computed Properties in Vue.js* [@computedproperties], reproduce the examples and make a report in folder 
+`examining-update-events-with-computed-properties` of the assignment repo.
 
