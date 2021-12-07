@@ -1219,7 +1219,7 @@ calling <code>axios.get('https://yesno.wtf/api')</code> for each pressed key. So
 <li><strong>keys</strong> are expressions to watch and</li>
 <li><strong>values</strong> are the corresponding callbacks.</li>
 <li>The value can also be a string of a method name, or an Object that contains additional options.</li>
-<li>The Vue instance will call <code>[$watch()](https://vuejs.org/v2/api/#vm-watch)</code> for each entry in the object at instantiation.</li>
+<li>The Vue instance will call <a href="https://vuejs.org/v2/api/#vm-watch">$watch()</a> for each entry in the object at instantiation.</li>
 </ol>
 <p>Note that you should not use an arrow function to define a watcher (e.g. <code>searchQuery: newValue =&gt; this.updateAutocomplete(newValue))</code>.</p>
 <p>The reason is arrow functions bind the parent context, so this will not be the Vue instance as you expect and <code>this.updateAutocomplete</code> will be undefined.</p>
