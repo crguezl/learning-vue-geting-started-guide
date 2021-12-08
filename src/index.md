@@ -56,6 +56,8 @@ At the current time (December 2021), this notes are experimental, since the HTML
 
 1. I'm using the [pandoc-include](https://github.com/DCsunset/pandoc-include) filter
 2. The citation styles have been taken from [@citationstyles].
+3. The HTML generation is reached using [@pandoc-toc-sidebar],
+   a Pandoc HTML template that  has a navbar on the top of the page for website navigation, and a TOC (table of contents) on the sidebar for page navigation
 
 To see the result, you can 
 
