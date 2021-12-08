@@ -404,3 +404,5 @@ In addition to the `watch` option, you can also use the imperative
 Read *Examining Update Events with Computed Properties in Vue.js* [@computedproperties], reproduce the examples and make a report in folder 
 `examining-update-events-with-computed-properties` of the assignment repo.
 
+The source is at repo [vueschool/vuejs-fundamentals](https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf). The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf
+
