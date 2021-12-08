@@ -80,4 +80,7 @@ To see the result, you can
 
 Follow the tutorial at [@vuejsfundamentals], reproduce the examples and leave the results in folder `vuejsfundamentals` of the assignment repo
 
+The source is at repo [vueschool/vuejs-fundamentals](https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf). The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf
+
+
 ## References
