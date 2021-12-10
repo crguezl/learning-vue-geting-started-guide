@@ -38,6 +38,8 @@ nocite: |
     @djirdeh2018fullstacks
 --- 
 
+[![DOI](https://zenodo.org/badge/431864730.svg)](https://zenodo.org/badge/latestdoi/431864730)
+
 # Annotated Reading of the **Essentials** Section of the *Vue.js Guide*
 
 <!--
