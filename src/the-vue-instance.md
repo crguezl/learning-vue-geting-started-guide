@@ -253,7 +253,9 @@ Object.defineProperty(data, 'userId', {
 })
 ```
 
-This isn't exactly how Vue does it but it is a way to think about it.
+This isn't exactly how Vue does it, but it is a way to think about it.
+See [@macrae2018vue].
+
 
 ### Exercise: The instance lifecycle
 

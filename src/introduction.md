@@ -332,6 +332,7 @@ var app6 = new Vue({
 })
 </script>
 
+
 ### Composing with Components
 
 The component system is another important concept in Vue, 
