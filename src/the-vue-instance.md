@@ -179,6 +179,82 @@ Below is a diagram for the instance lifecycle. You don’t need to fully underst
 
 [![](assets/images/lifecycle.png){width="60%"}](https://youtu.be/bWHJeIzVCqA)
 
+### Reactivity
+
+Vue watches the `data` object for changes and updates the DOM when the data changes.
+
+```js 
+
+<div id="app-reactivity-1" class="execution">
+  <p> {{ seconds }} have elapsed since you opened the page </p>
+</div>
+<script>
+new Vue({
+  el: "#app-reactivity-1",
+  data: {
+    seconds: 0
+  },
+  created() {
+    setInterval(() => {
+      this.seconds++
+    }, 1000);
+  }
+})
+</script>
+```
+
+The lifecycle hook `created` runs when the app is initiated.
+
+<div id="app-reactivity-1" class="execution">
+  <p> {{ seconds }} have elapsed since you opened the page </p>
+</div>
+<script>
+new Vue({
+  el: "#app-reactivity-1",
+  data: {
+    seconds: 0
+  },
+  created() {
+    setInterval(() => {
+      this.seconds++
+    }, 1000);
+  }
+})
+</script>
+
+Vue's reactivity works by modifying every object added to the `data` object so that Vue is notified when it changes. Every property in an object is replaced with a getter and a setter so that you can use the object as a normal object, but when you change the property, Vue knows that it has changed.
+
+The idea is that if you have some variable `userId`:
+
+
+```js
+const data = {
+  userId: 10
+};
+```
+
+you can do something like this to control when `userId` changes:
+
+```js 
+const storedData = {};
+
+storedData.userId = data.userId;
+
+Object.defineProperty(data, 'userId', {
+  get() {
+    return storedData.userId;
+  },
+  set(value) {
+    console.log('userId changed!');
+    storedData.userId = value;
+  },
+  configurable: true,
+  enumerable: true
+})
+```
+
+This isn't exactly how Vue does it but it is a way to think about it.
+
 ### Exercise: The instance lifecycle
 
 A helpful resource to understand the instance lifecycle is the YouTube video [@lifecycle]. 
