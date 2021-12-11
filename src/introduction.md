@@ -227,7 +227,7 @@ var app4 = new Vue({
 </script>
 ```
 
-<div id="app-4">
+<div id="app-4" class="execution">
   <ol>
     <li v-for="todo in todos">
       {{ todo.text }}
