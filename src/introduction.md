@@ -112,7 +112,6 @@ Here we define a second entry point for a second Vue app object:
   </span>
 </div>
 
-
 <script>
   var app2 = new Vue({
     el: '#app-2',
@@ -158,6 +157,7 @@ If you open up your JavaScript console again and enter
 
 you’ll once again see that the bound HTML - in this case the <code>title</code> attribute - has been updated.
 
+The `v-bind:attribute="expression"` directive is used to bind a `expression` to an HTML `attribute`.
 
 ### Conditionals 
 
@@ -248,6 +248,57 @@ var app4 = new Vue({
 })
 </script>
 
+The `v-for` directive can be used also with objects.
+
+```html
+<div id="appVforWithObjects" class="execution">
+  <ul>
+    <li v-for="(rent, city, index) in averageRent">
+    {{ index }}: The average rent in {{ city }} is {{ rent }} €
+    </li>
+  </ul>
+</div>
+
+<script>
+  let appVforWithObjects = new Vue({
+    el: "#appVforWithObjects",
+    data() { 
+      return { 
+        averageRent: {
+        "Las Palmas": 747,
+        "Santa Cruz de Tenerife": 787,
+        "La Laguna": 691
+      }
+      }
+    }
+  })
+</script>
+```
+
+Note that  the order of arguments is `(value, key, index)`. The `value` goes first. 
+
+<div id="appVforWithObjects" class="execution">
+  <ul>
+    <li v-for="(rent, city, index) in averageRent">
+    {{ index }}: The average rent in {{ city }} is {{ rent }} €
+    </li>
+  </ul>
+</div>
+
+<script>
+  let appVforWithObjects = new Vue({
+    el: "#appVforWithObjects",
+    data() { 
+      return { 
+        averageRent: {
+        "Las Palmas": 747,
+        "Santa Cruz de Tenerife": 787,
+        "La Laguna": 691
+      }
+      }
+    }
+  })
+</script>
 
 ### Handling User Input
 

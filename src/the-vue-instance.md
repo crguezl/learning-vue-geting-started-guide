@@ -181,7 +181,9 @@ Below is a diagram for the instance lifecycle. You don’t need to fully underst
 
 ### Reactivity
 
-Vue watches the `data` object for changes and updates the DOM when the data changes.
+What makes Vue different  from any templating language?
+
+**Vue watches the `data` object for changes and updates the DOM when the data changes**.
 
 ```js 
 
