@@ -362,7 +362,7 @@ Vue.set(appNewPropertySet.formData, "surname", "Turing");
 
 You can't set items on an array by the index:
 
-```js 
+```html 
 <div id="appSetItemOnArray" class="execution">
   <p>Computer Scientists: {{ cs }}</p>
   <p>cs[2] is {{ cs[2] }}</p>
@@ -398,6 +398,23 @@ appSetItemOnArray.cs[2] = "Alan Kay";
 
 However, you can use `Vue.set` to trigger the watchers:
 
+```html
+<div id="appSetItemOnArray2" class="execution">
+  <p>Computer Scientists: {{ cs }}</p>
+  <p>cs[2] is {{ cs[2] }}</p>
+</div>
+
+<script>
+const appSetItemOnArray2 = new Vue({
+  el: "#appSetItemOnArray2",
+  data: {
+    cs: ["Alan Turing", "John McCarty", "Denis Ritchie", "Ada Lovelace", "Grace Hopper"]
+  }
+});
+
+Vue.set(appSetItemOnArray2.cs, 2, "Alan Kay");
+</script>
+```
 
 <div id="appSetItemOnArray2" class="execution">
   <p>Computer Scientists: {{ cs }}</p>
@@ -412,7 +429,7 @@ const appSetItemOnArray2 = new Vue({
   }
 });
 
-Vue.set(appSetItemOnArray.cs, 2, "Alan Kay");
+Vue.set(appSetItemOnArray2.cs, 2, "Alan Kay");
 </script>
 
 ### Exercise: The instance lifecycle
