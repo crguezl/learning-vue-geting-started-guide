@@ -360,7 +360,7 @@ Vue.set(appNewPropertySet.formData, "surname", "Turing");
 
 ##### Setting items on an array
 
-You can't set items on an array by the index.
+You can't set items on an array by the index:
 
 ```js 
 <div id="appSetItemOnArray" class="execution">
