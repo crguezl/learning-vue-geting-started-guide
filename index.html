@@ -960,6 +960,25 @@ const appSetItemOnArray = new Vue({
 
 appSetItemOnArray.cs[2] = "Alan Kay";
 </script>
+<p>However, you can use <code>Vue.set</code> to trigger the watchers:</p>
+<div id="appSetItemOnArray2" class="execution">
+<p>
+Computer Scientists: {{ cs }}
+</p>
+<p>
+cs[2] is {{ cs[2] }}
+</p>
+</div>
+<script>
+const appSetItemOnArray2 = new Vue({
+  el: "#appSetItemOnArray2",
+  data: {
+    cs: ["Alan Turing", "John McCarty", "Denis Ritchie", "Ada Lovelace", "Grace Hopper"]
+  }
+});
+
+Vue.set(appSetItemOnArray.cs, 2, "Alan Kay");
+</script>
 <h3 id="exercise-the-instance-lifecycle">Exercise: The instance lifecycle</h3>
 <p>A helpful resource to understand the instance lifecycle is the YouTube video <span class="citation" data-cites="lifecycle">(<a href="#ref-lifecycle" role="doc-biblioref">edutechional 2018</a>)</span>. Watch the video and reproduce the steps. Leave the resulting code in the folder <code>lifecycle</code> of the assignment repo.</p>
 <h2 id="template-syntax">Template Syntax</h2>
