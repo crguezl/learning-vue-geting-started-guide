@@ -330,7 +330,7 @@ You should see the rendered example above update accordingly.
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <div class="tip">
-<p><strong>About this notes</strong>: This example initially didn’t work due to <code>pandoc</code> modifying the directive <code>v-if</code> inside the source to <code>v-if</code>. I had to remove the <code>data-</code> prefix to make it work. The same happens with some other directives.</p>
+<p><strong>About this notes</strong>: This example initially didn’t work due to <code>pandoc</code> modifying the directive <code>v-if</code> inside the source to <code>v-if</code>. I had to remove the <code>data-</code> prefix to make it work. See script <a href="src/package.json"><code>remove-data</code>in src/package.json</a>. The same happens with some other directives.</p>
 </div>
 <p><strong>Execution:</strong></p>
 <div id="app-3" class="execution">
@@ -454,34 +454,78 @@ var app6 = new Vue({
   }
 })
 </script>
+<p>The following example combines the <code>v-model</code>directive with the <code>v-if</code>, <code>v-else-if</code> and <code>v-else</code> directives:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;appifvsshow&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;strong&gt;</span>Select a dog:<span class="kw">&lt;/strong&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;select</span> <span class="er">v-model</span><span class="ot">=</span><span class="st">selected</span><span class="kw">&gt;&lt;br/&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">0</span><span class="kw">&gt;</span>First dog<span class="kw">&lt;/option&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">1</span><span class="kw">&gt;</span>Second dog<span class="kw">&lt;/option&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;option</span> <span class="er">value</span><span class="ot">=</span><span class="st">2</span><span class="kw">&gt;</span>All the dogs<span class="kw">&lt;/option&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/select&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span&gt;</span>Selected option: {{ selected }}<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">v-if</span><span class="ot">=</span><span class="st">&quot;selected === &#39;0&#39;&quot;</span><span class="kw">&gt;</span>First dog is {{ dogs[0] }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">v-else-if</span><span class="ot">=</span><span class="st">&quot;selected === &#39;1&#39;&quot;</span><span class="kw">&gt;</span>Second dog is {{ dogs[1] }}<span class="kw">&lt;/p&gt;</span> </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">v-else</span><span class="kw">&gt;</span>All the dogs are {{ dogs }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> appifvsshow <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&quot;#appifvsshow&quot;</span><span class="op">,</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">dogs</span><span class="op">:</span> [ <span class="st">&quot;terrier&quot;</span><span class="op">,</span> <span class="st">&quot;beagle&quot;</span><span class="op">,</span> <span class="st">&quot;chihuahua&quot;</span><span class="op">,</span> <span class="st">&quot;dalmatian&quot;</span> ]<span class="op">,</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">selected</span><span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div id="appifvsshow" class="execution">
+<strong>Select a dog:</strong> <select v-model=selected><br/> <option value=0>First dog</option> <option value=1>Second dog</option> <option value=2>All the dogs</option> </select> <span>Selected: {{ selected }}</span>
+<p v-if="selected === &#39;0&#39;">
+First dog is {{ dogs[0] }}
+</p>
+<p v-else-if="selected === &#39;1&#39;">
+Second dog is {{ dogs[1] }}
+</p>
+<p v-else>
+All the dogs are {{ dogs }}
+</p>
+</div>
+<script>
+let appifvsshow = new Vue({
+  el: "#appifvsshow",
+  data: {
+    dogs: [ "terrier", "beagle", "chihuahua", "dalmatian" ],
+    selected: null
+  }
+})
+</script>
 <h3 id="composing-with-components">Composing with Components</h3>
 <p>The component system is another important concept in Vue, because it’s an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components.</p>
 <p>If we think about it, almost any type of application interface can be abstracted into a tree of components:</p>
 <p><img src="./assets/images/components.png" style="width:60.0%" /></p>
 <p>In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Define a new component called todo-item</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;todo-item&#39;</span><span class="op">,</span> {</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">template</span><span class="op">:</span> <span class="st">&#39;&lt;li&gt;This is a todo&lt;/li&gt;&#39;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> appXXX <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app-XXX&#39;</span><span class="op">,</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">groceryList</span><span class="op">:</span> [</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Vegetables&#39;</span> }<span class="op">,</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Cheese&#39;</span> }<span class="op">,</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Whatever else humans are supposed to eat&#39;</span> }</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Define a new component called todo-item</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;todo-item&#39;</span><span class="op">,</span> {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">template</span><span class="op">:</span> <span class="st">&#39;&lt;li&gt;This is a todo&lt;/li&gt;&#39;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> appXXX <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app-XXX&#39;</span><span class="op">,</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">groceryList</span><span class="op">:</span> [</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Vegetables&#39;</span> }<span class="op">,</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Cheese&#39;</span> }<span class="op">,</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Whatever else humans are supposed to eat&#39;</span> }</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>Now you can compose it in another component’s template:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-XXX&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;ol&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;todo-item</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ot">      v-for=</span><span class="st">&quot;item in groceryList&quot;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&gt;&lt;/todo-item&gt;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/ol&gt;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-XXX&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;ol&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;todo-item</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ot">      v-for=</span><span class="st">&quot;item in groceryList&quot;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&gt;&lt;/todo-item&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/ol&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>But this would render the same text for every todo, which is not super interesting:</p>
 <p><strong>Execution:</strong></p>
 <div id="app-XXX" class="execution">
@@ -510,38 +554,38 @@ var appXXX = new Vue({
 </script>
 <p><em>We should be able to pass data from the parent scope into child components.</em></p>
 <p>Let’s modify the component definition to make it accept a <strong><a href="https://vuejs.org/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props">prop</a></strong>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;todo-item&#39;</span><span class="op">,</span> {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> [<span class="st">&#39;todo&#39;</span>]<span class="op">,</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">template</span><span class="op">:</span> <span class="st">&#39;&lt;li&gt;{{ todo.text }}&lt;/li&gt;&#39;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;todo-item&#39;</span><span class="op">,</span> {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> [<span class="st">&#39;todo&#39;</span>]<span class="op">,</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">template</span><span class="op">:</span> <span class="st">&#39;&lt;li&gt;{{ todo.text }}&lt;/li&gt;&#39;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>The <code>todo-item</code> component now accepts a “<a href="https://vuejs.org/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props">prop</a>,” which is like a <em>custom attribute</em>. This <a href="https://vuejs.org/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props">prop</a> is called <code>todo</code>.</p>
 <p>Now we can pass the <code>todo</code> into each repeated component using <a href="#v-bind-directive">v-bind</a>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-7&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;ol&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;todo-item</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ot">      v-for=</span><span class="st">&quot;item in groceryList&quot;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ot">      v-bind:todo=</span><span class="st">&quot;item&quot;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ot">      v-bind:key=</span><span class="st">&quot;item.id&quot;</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&gt;&lt;/todo-item&gt;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/ol&gt;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-7&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;ol&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;todo-item</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ot">      v-for=</span><span class="st">&quot;item in groceryList&quot;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ot">      v-bind:todo=</span><span class="st">&quot;item&quot;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ot">      v-bind:key=</span><span class="st">&quot;item.id&quot;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&gt;&lt;/todo-item&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/ol&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>Now when using the <code>todo-item</code> we bind the <code>todo</code> property to the <code>item</code> in the <code>groceryList</code> array so that its content can be dynamic.</p>
 <p>We also need to provide each component with a “<code>key</code>,” which will be explained later.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;todo-item&#39;</span><span class="op">,</span> {</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> [<span class="st">&#39;todo&#39;</span>]<span class="op">,</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">template</span><span class="op">:</span> <span class="st">&#39;&lt;li&gt;{{ todo.text }}&lt;/li&gt;&#39;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> app7 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app-7&#39;</span><span class="op">,</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">groceryList</span><span class="op">:</span> [</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Vegetables&#39;</span> }<span class="op">,</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Cheese&#39;</span> }<span class="op">,</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Whatever else humans are supposed to eat&#39;</span> }</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;todo-item&#39;</span><span class="op">,</span> {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> [<span class="st">&#39;todo&#39;</span>]<span class="op">,</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">template</span><span class="op">:</span> <span class="st">&#39;&lt;li&gt;{{ todo.text }}&lt;/li&gt;&#39;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> app7 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app-7&#39;</span><span class="op">,</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">groceryList</span><span class="op">:</span> [</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Vegetables&#39;</span> }<span class="op">,</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Cheese&#39;</span> }<span class="op">,</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">id</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Whatever else humans are supposed to eat&#39;</span> }</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p><strong>Execution:</strong></p>
 <div id="app-7" class="execution">
 <ol>
@@ -573,19 +617,19 @@ var app7 = new Vue({
 <p>See section <a href="https://vuejs.org/v2/guide/components.html">Components Basics</a> to know more about Vue Components.</p>
 <p>In a large application, it is necessary to divide the whole app into components to make development manageable.</p>
 <p>We will talk more about components later, but here’s an (imaginary) example of what an app’s template might look like with components:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;app-nav&gt;&lt;/app-nav&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;app-view&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;app-sidebar&gt;&lt;/app-sidebar&gt;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;app-content&gt;&lt;/app-content&gt;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/app-view&gt;</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;app-nav&gt;&lt;/app-nav&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;app-view&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;app-sidebar&gt;&lt;/app-sidebar&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;app-content&gt;&lt;/app-content&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/app-view&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <h2 id="the-vue-instance">The Vue Instance</h2>
 <h3 id="creating-a-vue-instance">Creating a Vue Instance</h3>
 <p>Every Vue application starts by creating a new Vue instance with the Vue function:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// options</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// options</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>Although not strictly associated with the MVVM pattern, Vue’s design was partly inspired by it. As a convention, we often use the variable <code>vm</code> (short for <em>ViewModel</em>) to refer to our Vue instance. <span class="citation" data-cites="vuestart">(<a href="#ref-vuestart" role="doc-biblioref">Vue 2021</a>)</span></p>
 <p>When you create a Vue instance, you pass in an options object. See the <a href="https://vuejs.org/v2/api/#Options-Data">API</a>.</p>
 <p>These are the main properties of the options object:</p>
@@ -611,69 +655,69 @@ var app7 = new Vue({
 <h3 id="data-and-methods">Data and methods</h3>
 <p>When a Vue instance is created, it adds all the properties found in its <code>data</code> object to Vue’s reactivity system.</p>
 <p>When the values of those properties change, the view will <em>react</em>, updating to match the new values.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Our data object</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> { <span class="dt">a</span><span class="op">:</span> <span class="dv">1</span> }</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">// The object is added to a Vue instance</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> data</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Getting the property on the instance</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">// returns the one from the original data</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">a</span> <span class="op">==</span> data<span class="op">.</span><span class="at">a</span> <span class="co">// =&gt; true</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Setting the property on the instance</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">// also affects the original data</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">a</span> <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>data<span class="op">.</span><span class="at">a</span> <span class="co">// =&gt; 2</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">// ... and vice-versa</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>data<span class="op">.</span><span class="at">a</span> <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">a</span> <span class="co">// =&gt; 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Our data object</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> { <span class="dt">a</span><span class="op">:</span> <span class="dv">1</span> }</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">// The object is added to a Vue instance</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> data</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Getting the property on the instance</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">// returns the one from the original data</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">a</span> <span class="op">==</span> data<span class="op">.</span><span class="at">a</span> <span class="co">// =&gt; true</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Setting the property on the instance</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">// also affects the original data</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">a</span> <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>data<span class="op">.</span><span class="at">a</span> <span class="co">// =&gt; 2</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">// ... and vice-versa</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>data<span class="op">.</span><span class="at">a</span> <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">a</span> <span class="co">// =&gt; 3</span></span></code></pre></div>
 <p><strong>When this data changes, the view will re-render</strong>.</p>
 <p>It should be noted that properties in data are only reactive if they existed when the instance was created. That means if you add a new property, like:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">b</span> <span class="op">=</span> <span class="st">&#39;hi&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">b</span> <span class="op">=</span> <span class="st">&#39;hi&#39;</span></span></code></pre></div>
 <p>Then changes to <code>b</code> will not trigger any view updates.</p>
 <p>If you know you’ll need a property later, but it starts out empty or non-existent, you’ll need to set some initial value. For example:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">:</span> {</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">newTodoText</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">visitCount</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">hideCompletedTodos</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">todos</span><span class="op">:</span> []<span class="op">,</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">error</span><span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">:</span> {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">newTodoText</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">visitCount</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">hideCompletedTodos</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">todos</span><span class="op">:</span> []<span class="op">,</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">error</span><span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The only exception to this being the use of <code>Object.freeze()</code>, which prevents existing properties from being changed, which also means the reactivity system can’t track changes.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> obj <span class="op">=</span> {</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">foo</span><span class="op">:</span> <span class="st">&#39;bar&#39;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">freeze</span>(obj)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app&#39;</span><span class="op">,</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> obj</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>{{ foo }}<span class="kw">&lt;/p&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- this will no longer update `foo`! --&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;button</span> <span class="er">v-on:click</span><span class="ot">=</span><span class="st">&quot;foo = &#39;baz&#39;&quot;</span><span class="kw">&gt;</span>Change it<span class="kw">&lt;/button&gt;</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> obj <span class="op">=</span> {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">foo</span><span class="op">:</span> <span class="st">&#39;bar&#39;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">freeze</span>(obj)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app&#39;</span><span class="op">,</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> obj</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>{{ foo }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- this will no longer update `foo`! --&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;button</span> <span class="er">v-on:click</span><span class="ot">=</span><span class="st">&quot;foo = &#39;baz&#39;&quot;</span><span class="kw">&gt;</span>Change it<span class="kw">&lt;/button&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with <code>$</code> to differentiate them from user-defined properties.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> { <span class="dt">a</span><span class="op">:</span> <span class="dv">1</span> }</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#example&#39;</span><span class="op">,</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> data</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">$data</span> <span class="op">===</span> data <span class="co">// =&gt; true</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">$el</span> <span class="op">===</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&#39;example&#39;</span>) <span class="co">// =&gt; true</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">// $watch is an instance method</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="fu">$watch</span>(<span class="st">&#39;a&#39;</span><span class="op">,</span> <span class="kw">function</span> (newValue<span class="op">,</span> oldValue) {</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// This callback will be called when `vm.a` changes</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> { <span class="dt">a</span><span class="op">:</span> <span class="dv">1</span> }</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#example&#39;</span><span class="op">,</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> data</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">$data</span> <span class="op">===</span> data <span class="co">// =&gt; true</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">$el</span> <span class="op">===</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&#39;example&#39;</span>) <span class="co">// =&gt; true</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">// $watch is an instance method</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="fu">$watch</span>(<span class="st">&#39;a&#39;</span><span class="op">,</span> <span class="kw">function</span> (newValue<span class="op">,</span> oldValue) {</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// This callback will be called when `vm.a` changes</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>See <a href="https://vuejs.org/v2/api/#Instance-Properties">Instance Properties</a> in the API Reference.</p>
 <h3 id="instance-lifecycle-hooks">Instance Lifecycle Hooks</h3>
 <p>Each Vue instance goes through a series of initialization steps when it’s created - for example,</p>
@@ -685,16 +729,16 @@ var app7 = new Vue({
 </ol>
 <p>Along the way, it also runs functions called <strong>lifecycle hooks</strong>, giving users the opportunity to add their own code at specific stages.</p>
 <p>For example, the <strong><code>created</code></strong> hook can be used to run code after an instance is created:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">a</span><span class="op">:</span> <span class="dv">1</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">created</span><span class="op">:</span> <span class="kw">function</span> () {</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// `this` points to the vm instance</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;a is: &#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">a</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">// =&gt; &quot;a is: 1&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">a</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">created</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// `this` points to the vm instance</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;a is: &#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">a</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">// =&gt; &quot;a is: 1&quot;</span></span></code></pre></div>
 <p>There are also other hooks which will be called at different stages of the instance’s lifecycle, such as <code>mounted</code>, <code>updated</code>, and <code>destroyed</code>.</p>
 <p>All lifecycle hooks are called with their <code>this</code> context pointing to the Vue instance invoking it.</p>
 <h3 id="lifecycle-diagram">Lifecycle Diagram</h3>
@@ -702,23 +746,23 @@ var app7 = new Vue({
 <p><a href="https://youtu.be/bWHJeIzVCqA"><img src="./assets/images/lifecycle.png" style="width:60.0%" /></a></p>
 <h3 id="reactivity">Reactivity</h3>
 <p>Vue watches the <code>data</code> object for changes and updates the DOM when the data changes.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div id<span class="op">=</span><span class="st">&quot;app-reactivity-1&quot;</span> <span class="kw">class</span><span class="op">=</span><span class="st">&quot;execution&quot;</span><span class="op">&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span> {{ seconds }} have elapsed since you opened the page <span class="op">&lt;/</span>p<span class="op">&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>script<span class="op">&gt;</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&quot;#app-reactivity-1&quot;</span><span class="op">,</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">seconds</span><span class="op">:</span> <span class="dv">0</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">created</span>() {</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">setInterval</span>(() <span class="kw">=&gt;</span> {</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">seconds</span><span class="op">++</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>script<span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div id<span class="op">=</span><span class="st">&quot;app-reactivity-1&quot;</span> <span class="kw">class</span><span class="op">=</span><span class="st">&quot;execution&quot;</span><span class="op">&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span> {{ seconds }} have elapsed since you opened the page <span class="op">&lt;/</span>p<span class="op">&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>script<span class="op">&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&quot;#app-reactivity-1&quot;</span><span class="op">,</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">seconds</span><span class="op">:</span> <span class="dv">0</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">created</span>() {</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">setInterval</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">seconds</span><span class="op">++</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>script<span class="op">&gt;</span></span></code></pre></div>
 <p>The lifecycle hook <code>created</code> runs when the app is initiated.</p>
 <div id="app-reactivity-1" class="execution">
 <p>
@@ -740,25 +784,25 @@ new Vue({
 </script>
 <p>Vue’s reactivity works by modifying every object added to the <code>data</code> object so that Vue is notified when it changes. Every property in an object is replaced with a getter and a setter so that you can use the object as a normal object, but when you change the property, Vue knows that it has changed.</p>
 <p>The idea is that if you have some variable <code>userId</code>:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> data <span class="op">=</span> {</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">userId</span><span class="op">:</span> <span class="dv">10</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> data <span class="op">=</span> {</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">userId</span><span class="op">:</span> <span class="dv">10</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
 <p>you can do something like this to control when <code>userId</code> changes:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> storedData <span class="op">=</span> {}<span class="op">;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>storedData<span class="op">.</span><span class="at">userId</span> <span class="op">=</span> data<span class="op">.</span><span class="at">userId</span><span class="op">;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">defineProperty</span>(data<span class="op">,</span> <span class="st">&#39;userId&#39;</span><span class="op">,</span> {</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get</span>() {</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> storedData<span class="op">.</span><span class="at">userId</span><span class="op">;</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set</span>(value) {</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;userId changed!&#39;</span>)<span class="op">;</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    storedData<span class="op">.</span><span class="at">userId</span> <span class="op">=</span> value<span class="op">;</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">configurable</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">enumerable</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> storedData <span class="op">=</span> {}<span class="op">;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>storedData<span class="op">.</span><span class="at">userId</span> <span class="op">=</span> data<span class="op">.</span><span class="at">userId</span><span class="op">;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">defineProperty</span>(data<span class="op">,</span> <span class="st">&#39;userId&#39;</span><span class="op">,</span> {</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get</span>() {</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> storedData<span class="op">.</span><span class="at">userId</span><span class="op">;</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set</span>(value) {</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;userId changed!&#39;</span>)<span class="op">;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    storedData<span class="op">.</span><span class="at">userId</span> <span class="op">=</span> value<span class="op">;</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">configurable</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">enumerable</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>This isn’t exactly how Vue does it, but it is a way to think about it. See <span class="citation" data-cites="macrae2018vue">(<a href="#ref-macrae2018vue" role="doc-biblioref">Macrae 2018</a>)</span>.</p>
 <h3 id="exercise-the-instance-lifecycle">Exercise: The instance lifecycle</h3>
 <p>A helpful resource to understand the instance lifecycle is the YouTube video <span class="citation" data-cites="lifecycle">(<a href="#ref-lifecycle" role="doc-biblioref">edutechional 2018</a>)</span>. Watch the video and reproduce the steps. Leave the resulting code in the folder <code>lifecycle</code> of the assignment repo.</p>
@@ -770,14 +814,14 @@ new Vue({
 <h3 id="an-introduction-to-render-functions">An Introduction to Render Functions</h3>
 <p>If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, <a href="https://vuejs.org/v2/guide/render-function.html">you can also directly write <strong>render functions</strong> instead of templates</a>, with optional JSX support.</p>
 <p>Here follows an example using a render function. Say you want to generate anchored headings:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-XXX2&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span>Section Hello<span class="kw">&lt;/anchored-heading&gt;</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  Begining Blah blah ... </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="kw">&gt;</span>Subsection World<span class="kw">&lt;/anchored-heading&gt;</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  Blah blah in subsection ...</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span>Section Bye<span class="kw">&lt;/anchored-heading&gt;</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  Blah blah final ...</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app-XXX2&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span>Section Hello<span class="kw">&lt;/anchored-heading&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  Begining Blah blah ... </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;2&quot;</span><span class="kw">&gt;</span>Subsection World<span class="kw">&lt;/anchored-heading&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  Blah blah in subsection ...</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;anchored-heading</span> <span class="er">level</span><span class="ot">=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span>Section Bye<span class="kw">&lt;/anchored-heading&gt;</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  Blah blah final ...</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>In this case, we have to know a few things:</p>
 <ol type="1">
 <li>That children of a component are stored on the component instance at <code>this.$slots.default</code>,</li>
@@ -786,32 +830,32 @@ new Vue({
 </li>
 <li>It is also convenient to know about the <a href="https://vuejs.org/v2/guide/components-slots.html"><code>v-slot</code></a> directive</li>
 </ol>
-<div class="sourceCode" id="cb28"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>script<span class="op">&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;anchored-heading&#39;</span><span class="op">,</span> {</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">render</span><span class="op">:</span> <span class="kw">function</span> (createElement) {</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> default0 <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">$slots</span><span class="op">.</span><span class="at">default</span>[<span class="dv">0</span>]<span class="op">;</span> </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> text <span class="op">=</span> default0<span class="op">.</span><span class="at">text</span><span class="op">;</span> <span class="co">// The text between the brackets</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(default0)<span class="op">;</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> name <span class="op">=</span> text<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">\s+</span><span class="ss">/g</span><span class="op">,</span><span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">\W+</span><span class="ss">/g</span><span class="op">,</span><span class="st">&#39;-&#39;</span>)<span class="op">;</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">createElement</span>(</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39;h&#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">level</span><span class="op">,</span>   </span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>      [ <span class="fu">createElement</span>(<span class="st">&#39;a&#39;</span><span class="op">,</span> <span class="co">// Building the child </span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>                    { <span class="dt">attrs</span><span class="op">:</span> </span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>                       { </span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>                          <span class="dt">name</span><span class="op">:</span> name<span class="op">,</span> </span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>                          <span class="dt">href</span><span class="op">:</span> <span class="vs">`#</span><span class="sc">${</span>name<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>                       }</span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>                    }<span class="op">,</span>  text) ]<span class="op">,</span></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> [ <span class="st">&quot;level&quot;</span> ]</span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> appXXX2 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app-XXX2&#39;</span></span>
-<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>script<span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>script<span class="op">&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;anchored-heading&#39;</span><span class="op">,</span> {</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">render</span><span class="op">:</span> <span class="kw">function</span> (createElement) {</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> default0 <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">$slots</span><span class="op">.</span><span class="at">default</span>[<span class="dv">0</span>]<span class="op">;</span> </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> text <span class="op">=</span> default0<span class="op">.</span><span class="at">text</span><span class="op">;</span> <span class="co">// The text between the brackets</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(default0)<span class="op">;</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> name <span class="op">=</span> text<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">\s+</span><span class="ss">/g</span><span class="op">,</span><span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">\W+</span><span class="ss">/g</span><span class="op">,</span><span class="st">&#39;-&#39;</span>)<span class="op">;</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">createElement</span>(</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39;h&#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">level</span><span class="op">,</span>   </span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>      [ <span class="fu">createElement</span>(<span class="st">&#39;a&#39;</span><span class="op">,</span> <span class="co">// Building the child </span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>                    { <span class="dt">attrs</span><span class="op">:</span> </span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>                       { </span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>                          <span class="dt">name</span><span class="op">:</span> name<span class="op">,</span> </span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>                          <span class="dt">href</span><span class="op">:</span> <span class="vs">`#</span><span class="sc">${</span>name<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>                       }</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>                    }<span class="op">,</span>  text) ]<span class="op">,</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> [ <span class="st">&quot;level&quot;</span> ]</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> appXXX2 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#app-XXX2&#39;</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>script<span class="op">&gt;</span></span></code></pre></div>
 <p>The example produces the following output:</p>
 <div id="app-XXX2" class="execution">
 <p><anchored-heading level="1">Section Hello</anchored-heading> Begining Blah blah … <anchored-heading level="2">Subsection World</anchored-heading> Blah blah in subsection … <anchored-heading level="1">Section Bye</anchored-heading> Blah blah final …</p>
@@ -849,27 +893,27 @@ var appXXX2 = new Vue({
 <h3 id="interpolations">Interpolations</h3>
 <h4 id="text">Text</h4>
 <p>The most basic form of data binding is text interpolation using the <em>Mustache</em> syntax (double curly braces):</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span&gt;</span>Message: {{ msg }}<span class="kw">&lt;/span&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span&gt;</span>Message: {{ msg }}<span class="kw">&lt;/span&gt;</span></span></code></pre></div>
 <p>The mustache tag will be replaced with the value of the <code>msg</code> property on the corresponding data object. It will also be updated whenever the data object’s <code>msg</code> property changes.</p>
 <p>You can also perform one-time interpolations that do not update on data change by using the <code>v-once</code> directive, but keep in mind this will also affect any other bindings on the same node:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span</span> <span class="er">v-once</span><span class="kw">&gt;</span>This will never change: {{ msg }}<span class="kw">&lt;/span&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span</span> <span class="er">v-once</span><span class="kw">&gt;</span>This will never change: {{ msg }}<span class="kw">&lt;/span&gt;</span></span></code></pre></div>
 <p>Check this example:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h2</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;appXXX4&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>Message: {{ msg }}<span class="kw">&lt;/span&gt;</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;br/&gt;</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">v-once</span><span class="kw">&gt;</span>This will never change: {{ msg }}<span class="kw">&lt;/span&gt;</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/h2&gt;</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> appXXX4 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#appXXX4&#39;</span><span class="op">,</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">msg</span><span class="op">:</span> <span class="st">&#39;Hello Vue!&#39;</span></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h2</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;appXXX4&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>Message: {{ msg }}<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;br/&gt;</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">v-once</span><span class="kw">&gt;</span>This will never change: {{ msg }}<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> appXXX4 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#appXXX4&#39;</span><span class="op">,</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">msg</span><span class="op">:</span> <span class="st">&#39;Hello Vue!&#39;</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <p>Open the dev tools, try to change <code>appXXX4.msg</code> and see what happens:</p>
 <h2 class="execution">
 <div id="appXXX4">
@@ -886,26 +930,26 @@ var appXXX2 = new Vue({
 </script>
 <h4 id="raw-html">Raw HTML</h4>
 <p>The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the <code>v-html</code> directive:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using mustaches: {{ rawHtml }}<span class="kw">&lt;/p&gt;</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using v-html directive: <span class="kw">&lt;span</span> <span class="er">v-html</span><span class="ot">=</span><span class="st">&quot;rawHtml&quot;</span><span class="kw">&gt;&lt;/span&gt;&lt;/p&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using mustaches: {{ rawHtml }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using v-html directive: <span class="kw">&lt;span</span> <span class="er">v-html</span><span class="ot">=</span><span class="st">&quot;rawHtml&quot;</span><span class="kw">&gt;&lt;/span&gt;&lt;/p&gt;</span></span></code></pre></div>
 <p>The contents of the span will be replaced with the value of the <code>rawHtml</code> property, interpreted as plain HTML - data bindings are ignored.</p>
 <p>See this example:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;appXXX5&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">&lt;p&gt;</span>Using mustaches: {{ rawHtml }}<span class="kw">&lt;/p&gt;</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>   <span class="kw">&lt;p&gt;</span>Using v-html directive: <span class="kw">&lt;span</span> <span class="er">v-html</span><span class="ot">=</span><span class="st">&quot;rawHtml&quot;</span><span class="kw">&gt;&lt;/span&gt;&lt;/p&gt;</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> appXXX5 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#appXXX5&#39;</span><span class="op">,</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">rawHtml</span><span class="op">:</span> <span class="st">&#39;&lt;i&gt;Hello&lt;/i&gt; {{ text }} &lt;b&gt;Vue&lt;/b&gt;!&#39;</span><span class="op">,</span></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">text</span><span class="op">:</span> <span class="st">&quot;Chazam!&quot;</span></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;appXXX5&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">&lt;p&gt;</span>Using mustaches: {{ rawHtml }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>   <span class="kw">&lt;p&gt;</span>Using v-html directive: <span class="kw">&lt;span</span> <span class="er">v-html</span><span class="ot">=</span><span class="st">&quot;rawHtml&quot;</span><span class="kw">&gt;&lt;/span&gt;&lt;/p&gt;</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> appXXX5 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#appXXX5&#39;</span><span class="op">,</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">rawHtml</span><span class="op">:</span> <span class="st">&#39;&lt;i&gt;Hello&lt;/i&gt; {{ text }} &lt;b&gt;Vue&lt;/b&gt;!&#39;</span><span class="op">,</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">text</span><span class="op">:</span> <span class="st">&quot;Chazam!&quot;</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <div class="execution">
 <div id="appXXX5">
 <p>
@@ -933,27 +977,27 @@ Using v-html directive: <span v-html="rawHtml"></span>
 </div>
 <h4 id="attributes">Attributes</h4>
 <p>Mustaches cannot be used inside HTML attributes. Instead, use a <code>v-bind</code> directive:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">v-bind:id</span><span class="ot">=</span><span class="st">&quot;dynamicId&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">v-bind:id</span><span class="ot">=</span><span class="st">&quot;dynamicId&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></span></code></pre></div>
 <p>In the case of boolean attributes, where their mere existence implies <code>true</code>, <code>v-bind</code> works a little differently.</p>
 <p>In this example:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;button</span> <span class="er">v-bind:disabled</span><span class="ot">=</span><span class="st">&quot;isButtonDisabled&quot;</span><span class="kw">&gt;</span>Button<span class="kw">&lt;/button&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;button</span> <span class="er">v-bind:disabled</span><span class="ot">=</span><span class="st">&quot;isButtonDisabled&quot;</span><span class="kw">&gt;</span>Button<span class="kw">&lt;/button&gt;</span></span></code></pre></div>
 <p>If <code>isButtonDisabled</code> has the value of <code>null</code>, <code>undefined</code>, or <code>false</code>, the disabled attribute will not even be included in the rendered <code>&lt;button&gt;</code> element.</p>
 <h4 id="using-javascript-expressions">Using JavaScript Expressions</h4>
 <p>So far we’ve only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>{{ number + 1 }}</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>{{ ok ? &#39;YES&#39; : &#39;NO&#39; }}</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>{{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">v-bind:id</span><span class="ot">=</span><span class="st">&quot;&#39;list-&#39; + id&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>{{ number + 1 }}</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>{{ ok ? &#39;YES&#39; : &#39;NO&#39; }}</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>{{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">v-bind:id</span><span class="ot">=</span><span class="st">&quot;&#39;list-&#39; + id&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></span></code></pre></div>
 <p>These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance.</p>
 <p>One restriction is that each binding can only contain one single expression, so the following will NOT work:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- this is a statement, not an expression: --&gt;</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>{{ var a = 1 }}</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- flow control won&#39;t work either, use ternary expressions --&gt;</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>{{ if (ok) { return message } }}</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- this is a statement, not an expression: --&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>{{ var a = 1 }}</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- flow control won&#39;t work either, use ternary expressions --&gt;</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>{{ if (ok) { return message } }}</span></code></pre></div>
 <div class="tip">
 <p><strong>Template expressions are sandboxed</strong> and only have access to a whitelist of globals such as <code>Math</code> and <code>Date</code>.</p>
 <p><em>You should not attempt to access user-defined globals</em> in template expressions.</p>
@@ -963,96 +1007,96 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <p><strong>Directive attribute values are expected to be a single JavaScript expression</strong> (with the exception of <code>v-for</code>, which will be discussed later).</p>
 <p><strong>A directive’s job is to reactively apply side effects to the DOM when the value of its expression changes</strong>.</p>
 <p>Let’s review the example we saw in the <a href="#introduction">introduction</a>:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">v-if</span><span class="ot">=</span><span class="st">&quot;seen&quot;</span><span class="kw">&gt;</span>Now you see me<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">v-if</span><span class="ot">=</span><span class="st">&quot;seen&quot;</span><span class="kw">&gt;</span>Now you see me<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
 <p>Here, the <code>v-if</code> directive would remove/insert the <code>&lt;p&gt;</code> element based on the truthiness of the value of the expression <code>seen</code>.</p>
 <h4 id="arguments">Arguments</h4>
 <p>Some directives can take an <em>argument</em>, denoted by a colon after the directive name.</p>
 <p>For example, the <code>v-bind</code> directive is used to reactively update an HTML attribute:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:href</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:href</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
 <p>Here <code>href</code> is the argument, which tells the <code>v-bind</code> directive to bind the element’s <code>href</code> attribute to the value of the expression <code>url</code>.</p>
 <p>Another example is the <code>v-on</code> directive, which listens to DOM events:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-on:click</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-on:click</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
 <p>Here the argument is the event name to listen to.</p>
 <h4 id="dynamic-arguments">Dynamic Arguments</h4>
 <p>Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:</p>
 <p>Note that there are some constraints to the argument expression, as explained in the “Dynamic Argument Expression Constraints” section below.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:[attributeName]</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:[attributeName]</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
 <p>Here <code>attributeName</code> will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument.</p>
 <p>For example, if your Vue instance has a <code>data</code> property, <code>attributeName</code>, whose value is <code>"href"</code>, then this binding will be equivalent to <code>v-bind:href</code>.</p>
 <p>Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-on:[eventName]</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-on:[eventName]</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
 <p>In this example, when <code>eventName</code>’s value is <code>"focus"</code>, <code>v-on:[eventName]</code> will be equivalent to <code>v-on:focus</code>.</p>
 <h5 id="dynamic-argument-value-constraints">Dynamic Argument Value Constraints</h5>
 <p>Dynamic arguments are expected to evaluate to a string, with the exception of <code>null</code>. The special value <code>null</code> can be used to explicitly remove the binding. Any other non-string value will trigger a warning.</p>
 <h5 id="dynamic-argument-expression-constraints">Dynamic Argument Expression Constraints</h5>
 <p>Dynamic argument expressions have some syntax constraints because certain characters, such as spaces and quotes, are invalid inside HTML attribute names. For example, the following is invalid:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- This will trigger a compiler warning. --&gt;</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:[&#39;foo&#39;</span> <span class="er">+</span> <span class="er">bar]</span><span class="ot">=</span><span class="st">&quot;value&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- This will trigger a compiler warning. --&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:[&#39;foo&#39;</span> <span class="er">+</span> <span class="er">bar]</span><span class="ot">=</span><span class="st">&quot;value&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
 <p>The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.</p>
 <p>When using in-DOM templates (i.e., templates written directly in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">This will be converted to v-bind:[someattr] in in-DOM templates.</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co">Unless you have a &quot;someattr&quot; property in your instance, your code won&#39;t work.</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:[someAttr]</span><span class="ot">=</span><span class="st">&quot;value&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">This will be converted to v-bind:[someattr] in in-DOM templates.</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co">Unless you have a &quot;someattr&quot; property in your instance, your code won&#39;t work.</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:[someAttr]</span><span class="ot">=</span><span class="st">&quot;value&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
 <h4 id="modifiers">Modifiers</h4>
 <p>Modifiers are special postfixes <strong>denoted by a dot</strong>, which indicate that a directive should be bound in some special way.</p>
 <p>For example, the <code>.prevent</code> modifier tells the <code>v-on</code> directive to call event <code>.preventDefault()</code> on the triggered event:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;form</span> <span class="er">v-on:submit.prevent</span><span class="ot">=</span><span class="st">&quot;onSubmit&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/form&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;form</span> <span class="er">v-on:submit.prevent</span><span class="ot">=</span><span class="st">&quot;onSubmit&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/form&gt;</span></span></code></pre></div>
 <h3 id="shorthands">Shorthands</h3>
 <p>The <code>v-</code> prefix serves as a visual cue for identifying Vue-specific attributes in your templates.</p>
 <p>This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives.</p>
 <p>At the same time, the need for the <code>v-</code> prefix becomes less important when you are building a SPA, where Vue manages every template.</p>
 <p>Therefore, Vue provides special shorthands for two of the most often used directives, <code>v-bind</code> and <code>v-on</code>:</p>
 <h4 id="v-bind-shorthand">v-bind Shorthand</h4>
-<div class="sourceCode" id="cb46"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- full syntax --&gt;</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:href</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- shorthand --&gt;</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">:href</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- shorthand with dynamic argument (2.6.0+) --&gt;</span></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">:[key]</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
-<h4 id="v-on-shorthand">v-on Shorthand</h4>
 <div class="sourceCode" id="cb47"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- full syntax --&gt;</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-on:click</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-bind:href</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- shorthand --&gt;</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">@click</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">:href</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
 <span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- shorthand with dynamic argument (2.6.0+) --&gt;</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">@[event]</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">:[key]</span><span class="ot">=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
+<h4 id="v-on-shorthand">v-on Shorthand</h4>
+<div class="sourceCode" id="cb48"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- full syntax --&gt;</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">v-on:click</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- shorthand --&gt;</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">@click</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- shorthand with dynamic argument (2.6.0+) --&gt;</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">@[event]</span><span class="ot">=</span><span class="st">&quot;doSomething&quot;</span><span class="kw">&gt;</span> ... <span class="kw">&lt;/a&gt;</span></span></code></pre></div>
 <p>They may look a bit different from normal HTML, but <code>:</code> and <code>@</code> are valid characters for attribute names and all Vue-supported browsers can parse it correctly.</p>
 <p>In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.</p>
 <h2 id="computed-properties-and-watchers">Computed Properties and Watchers</h2>
 <h3 id="computed-properties">Computed Properties</h3>
 <p>In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;example&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  {{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;example&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  {{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays message in reverse. The problem is made worse when you want to include the reversed message in your template more than once.</p>
 <p>That’s why for any complex logic, you should use a computed property.</p>
 <h4 id="basic-example">Basic Example</h4>
-<div class="sourceCode" id="cb49"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;example&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Original message: &quot;{{ message }}&quot;<span class="kw">&lt;/p&gt;</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Computed reversed message: &quot;{{ reversedMessage }}&quot;<span class="kw">&lt;/p&gt;</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#example&#39;</span><span class="op">,</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">message</span><span class="op">:</span> <span class="st">&#39;Hello&#39;</span></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">computed</span><span class="op">:</span> {</span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// a computed getter</span></span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reversedMessage</span><span class="op">:</span> <span class="kw">function</span> () {</span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>      <span class="co">// `this` points to the vm instance</span></span>
-<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">message</span><span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">reverse</span>()<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;&#39;</span>)</span>
-<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;example&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Original message: &quot;{{ message }}&quot;<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Computed reversed message: &quot;{{ reversedMessage }}&quot;<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#example&#39;</span><span class="op">,</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">message</span><span class="op">:</span> <span class="st">&#39;Hello&#39;</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">computed</span><span class="op">:</span> {</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// a computed getter</span></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reversedMessage</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>      <span class="co">// `this` points to the vm instance</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">message</span><span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">reverse</span>()<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;&#39;</span>)</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <p>Result:</p>
 <div id="example" class="execution">
 <p>
@@ -1079,9 +1123,9 @@ let vm = new Vue({
 </script>
 <p>Here we have declared a computed property <code>reversedMessage</code>.</p>
 <p>The function we provided will be used as the getter function for the property <code>vm.reversedMessage</code>:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(vm<span class="op">.</span><span class="at">reversedMessage</span>) <span class="co">// =&gt; &#39;olleH&#39;</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">message</span> <span class="op">=</span> <span class="st">&#39;Goodbye&#39;</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(vm<span class="op">.</span><span class="at">reversedMessage</span>) <span class="co">// =&gt; &#39;eybdooG&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(vm<span class="op">.</span><span class="at">reversedMessage</span>) <span class="co">// =&gt; &#39;olleH&#39;</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>vm<span class="op">.</span><span class="at">message</span> <span class="op">=</span> <span class="st">&#39;Goodbye&#39;</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(vm<span class="op">.</span><span class="at">reversedMessage</span>) <span class="co">// =&gt; &#39;eybdooG&#39;</span></span></code></pre></div>
 <p>You can open the console and play with the example <code>vm</code> yourself. The value of <code>vm.reversedMessage</code> is always dependent on the value of <code>vm.message</code>.</p>
 <p><strong>You can data-bind to computed properties in templates just like a normal property</strong>.</p>
 <p>Vue is aware that <code>vm.reversedMessage</code> depends on <code>vm.message</code>, so it will update any bindings that depend on <code>vm.reversedMessage</code> when <code>vm.message</code> changes.</p>
@@ -1089,23 +1133,23 @@ let vm = new Vue({
 <p>the computed getter function has no side effects, which makes it easier to test and understand.</p>
 <h4 id="computed-caching-vs-methods">Computed Caching vs Methods</h4>
 <p>You may have noticed we can achieve the same result by invoking a method in the expression:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>p<span class="op">&gt;</span>Reversed message<span class="op">:</span> <span class="st">&quot;{{ reverseMessage() }}&quot;</span><span class="op">&lt;/</span>p<span class="op">&gt;</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co">// in component</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>methods<span class="op">:</span> {</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">reverseMessage</span><span class="op">:</span> <span class="kw">function</span> () {</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">message</span><span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">reverse</span>()<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;&#39;</span>)</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>p<span class="op">&gt;</span>Reversed message<span class="op">:</span> <span class="st">&quot;{{ reverseMessage() }}&quot;</span><span class="op">&lt;/</span>p<span class="op">&gt;</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co">// in component</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>methods<span class="op">:</span> {</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">reverseMessage</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">message</span><span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">reverse</span>()<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;&#39;</span>)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Instead of a <strong>computed</strong> property, we can define the same function as a <strong>method</strong>. For the end result, the two approaches are indeed exactly the same.</p>
 <p>However, the difference between methods and the computed properties is that the <strong>computed properties are cached based on their reactive dependencies</strong>.</p>
 <p><strong>A computed property will only re-evaluate when some of its reactive dependencies have changed</strong>.</p>
 <p>This means as long as message has not changed, multiple access to the <code>reversedMessage</code> computed property will immediately return the previously computed result without having to run the function again.</p>
 <p>This also means the following computed property will never update, because <code>Date.now()</code> is not a reactive dependency:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>computed<span class="op">:</span> {</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">now</span><span class="op">:</span> <span class="kw">function</span> () {</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>computed<span class="op">:</span> {</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">now</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>In comparison, <strong>a method invocation will always run the function whenever a re-render happens</strong>.</p>
 <h4 id="why-do-we-need-caching">Why do we need caching?</h4>
 <p>Imagine we have an expensive computed property <code>A</code>, which requires looping through a huge Array and doing a lot of computations.</p>
@@ -1114,117 +1158,117 @@ let vm = new Vue({
 <h4 id="computed-vs-watched-property">Computed vs Watched Property</h4>
 <p>Vue does provide a more generic way to observe and react to data changes on a Vue instance: <strong>watch properties</strong>.</p>
 <p>When you have some data that needs to change based on some other data, it is tempting to overuse watch. However, it is often a better idea to use a computed property rather than an imperative watch callback. Consider this example:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;demo&quot;</span><span class="kw">&gt;</span>{{ fullName }}<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#demo&#39;</span><span class="op">,</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">firstName</span><span class="op">:</span> <span class="st">&#39;Foo&#39;</span><span class="op">,</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lastName</span><span class="op">:</span> <span class="st">&#39;Bar&#39;</span><span class="op">,</span></span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fullName</span><span class="op">:</span> <span class="st">&#39;Foo Bar&#39;</span></span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">watch</span><span class="op">:</span> {</span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">firstName</span><span class="op">:</span> <span class="kw">function</span> (val) {</span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">fullName</span> <span class="op">=</span> val <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">lastName</span></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lastName</span><span class="op">:</span> <span class="kw">function</span> (val) {</span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">fullName</span> <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">firstName</span> <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> val</span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<p>The above code is imperative and repetitive. Compare it with a computed property version:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;demo&quot;</span><span class="kw">&gt;</span>{{ fullName }}<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb55"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#demo&#39;</span><span class="op">,</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
 <span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">firstName</span><span class="op">:</span> <span class="st">&#39;Foo&#39;</span><span class="op">,</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lastName</span><span class="op">:</span> <span class="st">&#39;Bar&#39;</span></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">computed</span><span class="op">:</span> {</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fullName</span><span class="op">:</span> <span class="kw">function</span> () {</span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">firstName</span> <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">lastName</span></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lastName</span><span class="op">:</span> <span class="st">&#39;Bar&#39;</span><span class="op">,</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fullName</span><span class="op">:</span> <span class="st">&#39;Foo Bar&#39;</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">watch</span><span class="op">:</span> {</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">firstName</span><span class="op">:</span> <span class="kw">function</span> (val) {</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">fullName</span> <span class="op">=</span> val <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">lastName</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lastName</span><span class="op">:</span> <span class="kw">function</span> (val) {</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">fullName</span> <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">firstName</span> <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> val</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>The above code is imperative and repetitive. Compare it with a computed property version:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vm <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#demo&#39;</span><span class="op">,</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">firstName</span><span class="op">:</span> <span class="st">&#39;Foo&#39;</span><span class="op">,</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">lastName</span><span class="op">:</span> <span class="st">&#39;Bar&#39;</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">computed</span><span class="op">:</span> {</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fullName</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">firstName</span> <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">lastName</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>Much better, isn’t it?</p>
 <h4 id="computed-setter">Computed Setter</h4>
 <p>Computed properties are by default getter-only, but you can also provide a setter when you need it:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>computed<span class="op">:</span> {</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fullName</span><span class="op">:</span> {</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// getter</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">get</span><span class="op">:</span> <span class="kw">function</span> () {</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">firstName</span> <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">lastName</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// setter</span></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">set</span><span class="op">:</span> <span class="kw">function</span> (newValue) {</span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> names <span class="op">=</span> newValue<span class="op">.</span><span class="fu">split</span>(<span class="st">&#39; &#39;</span>)</span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">firstName</span> <span class="op">=</span> names[<span class="dv">0</span>]</span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">lastName</span> <span class="op">=</span> names[names<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]</span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>computed<span class="op">:</span> {</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fullName</span><span class="op">:</span> {</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// getter</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">get</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">firstName</span> <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> <span class="kw">this</span><span class="op">.</span><span class="at">lastName</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// setter</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">set</span><span class="op">:</span> <span class="kw">function</span> (newValue) {</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> names <span class="op">=</span> newValue<span class="op">.</span><span class="fu">split</span>(<span class="st">&#39; &#39;</span>)</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">firstName</span> <span class="op">=</span> names[<span class="dv">0</span>]</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">lastName</span> <span class="op">=</span> names[names<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span></code></pre></div>
 <p>Now when you run <code>vm.fullName = 'John Doe'</code>, the setter will be invoked and <code>vm.firstName</code> and <code>vm.lastName</code> will be updated accordingly.</p>
 <h3 id="watchers">Watchers</h3>
 <p>While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary.</p>
 <p>That’s why Vue provides a more generic way to react to data changes through the <code>watch</code> option.</p>
 <p>This is most useful when you want to perform asynchronous or expensive operations in response to changing data.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;watch-example&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    Ask a yes/no question:</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;input</span> <span class="er">v-model</span><span class="ot">=</span><span class="st">&quot;question&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/p&gt;</span></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>{{ answer }}<span class="kw">&lt;/p&gt;</span></span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Since there is already a rich ecosystem of ajax libraries    --&gt;</span></span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- and collections of general-purpose utility methods, Vue core --&gt;</span></span>
-<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- is able to remain small by not reinventing them. This also   --&gt;</span></span>
-<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- gives you the freedom to use what you&#39;re familiar with.      --&gt;</span></span>
-<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
-<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> watchExampleVM <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
-<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#watch-example&#39;</span><span class="op">,</span></span>
-<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">question</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span></span>
-<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">answer</span><span class="op">:</span> <span class="st">&#39;I cannot give you an answer until you ask a question!&#39;</span></span>
-<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">watch</span><span class="op">:</span> {</span>
-<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// whenever question changes, this function will run</span></span>
-<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">question</span><span class="op">:</span> <span class="kw">function</span> (newQuestion<span class="op">,</span> oldQuestion) {</span>
-<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Waiting for you to stop typing...&#39;</span></span>
-<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="fu">debouncedGetAnswer</span>()</span>
-<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">created</span><span class="op">:</span> <span class="kw">function</span> () {</span>
-<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">// _.debounce is a function provided by lodash to limit how</span></span>
-<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// often a particularly expensive operation can be run.</span></span>
-<span id="cb57-31"><a href="#cb57-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">// In this case, we want to limit how often we access</span></span>
-<span id="cb57-32"><a href="#cb57-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// yesno.wtf/api, waiting until the user has completely</span></span>
-<span id="cb57-33"><a href="#cb57-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">// finished typing before making the ajax request. To learn</span></span>
-<span id="cb57-34"><a href="#cb57-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">// more about the _.debounce function (and its cousin</span></span>
-<span id="cb57-35"><a href="#cb57-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// _.throttle), visit: https://lodash.com/docs#debounce</span></span>
-<span id="cb57-36"><a href="#cb57-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">debouncedGetAnswer</span> <span class="op">=</span> _<span class="op">.</span><span class="fu">debounce</span>(<span class="kw">this</span><span class="op">.</span><span class="at">getAnswer</span><span class="op">,</span> <span class="dv">500</span>)</span>
-<span id="cb57-37"><a href="#cb57-37" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb57-38"><a href="#cb57-38" aria-hidden="true" tabindex="-1"></a>  <span class="dt">methods</span><span class="op">:</span> {</span>
-<span id="cb57-39"><a href="#cb57-39" aria-hidden="true" tabindex="-1"></a>    <span class="dt">getAnswer</span><span class="op">:</span> <span class="kw">function</span> () {</span>
-<span id="cb57-40"><a href="#cb57-40" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="kw">this</span><span class="op">.</span><span class="at">question</span><span class="op">.</span><span class="fu">indexOf</span>(<span class="st">&#39;?&#39;</span>) <span class="op">===</span> <span class="op">-</span><span class="dv">1</span>) {</span>
-<span id="cb57-41"><a href="#cb57-41" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Questions usually contain a question mark. ;-)&#39;</span></span>
-<span id="cb57-42"><a href="#cb57-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
-<span id="cb57-43"><a href="#cb57-43" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb57-44"><a href="#cb57-44" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Thinking...&#39;</span></span>
-<span id="cb57-45"><a href="#cb57-45" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> vm <span class="op">=</span> <span class="kw">this</span></span>
-<span id="cb57-46"><a href="#cb57-46" aria-hidden="true" tabindex="-1"></a>      axios<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;https://yesno.wtf/api&#39;</span>)</span>
-<span id="cb57-47"><a href="#cb57-47" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">then</span>(<span class="kw">function</span> (response) {</span>
-<span id="cb57-48"><a href="#cb57-48" aria-hidden="true" tabindex="-1"></a>          vm<span class="op">.</span><span class="at">answer</span> <span class="op">=</span> _<span class="op">.</span><span class="fu">capitalize</span>(response<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">answer</span>)</span>
-<span id="cb57-49"><a href="#cb57-49" aria-hidden="true" tabindex="-1"></a>        })</span>
-<span id="cb57-50"><a href="#cb57-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">catch</span>(<span class="kw">function</span> (error) {</span>
-<span id="cb57-51"><a href="#cb57-51" aria-hidden="true" tabindex="-1"></a>          vm<span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Error! Could not reach the API. &#39;</span> <span class="op">+</span> error</span>
-<span id="cb57-52"><a href="#cb57-52" aria-hidden="true" tabindex="-1"></a>        })</span>
-<span id="cb57-53"><a href="#cb57-53" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb57-54"><a href="#cb57-54" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb57-55"><a href="#cb57-55" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb57-56"><a href="#cb57-56" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;watch-example&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    Ask a yes/no question:</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;input</span> <span class="er">v-model</span><span class="ot">=</span><span class="st">&quot;question&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>{{ answer }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Since there is already a rich ecosystem of ajax libraries    --&gt;</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- and collections of general-purpose utility methods, Vue core --&gt;</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- is able to remain small by not reinventing them. This also   --&gt;</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- gives you the freedom to use what you&#39;re familiar with.      --&gt;</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> watchExampleVM <span class="op">=</span> <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">el</span><span class="op">:</span> <span class="st">&#39;#watch-example&#39;</span><span class="op">,</span></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">question</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span></span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">answer</span><span class="op">:</span> <span class="st">&#39;I cannot give you an answer until you ask a question!&#39;</span></span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">watch</span><span class="op">:</span> {</span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// whenever question changes, this function will run</span></span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">question</span><span class="op">:</span> <span class="kw">function</span> (newQuestion<span class="op">,</span> oldQuestion) {</span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Waiting for you to stop typing...&#39;</span></span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="fu">debouncedGetAnswer</span>()</span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">created</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">// _.debounce is a function provided by lodash to limit how</span></span>
+<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// often a particularly expensive operation can be run.</span></span>
+<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">// In this case, we want to limit how often we access</span></span>
+<span id="cb58-32"><a href="#cb58-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// yesno.wtf/api, waiting until the user has completely</span></span>
+<span id="cb58-33"><a href="#cb58-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">// finished typing before making the ajax request. To learn</span></span>
+<span id="cb58-34"><a href="#cb58-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">// more about the _.debounce function (and its cousin</span></span>
+<span id="cb58-35"><a href="#cb58-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// _.throttle), visit: https://lodash.com/docs#debounce</span></span>
+<span id="cb58-36"><a href="#cb58-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">debouncedGetAnswer</span> <span class="op">=</span> _<span class="op">.</span><span class="fu">debounce</span>(<span class="kw">this</span><span class="op">.</span><span class="at">getAnswer</span><span class="op">,</span> <span class="dv">500</span>)</span>
+<span id="cb58-37"><a href="#cb58-37" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb58-38"><a href="#cb58-38" aria-hidden="true" tabindex="-1"></a>  <span class="dt">methods</span><span class="op">:</span> {</span>
+<span id="cb58-39"><a href="#cb58-39" aria-hidden="true" tabindex="-1"></a>    <span class="dt">getAnswer</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb58-40"><a href="#cb58-40" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="kw">this</span><span class="op">.</span><span class="at">question</span><span class="op">.</span><span class="fu">indexOf</span>(<span class="st">&#39;?&#39;</span>) <span class="op">===</span> <span class="op">-</span><span class="dv">1</span>) {</span>
+<span id="cb58-41"><a href="#cb58-41" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Questions usually contain a question mark. ;-)&#39;</span></span>
+<span id="cb58-42"><a href="#cb58-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb58-43"><a href="#cb58-43" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb58-44"><a href="#cb58-44" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Thinking...&#39;</span></span>
+<span id="cb58-45"><a href="#cb58-45" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> vm <span class="op">=</span> <span class="kw">this</span></span>
+<span id="cb58-46"><a href="#cb58-46" aria-hidden="true" tabindex="-1"></a>      axios<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;https://yesno.wtf/api&#39;</span>)</span>
+<span id="cb58-47"><a href="#cb58-47" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">then</span>(<span class="kw">function</span> (response) {</span>
+<span id="cb58-48"><a href="#cb58-48" aria-hidden="true" tabindex="-1"></a>          vm<span class="op">.</span><span class="at">answer</span> <span class="op">=</span> _<span class="op">.</span><span class="fu">capitalize</span>(response<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">answer</span>)</span>
+<span id="cb58-49"><a href="#cb58-49" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb58-50"><a href="#cb58-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">catch</span>(<span class="kw">function</span> (error) {</span>
+<span id="cb58-51"><a href="#cb58-51" aria-hidden="true" tabindex="-1"></a>          vm<span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Error! Could not reach the API. &#39;</span> <span class="op">+</span> error</span>
+<span id="cb58-52"><a href="#cb58-52" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb58-53"><a href="#cb58-53" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb58-54"><a href="#cb58-54" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb58-55"><a href="#cb58-55" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb58-56"><a href="#cb58-56" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <p>Result:</p>
 <div id="watch-example" class="execution">
 <p>
@@ -1286,27 +1330,27 @@ var watchExampleVM = new Vue({
 <p>Remember that <code>v-model</code> is a two-way binding for form inputs. It combines <code>v-bind</code>, which brings a JavaScript value from <code>.data</code> into the template, and <code>v-on:input</code> to update the JavaScript value.</p>
 <p>The <code>v-model</code> directive works with all the basic HTML input types (<code>text</code>, <code>textarea</code>, <code>number</code>, <code>radio</code>, <code>checkbox</code>, <code>select</code>).</p>
 <p>In this example this bidirectional behavior of <code>v-model</code> constitutes a problem 😢 since each time the user press a key the input changes producing a call to the <a href="https://vuejs.org/v2/api/#watch">watch handler function</a> associated to changes in <code>question</code>.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>  watch<span class="op">:</span> {</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// whenever question changes, this function will run</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">question</span><span class="op">:</span> <span class="kw">function</span> (newQuestion<span class="op">,</span> oldQuestion) {</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Waiting for you to stop typing...&#39;</span></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="fu">debouncedGetAnswer</span>()</span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>  watch<span class="op">:</span> {</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// whenever question changes, this function will run</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">question</span><span class="op">:</span> <span class="kw">function</span> (newQuestion<span class="op">,</span> oldQuestion) {</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Waiting for you to stop typing...&#39;</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="fu">debouncedGetAnswer</span>()</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span></code></pre></div>
 <p>If we instead were calling directly <code>this.getAnwser()</code> then there is the risk of<br />
 calling <code>axios.get('https://yesno.wtf/api')</code> for each pressed key. Something has to be done regarding this problem.</p>
 <p>This is an example of how to use a lifecycle hook seen in section <a href="#lifecycle-diagram">Lifecycle Diagram</a>. When the Vue instance is created we use the <code>created</code> hook to create the <code>debouncedGetAnswer</code> method from the <code>getAnswer</code> method:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>  created<span class="op">:</span> <span class="kw">function</span> () {</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">debouncedGetAnswer</span> <span class="op">=</span> _<span class="op">.</span><span class="fu">debounce</span>(<span class="kw">this</span><span class="op">.</span><span class="at">getAnswer</span><span class="op">,</span> <span class="dv">500</span>)</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>  created<span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">debouncedGetAnswer</span> <span class="op">=</span> _<span class="op">.</span><span class="fu">debounce</span>(<span class="kw">this</span><span class="op">.</span><span class="at">getAnswer</span><span class="op">,</span> <span class="dv">500</span>)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span></code></pre></div>
 <p>The call to the Lodash method <a href="https://lodash.com/docs/4.17.15#debounce"><code>_.debounce(this.getAnswer, 500)</code></a></p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>_<span class="op">.</span><span class="fu">debounce</span>(func<span class="op">,</span> [wait<span class="op">=</span><span class="dv">0</span>]<span class="op">,</span> [options<span class="op">=</span>{}])</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>_<span class="op">.</span><span class="fu">debounce</span>(func<span class="op">,</span> [wait<span class="op">=</span><span class="dv">0</span>]<span class="op">,</span> [options<span class="op">=</span>{}])</span></code></pre></div>
 <p>creates a debounced function that delays invoking <code>func</code> until after <code>wait</code> milliseconds have elapsed since the last time the debounced function was invoked.</p>
 <p>That alleviates the risk to throttle the network. Furthermore, inside <code>getAnswer</code> we check for the presence of a <code>?</code> character:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="kw">this</span><span class="op">.</span><span class="at">question</span><span class="op">.</span><span class="fu">indexOf</span>(<span class="st">&#39;?&#39;</span>) <span class="op">===</span> <span class="op">-</span><span class="dv">1</span>) {</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Questions usually contain a question mark. ;-)&#39;</span></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>      }</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="kw">this</span><span class="op">.</span><span class="at">question</span><span class="op">.</span><span class="fu">indexOf</span>(<span class="st">&#39;?&#39;</span>) <span class="op">===</span> <span class="op">-</span><span class="dv">1</span>) {</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">answer</span> <span class="op">=</span> <span class="st">&#39;Questions usually contain a question mark. ;-)&#39;</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>      }</span></code></pre></div>
 <p>Doing nothing until the question mark appears.</p>
 <p>In this case, using the <code>watch</code> option allows us</p>
 <ol type="1">

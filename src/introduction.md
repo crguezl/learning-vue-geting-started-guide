@@ -179,7 +179,7 @@ var app3 = new Vue({
 ```
 
 ::: tip
-**About this notes**: This example initially didn't work due to `pandoc` modifying the directive `v-if` inside the source to `data-v-if`. I had to remove the `data-` prefix to make it work. The same happens with some other directives.
+**About this notes**: This example initially didn't work due to `pandoc` modifying the directive `v-if` inside the source to `data-v-if`. I had to remove the `data-` prefix to make it work. See script [`remove-data`in src/package.json](src/package.json). The same happens with some other directives.
 :::
 
 **Execution:**
@@ -196,7 +196,6 @@ var app3 = new Vue({
   }
 })
 </script>
-
 
 
 ### Loops: v-for
@@ -296,7 +295,6 @@ var app5 = new Vue({
 
 ### v-model
 
-
 Vue also provides the v-model directive that makes **two-way binding** between 
 **form input** and **app state** a breeze:
 
@@ -328,6 +326,56 @@ var app6 = new Vue({
   el: '#app-6',
   data: {
     message: 'Hello Vue!'
+  }
+})
+</script>
+
+The following example combines the `v-model` directive with the `v-if`, `v-else-if` and `v-else` directives:
+
+```html 
+<div id="appifvsshow" class="execution">
+<strong>Select a dog:</strong>
+<select v-model=selected><br/>
+  <option value=0>First dog</option>
+  <option value=1>Second dog</option>
+  <option value=2>All the dogs</option>
+</select>
+<span>Selected option: {{ selected }}</span>
+<p v-if="selected === '0'">First dog is {{ dogs[0] }}</p>
+<p v-else-if="selected === '1'">Second dog is {{ dogs[1] }}</p> 
+<p v-else>All the dogs are {{ dogs }}</p>
+</div>
+
+<script>
+let appifvsshow = new Vue({
+  el: "#appifvsshow",
+  data: {
+    dogs: [ "terrier", "beagle", "chihuahua", "dalmatian" ],
+    selected: null
+  }
+})
+</script>
+```
+
+<div id="appifvsshow" class="execution">
+<strong>Select a dog:</strong>
+<select v-model=selected><br/>
+  <option value=0>First dog</option>
+  <option value=1>Second dog</option>
+  <option value=2>All the dogs</option>
+</select>
+<span>Selected: {{ selected }}</span>
+<p v-if="selected === '0'">First dog is {{ dogs[0] }}</p>
+<p v-else-if="selected === '1'">Second dog is {{ dogs[1] }}</p> 
+<p v-else>All the dogs are {{ dogs }}</p>
+</div>
+
+<script>
+let appifvsshow = new Vue({
+  el: "#appifvsshow",
+  data: {
+    dogs: [ "terrier", "beagle", "chihuahua", "dalmatian" ],
+    selected: null
   }
 })
 </script>
