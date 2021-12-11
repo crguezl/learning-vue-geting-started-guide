@@ -224,6 +224,8 @@ new Vue({
 })
 </script>
 
+#### How it works
+
 Vue's reactivity works by modifying every object added to the `data` object so that Vue is notified when it changes. Every property in an object is replaced with a getter and a setter so that you can use the object as a normal object, but when you change the property, Vue knows that it has changed.
 
 The idea is that if you have some variable `userId`:
@@ -255,9 +257,144 @@ Object.defineProperty(data, 'userId', {
 })
 ```
 
+Every component instance has a corresponding watcher instance, 
+which records any properties **touched** during the component’s render as dependencies. 
+
+Later on when a dependency’s setter is triggered, 
+it notifies the watcher, 
+which in turn causes the component to re-render.
+
+<img src="assets/images/vue-reactivity-diagram.png" width="75%" />
+
 This isn't exactly how Vue does it, but it is a way to think about it.
 See [@macrae2018vue].
 
+
+
+#### Caveats
+
+There are some limitations on the way Vue's reactivity works.
+
+##### Ading new properties to an object
+
+Because the getter/setter functions are added when the instance is initialized, only the properties defined at creation time are reactive; when you add later a new property, it won't be reactive if you do it directly.
+
+```js
+<div id="appNewProperty" class="execution">
+<a v-bind:href="formData.surname || 'unknown'">{{ formData.name }}</a>
+</div>
+
+<script>
+const appNewProperty = new Vue({
+  el: "#appNewProperty",
+  data: {
+    formData: {
+      name: "Alan"
+    }
+  }
+});
+
+appNewProperty.formData.surname = "Turing"
+
+</script>
+```
+
+If you set the mouse above the link you will see it points to `unknown` and not to `Turing`
+
+<div id="appNewProperty" class="execution">
+<a v-bind:href="formData.surname || 'unknown'">{{ formData.name }}</a>
+</div>
+
+<script>
+const appNewProperty = new Vue({
+  el: "#appNewProperty",
+  data: {
+    formData: {
+      name: "Alan"
+    }
+  }
+});
+
+appNewProperty.formData.surname = "Turing"
+
+</script>
+
+Vue provides the function `Vue.set` that you can use to set reactive properties:
+
+```js 
+<div id="appNewPropertySet" class="execution">
+<a v-bind:href="`assets/images/${formData.surname || 'unknown'}.png`">{{ formData.name }}</a>
+</div>
+
+<script>
+const appNewPropertySet = new Vue({
+  el: "#appNewPropertySet",
+  data: {
+    formData: {
+      name: "Alan",
+    }
+  }
+});
+
+Vue.set(appNewPropertySet.formData, "surname", "Turing");
+</script>
+```
+If you set the mouse above the link you will see it points to `assets/images/Turing.png`
+
+<div id="appNewPropertySet" class="execution">
+<a v-bind:href="`assets/images/${formData.surname || 'unknown'}.png`">{{ formData.name }}</a>
+</div>
+
+<script>
+const appNewPropertySet = new Vue({
+  el: "#appNewPropertySet",
+  data: {
+    formData: {
+      name: "Alan",
+    }
+  }
+});
+
+Vue.set(appNewPropertySet.formData, "surname", "Turing");
+</script>
+
+##### Setting items on an array
+
+You can't set items on an array by the index.
+
+```js 
+<div id="appSetItemOnArray" class="execution">
+  <p>Computer Scientists: {{ cs }}</p>
+  <p>cs[2] is {{ cs[2] }}</p>
+</div>
+
+<script>
+const appSetItemOnArray = new Vue({
+  el: "#appSetItemOnArray",
+  data: {
+    cs: ["Alan Turing", "John McCarty", "Denis Ritchie", "Ada Lovelace", "Grace Hopper"]
+  }
+});
+
+appSetItemOnArray.cs[2] = "Alan Kay";
+</script>
+```
+
+<div id="appSetItemOnArray" class="execution">
+  <p>Computer Scientists: {{ cs }}</p>
+  <p>cs[2] is {{ cs[2] }}</p>
+</div>
+
+<script>
+const appSetItemOnArray = new Vue({
+  el: "#appSetItemOnArray",
+  data: {
+    cs: ["Alan Turing", "John McCarty", "Denis Ritchie", "Ada Lovelace", "Grace Hopper"]
+  }
+});
+
+appSetItemOnArray.cs[2] = "Alan Kay";
+</script>
 
 ### Exercise: The instance lifecycle
 

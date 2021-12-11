@@ -8,6 +8,7 @@ The core library is focused on the view layer only, and is easy to pick up and i
 
 On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.
 
+
 ### Simple example
 
 At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
