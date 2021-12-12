@@ -1130,7 +1130,7 @@ var appXXX2 = new Vue({
   })
 </script>
 <h4 id="raw-html">Raw HTML</h4>
-<p>The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the <code>v-html</code> directive:</p>
+<p>Sometimes you might want to set the HTML of an element from a expression. Let’s say you’re calling an API that returns some HTML which you need to display on the page. Vue has automatic HTML escaping built in, so the double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the <code>v-html</code> directive:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using mustaches: {{ rawHtml }}<span class="kw">&lt;/p&gt;</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using v-html directive: <span class="kw">&lt;span</span> <span class="er">v-html</span><span class="ot">=</span><span class="st">&quot;rawHtml&quot;</span><span class="kw">&gt;&lt;/span&gt;&lt;/p&gt;</span></span></code></pre></div>
 <p>The contents of the span will be replaced with the value of the <code>rawHtml</code> property, interpreted as plain HTML - data bindings are ignored.</p>
@@ -1630,8 +1630,14 @@ VueSchool. 2018. <span>“Vue.js Fundamentals.”</span> In. VueSchool. <a href=
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+    <script 
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+      integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" 
+      crossorigin="anonymous">
+    </script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
     <script>
