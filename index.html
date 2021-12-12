@@ -1173,7 +1173,7 @@ Using v-html directive: <span v-html="rawHtml"></span>
 <p>Note that you cannot use <code>v-html</code> to compose template partials, because Vue is not a string-based templating engine.</p>
 <p>Instead, components are preferred as the fundamental unit for UI reuse and composition.</p>
 <div class="tip">
-<p>Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">XSS vulnerabilities</a>.</p>
+<p>Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">XSS vulnerabilities</a>. Never put user input in <code>v-html</code> or allow users to modify anything that goes through <code>v-html</code> without carefully validating and escaping what they have written.</p>
 <p>Only use HTML interpolation on trusted content and never on user-provided content.</p>
 </div>
 <h4 id="attributes">Attributes</h4>
