@@ -1,9 +1,11 @@
 --template ../toc-sidebar.html
 --toc 
 --include-before-body=../nav 
+--include-in-header=../mathjax
 --filter pandoc-include 
 --from markdown 
 --bibliography=biblio.bib
 --citeproc 
+--mathjax="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/startup.js"
 -s index.md
 --o temp.html

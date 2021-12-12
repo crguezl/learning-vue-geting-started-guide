@@ -3,6 +3,9 @@ title: Annotated Reading of the **Essentials** Section of the *Vue.js Guide*
 subtitle: From section *Introduction* to section *Computed Properties and Watchers* 
 author: Casiano
 date:  \today
+keywords: 
+  - Vue
+  - ULL
 #css: index.css
 link-citations: true
 toc-title: Table of Contents
@@ -45,6 +48,8 @@ nocite: |
 <!--
 https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attributes-how-to-prevent-this
 -->
+
+
 These are my notes written in pandoc markdown [@casiano] from reading the guide of Vue.js (v2) [@vuestart], the book [@djirdeh2018fullstack], [@awesomevue], [@vuejsfundamentals],
 [@vuejscomponentsfundamentals]  and other [references](#references).
 
@@ -59,7 +64,8 @@ At the current time (December 2021), this notes are experimental, since the HTML
 1. I'm using the [pandoc-include](https://github.com/DCsunset/pandoc-include) filter
 2. The citation styles have been taken from [@citationstyles].
 3. The HTML generation is reached using [@pandoc-toc-sidebar],
-   a Pandoc HTML template that  has a navbar on the top of the page for website navigation, and a TOC (table of contents) on the sidebar for page navigation
+   a Pandoc HTML template that  has a navbar on the top of the page for website navigation, and a TOC (table of contents) on the sidebar for page navigation. The `../mathjax` file and the option `--include-in-header=../mathjax` have been added  in this version to include mathjax so we can include  formulas like  $x^2_3 = \sqrt{x^2+1}$
+
 
 To see the result, you can 
 
@@ -67,8 +73,6 @@ To see the result, you can
 2. To install it locally, fork the repo. You have to have `pandoc` installed and  then
    1. Run `npm install-pandoc-dependencies` to install `pandoc-include` 
    2. Run `npm start` to compile the sources and open the resulting `index.html` file. 
-
-[You can download the pdf version of this document here](index.pdf) or by clicking in the left upper corner.
 
 !include introduction.md
 

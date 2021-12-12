@@ -8,6 +8,7 @@
     <meta name="generator" content="pandoc">
     <meta name="description" content="">
     <meta name="author" content="Casiano">
+    <meta name="keywords" content="Vue, ULL">
 
     <title>Annotated Reading of the Essentials Section of the Vue.js Guide</title>
 
@@ -93,6 +94,17 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/startup.js" type="text/javascript"></script>
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <link href="css/index.css" rel="stylesheet">
 
@@ -194,7 +206,7 @@ https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attr
 <ol type="1">
 <li>I’m using the <a href="https://github.com/DCsunset/pandoc-include">pandoc-include</a> filter</li>
 <li>The citation styles have been taken from <span class="citation" data-cites="citationstyles">(<a href="#ref-citationstyles" role="doc-biblioref">Org 2021</a>)</span>.</li>
-<li>The HTML generation is reached using <span class="citation" data-cites="pandoc-toc-sidebar">(<a href="#ref-pandoc-toc-sidebar" role="doc-biblioref">Mushiyo 2017</a>)</span>, a Pandoc HTML template that has a navbar on the top of the page for website navigation, and a TOC (table of contents) on the sidebar for page navigation</li>
+<li>The HTML generation is reached using <span class="citation" data-cites="pandoc-toc-sidebar">(<a href="#ref-pandoc-toc-sidebar" role="doc-biblioref">Mushiyo 2017</a>)</span>, a Pandoc HTML template that has a navbar on the top of the page for website navigation, and a TOC (table of contents) on the sidebar for page navigation. The <code>../mathjax</code> file and the option <code>--include-in-header=../mathjax</code> have been added in this version to include mathjax so we can include formulas like <span class="math inline">\(x^2_3 = \sqrt{x^2+1}\)</span></li>
 </ol>
 <p>To see the result, you can</p>
 <ol type="1">
@@ -205,7 +217,6 @@ https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attr
 <li>Run <code>npm start</code> to compile the sources and open the resulting <code>index.html</code> file.</li>
 </ol></li>
 </ol>
-<p><a href="index.pdf">You can download the pdf version of this document here</a> or by clicking in the left upper corner.</p>
 <h2 id="introduction">Introduction to Vue.js</h2>
 <p>Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces.</p>
 <p>Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable.</p>
@@ -1639,5 +1650,6 @@ VueSchool. 2018. <span>“Vue.js Fundamentals.”</span> In. VueSchool. <a href=
             tables[i].className += "table table-bordered table-hover";
         }
     </script>
+    
   </body>
 </html>
