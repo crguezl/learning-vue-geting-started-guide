@@ -224,7 +224,7 @@ because Vue is not a string-based templating engine.
 Instead, components are preferred as the fundamental unit for UI reuse and composition.
 
 :::  tip
-Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to XSS vulnerabilities. 
+Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS vulnerabilities](https://en.wikipedia.org/wiki/Cross-site_scripting). 
 
 Only use HTML interpolation on trusted content and never on user-provided content.
 :::
