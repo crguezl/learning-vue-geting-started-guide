@@ -1,5 +1,6 @@
 --template ../toc-sidebar.html
 --toc 
+--toc-depth=4
 --include-before-body=../nav 
 --include-in-header=../mathjax
 --filter pandoc-include 

@@ -169,7 +169,7 @@ Open the  dev tools, try to change `appXXX4.msg` and see what happens:
   })
 </script>
 
-#### Raw HTML
+#### Raw HTML. The `v-html` directive
 
 Sometimes you might want to set the HTML of an element from a expression. Let's say  you're calling an API that returns some HTML which you need to display on the page. Vue has automatic HTML escaping built in, so the double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the `v-html` directive:
 

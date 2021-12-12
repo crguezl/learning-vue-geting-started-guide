@@ -154,7 +154,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <ul>
           <li><a href="#introduction">Introduction to Vue.js</a>
           <ul>
-          <li><a href="#simple-example">Simple example</a></li>
+          <li><a href="#simple-example">Simple example</a>
+          <ul>
+          <li><a href="#check-in-the-developers-tools">Check in the developer’s tools</a></li>
+          </ul></li>
           <li><a href="#exercise-install-google-chrome-extension-for-vue">Exercise: Install Google Chrome extension for Vue</a></li>
           <li><a href="#no-interpolation-occurs-outside-the-vue-app-entry-point">No interpolation occurs outside the Vue app entry point</a></li>
           <li><a href="#v-bind-directive">The v-bind directive</a></li>
@@ -170,22 +173,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li><a href="#data-and-methods">Data and methods</a></li>
           <li><a href="#instance-lifecycle-hooks">Instance Lifecycle Hooks</a></li>
           <li><a href="#lifecycle-diagram">Lifecycle Diagram</a></li>
-          <li><a href="#reactivity">Reactivity</a></li>
+          <li><a href="#reactivity">Reactivity</a>
+          <ul>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#caveats">Caveats</a></li>
+          </ul></li>
           <li><a href="#exercise-the-instance-lifecycle">Exercise: The instance lifecycle</a></li>
           </ul></li>
           <li><a href="#template-syntax">Template Syntax</a>
           <ul>
           <li><a href="#an-introduction-to-render-functions">An Introduction to Render Functions</a></li>
           <li><a href="#exercise-introduction-to-render-functions">Exercise: Introduction to Render Functions</a></li>
-          <li><a href="#interpolations">Interpolations</a></li>
-          <li><a href="#directives">Directives</a></li>
-          <li><a href="#shorthands">Shorthands</a></li>
+          <li><a href="#interpolations">Interpolations</a>
+          <ul>
+          <li><a href="#text">Text</a></li>
+          <li><a href="#raw-html.-the-v-html-directive">Raw HTML. The <code>v-html</code> directive</a></li>
+          <li><a href="#attributes">Attributes</a></li>
+          <li><a href="#using-javascript-expressions">Using JavaScript Expressions</a></li>
+          </ul></li>
+          <li><a href="#directives">Directives</a>
+          <ul>
+          <li><a href="#arguments">Arguments</a></li>
+          <li><a href="#dynamic-arguments">Dynamic Arguments</a></li>
+          <li><a href="#modifiers">Modifiers</a></li>
+          </ul></li>
+          <li><a href="#shorthands">Shorthands</a>
+          <ul>
+          <li><a href="#v-bind-shorthand">v-bind Shorthand</a></li>
+          <li><a href="#v-on-shorthand">v-on Shorthand</a></li>
+          </ul></li>
           </ul></li>
           <li><a href="#computed-properties-and-watchers">Computed Properties and Watchers</a>
           <ul>
-          <li><a href="#computed-properties">Computed Properties</a></li>
+          <li><a href="#computed-properties">Computed Properties</a>
+          <ul>
+          <li><a href="#basic-example">Basic Example</a></li>
+          <li><a href="#computed-caching-vs-methods">Computed Caching vs Methods</a></li>
+          <li><a href="#why-do-we-need-caching">Why do we need caching?</a></li>
+          <li><a href="#computed-vs-watched-property">Computed vs Watched Property</a></li>
+          <li><a href="#computed-setter">Computed Setter</a></li>
+          </ul></li>
           <li><a href="#watchers">Watchers</a></li>
           <li><a href="#exercise-examining-update-events-with-computed-properties-in-vue.js">Exercise: Examining Update Events with Computed Properties in Vue.js</a></li>
+          <li><a href="#filters">Filters</a></li>
           </ul></li>
           <li><a href="#exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</a></li>
           <li><a href="#references">References</a></li>
@@ -1129,7 +1159,7 @@ var appXXX2 = new Vue({
     }
   })
 </script>
-<h4 id="raw-html">Raw HTML</h4>
+<h4 id="raw-html.-the-v-html-directive">Raw HTML. The <code>v-html</code> directive</h4>
 <p>Sometimes you might want to set the HTML of an element from a expression. Let’s say you’re calling an API that returns some HTML which you need to display on the page. Vue has automatic HTML escaping built in, so the double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the <code>v-html</code> directive:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using mustaches: {{ rawHtml }}<span class="kw">&lt;/p&gt;</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Using v-html directive: <span class="kw">&lt;span</span> <span class="er">v-html</span><span class="ot">=</span><span class="st">&quot;rawHtml&quot;</span><span class="kw">&gt;&lt;/span&gt;&lt;/p&gt;</span></span></code></pre></div>
@@ -1574,6 +1604,56 @@ calling <code>axios.get('https://yesno.wtf/api')</code> for each pressed key. So
 <p>In addition to the <code>watch</code> option, you can also use the imperative <a href="https://vuejs.org/v2/api/#vm-watch"><code>vm.$watch</code> API</a>.</p>
 <h3 id="exercise-examining-update-events-with-computed-properties-in-vue.js">Exercise: Examining Update Events with Computed Properties in Vue.js</h3>
 <p>Read <em>Examining Update Events with Computed Properties in Vue.js</em> <span class="citation" data-cites="computedproperties">(<a href="#ref-computedproperties" role="doc-biblioref">Hanchett and Listwon 2019</a>)</span>, reproduce the examples and make a report in folder <code>examining-update-events-with-computed-properties</code> of the assignment repo.</p>
+<h3 id="filters">Filters</h3>
+<p>As other template languages, Vue allows the use of <em>filters</em>.</p>
+<p>Filters are usable in two places: mustache interpolations and <code>v-bind</code> expressions (the latter supported in 2.1.0+).</p>
+<p>Filters should be appended to the end of the JavaScript expression, denoted by the <em>pipe</em> symbol:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;appfilter&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Product one cost: {{ productOneCost | formatCost }}<span class="kw">&lt;/p&gt;</span> </span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Product two cost: {{ productTwoCost | formatCost }}<span class="kw">&lt;/p&gt;</span> </span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Product three cost: {{ productThreeCost | formatCost }}<span class="kw">&lt;/p&gt;</span> </span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">el</span><span class="op">:</span> <span class="st">&quot;#appfilter&quot;</span><span class="op">,</span></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">productOneCost</span><span class="op">:</span> <span class="dv">998</span><span class="op">,</span></span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">productTwoCost</span><span class="op">:</span> <span class="dv">2399</span><span class="op">,</span></span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">productThreeCost</span><span class="op">:</span> <span class="dv">5300</span></span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">filters</span><span class="op">:</span> {</span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">formatCost</span>(value) {</span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (value<span class="op">/</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb68-20"><a href="#cb68-20" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div id="appfilter" class="execution">
+<p>
+Product one cost: {{ productOneCost | formatCost }}
+</p>
+<p>
+Product two cost: {{ productTwoCost | formatCost }}
+</p>
+<p>
+Product three cost: {{ productThreeCost | formatCost }}
+</p>
+</div>
+<script>
+  new Vue({
+    el: "#appfilter",
+    data: {
+      productOneCost: 998,
+      productTwoCost: 2399,
+      productThreeCost: 5300
+    },
+    filters: {
+      formatCost(value) {
+        return (value/100).toFixed(2);
+      }
+    }
+  })
+</script>
 <h2 id="exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</h2>
 <p>Follow the tutorial at <span class="citation" data-cites="vuejsfundamentals">(<a href="#ref-vuejsfundamentals" role="doc-biblioref">VueSchool 2018</a>)</span>, reproduce the examples and leave the results in folder <code>vuejsfundamentals</code> of the assignment repo</p>
 <p>The source is at repo <a href="https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf">vueschool/vuejs-fundamentals</a>. The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf</p>

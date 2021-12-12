@@ -404,3 +404,56 @@ In addition to the `watch` option, you can also use the imperative
 Read *Examining Update Events with Computed Properties in Vue.js* [@computedproperties], reproduce the examples and make a report in folder 
 `examining-update-events-with-computed-properties` of the assignment repo.
 
+
+### Filters 
+
+As other template languages, Vue allows the use of *filters*.
+
+Filters are usable in two places: mustache interpolations and `v-bind` expressions 
+(the latter supported in 2.1.0+). 
+
+Filters should be appended to the end of the JavaScript expression, denoted by the *pipe* symbol:
+
+```html
+<div id="appfilter" class="execution">
+  <p>Product one cost: {{ productOneCost | formatCost }}</p> 
+  <p>Product two cost: {{ productTwoCost | formatCost }}</p> 
+  <p>Product three cost: {{ productThreeCost | formatCost }}</p> 
+</div>
+<script>
+  new Vue({
+    el: "#appfilter",
+    data: {
+      productOneCost: 998,
+      productTwoCost: 2399,
+      productThreeCost: 5300
+    },
+    filters: {
+      formatCost(value) {
+        return (value/100).toFixed(2);
+      }
+    }
+  })
+</script>
+``` 
+
+<div id="appfilter" class="execution">
+  <p>Product one cost: {{ productOneCost | formatCost }}</p> 
+  <p>Product two cost: {{ productTwoCost | formatCost }}</p> 
+  <p>Product three cost: {{ productThreeCost | formatCost }}</p> 
+</div>
+<script>
+  new Vue({
+    el: "#appfilter",
+    data: {
+      productOneCost: 998,
+      productTwoCost: 2399,
+      productThreeCost: 5300
+    },
+    filters: {
+      formatCost(value) {
+        return (value/100).toFixed(2);
+      }
+    }
+  })
+</script>
