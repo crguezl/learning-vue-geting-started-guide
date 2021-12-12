@@ -4,10 +4,10 @@
   "description": "My notes learning Vue. From reading <https://vuejs.org/v2/guide/#Getting-Started>",
   "main": "../index.html",
   "scripts": {
-    "install-pandoc-dependencies": "pip install --user pandoc-include",
+    "install-pandoc-dependencies": "pip install --user pandoc-include; brew install bib-tool",
     "remove-data": "scripts/remove-data-prefix.sh temp.html ../index.html",
     "start": "npm run xargs; npm run remove-data",
-    "push": "npm start; git ci -am save && git push",
+    "push": "npm start; git  ci -am \"$(git diff --name-only | tr '\n' ' ')\" && git push",
     "xargs": "xargs -t pandoc < pandoc-options.txt",
     "local": "open ../index.html",
     "pdf": "xargs -t pandoc < pandoc-options-pdf.txt"
