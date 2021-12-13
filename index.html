@@ -1656,9 +1656,9 @@ Product three cost: {{ productThreeCost | formatCost }}
 </script>
 <p>In Vue 3.x, filters are removed and no longer supported. Instead, the Vue authors recommend replacing them with method calls or computed properties.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div id<span class="op">=</span><span class="st">&quot;appFilterTransformed&quot;</span> <span class="kw">class</span><span class="op">=</span><span class="st">&quot;execution&quot;</span><span class="op">&gt;</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span>Product one cost<span class="op">:</span> {{ formatCostOne }}<span class="op">&lt;/</span>p<span class="op">&gt;</span> </span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span>Product two cost<span class="op">:</span> {{ formatCostTwo }}<span class="op">&lt;/</span>p<span class="op">&gt;</span> </span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span>Product three cost<span class="op">:</span> {{ formatCostThree }}<span class="op">&lt;/</span>p<span class="op">&gt;</span> </span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span>Product one cost<span class="op">:</span>   {{ <span class="fu">formatCost</span>(productOneCost) }}<span class="op">&lt;/</span>p<span class="op">&gt;</span> </span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span>Product two cost<span class="op">:</span>   {{ <span class="fu">formatCost</span>(productTwoCost) }}<span class="op">&lt;/</span>p<span class="op">&gt;</span> </span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span>Product three cost<span class="op">:</span> {{ <span class="fu">formatCost</span>(productThreeCost) }}<span class="op">&lt;/</span>p<span class="op">&gt;</span> </span>
 <span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
 <span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>script<span class="op">&gt;</span></span>
 <span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">new</span> <span class="fu">Vue</span>({</span>
@@ -1672,14 +1672,9 @@ Product three cost: {{ productThreeCost | formatCost }}
 <span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">formatCost</span>(value) {</span>
 <span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (value<span class="op">/</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="op">+</span><span class="st">&quot;€&quot;</span><span class="op">;</span></span>
 <span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">computed</span><span class="op">:</span> {</span>
-<span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">formatCostOne</span>()   { <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="fu">formatCost</span>(<span class="kw">this</span><span class="op">.</span><span class="at">productOneCost</span>) }<span class="op">,</span></span>
-<span id="cb69-21"><a href="#cb69-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">formatCostTwo</span>()   { <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="fu">formatCost</span>(<span class="kw">this</span><span class="op">.</span><span class="at">productTwoCost</span>) }<span class="op">,</span></span>
-<span id="cb69-22"><a href="#cb69-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">formatCostThree</span>() { <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="fu">formatCost</span>(<span class="kw">this</span><span class="op">.</span><span class="at">productThreeCost</span>) }<span class="op">,</span></span>
-<span id="cb69-23"><a href="#cb69-23" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb69-24"><a href="#cb69-24" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb69-25"><a href="#cb69-25" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>script<span class="op">&gt;</span></span></code></pre></div>
+<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>script<span class="op">&gt;</span></span></code></pre></div>
 <div id="appFilterTransformed" class="execution">
 <p>
 Product one cost: {{ formatCost(productOneCost) }}

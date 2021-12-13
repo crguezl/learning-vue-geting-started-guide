@@ -463,9 +463,9 @@ Instead, the Vue authors recommend replacing them with method calls or computed 
 
 ```js
 <div id="appFilterTransformed" class="execution">
-  <p>Product one cost: {{ formatCostOne }}</p> 
-  <p>Product two cost: {{ formatCostTwo }}</p> 
-  <p>Product three cost: {{ formatCostThree }}</p> 
+  <p>Product one cost:   {{ formatCost(productOneCost) }}</p> 
+  <p>Product two cost:   {{ formatCost(productTwoCost) }}</p> 
+  <p>Product three cost: {{ formatCost(productThreeCost) }}</p> 
 </div>
 <script>
   new Vue({
@@ -479,11 +479,6 @@ Instead, the Vue authors recommend replacing them with method calls or computed 
       formatCost(value) {
         return (value/100).toFixed(2)+"€";
       }
-    },
-    computed: {
-      formatCostOne()   { return this.formatCost(this.productOneCost) },
-      formatCostTwo()   { return this.formatCost(this.productTwoCost) },
-      formatCostThree() { return this.formatCost(this.productThreeCost) },
     }
   })
 </script>
