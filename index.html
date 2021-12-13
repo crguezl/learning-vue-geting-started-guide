@@ -1655,6 +1655,7 @@ Product three cost: {{ productThreeCost | formatCost }}
   })
 </script>
 <p>In Vue 3.x, filters are removed and no longer supported. Instead, the Vue authors recommend replacing them with method calls or computed properties.</p>
+<p>At the end, a filter is only a function applied to the resulting value and thus we can use a method instead:</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div id<span class="op">=</span><span class="st">&quot;appFilterTransformed&quot;</span> <span class="kw">class</span><span class="op">=</span><span class="st">&quot;execution&quot;</span><span class="op">&gt;</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span>Product one cost<span class="op">:</span>   {{ <span class="fu">formatCost</span>(productOneCost) }}<span class="op">&lt;/</span>p<span class="op">&gt;</span> </span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>p<span class="op">&gt;</span>Product two cost<span class="op">:</span>   {{ <span class="fu">formatCost</span>(productTwoCost) }}<span class="op">&lt;/</span>p<span class="op">&gt;</span> </span>

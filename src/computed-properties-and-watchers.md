@@ -461,6 +461,8 @@ Filters should be appended to the end of the JavaScript expression, denoted by t
 In Vue 3.x, filters are removed and no longer supported. 
 Instead, the Vue authors recommend replacing them with method calls or computed properties.
 
+At the end, a filter is only a function applied to the resulting value and thus we can use a method instead:
+
 ```js
 <div id="appFilterTransformed" class="execution">
   <p>Product one cost:   {{ formatCost(productOneCost) }}</p> 
