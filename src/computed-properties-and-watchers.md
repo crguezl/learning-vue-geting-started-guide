@@ -405,7 +405,7 @@ Read *Examining Update Events with Computed Properties in Vue.js* [@computedprop
 `examining-update-events-with-computed-properties` of the assignment repo.
 
 
-### Filters 
+### Filters (Not supported in 3.x)
 
 As other template languages, Vue allows the use of *filters*.
 
