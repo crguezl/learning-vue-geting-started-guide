@@ -412,8 +412,6 @@ As other template languages, Vue allows the use of *filters*.
 Filters are usable in two places: mustache interpolations and `v-bind` expressions 
 (the latter supported in 2.1.0+). 
 
-In 3.x, filters are removed and no longer supported. Instead, they recommend replacing them with method calls or computed properties.
-
 Filters should be appended to the end of the JavaScript expression, denoted by the *pipe* symbol:
 
 ```html
@@ -432,7 +430,7 @@ Filters should be appended to the end of the JavaScript expression, denoted by t
     },
     filters: {
       formatCost(value) {
-        return (value/100).toFixed(2);
+        return (value/100).toFixed(2)+"€";
       }
     }
   })
@@ -454,7 +452,59 @@ Filters should be appended to the end of the JavaScript expression, denoted by t
     },
     filters: {
       formatCost(value) {
-        return (value/100).toFixed(2);
+        return (value/100).toFixed(2)+"€";
+      }
+    }
+  })
+</script>
+
+In Vue 3.x, filters are removed and no longer supported. 
+Instead, the Vue authors recommend replacing them with method calls or computed properties.
+
+```js
+<div id="appFilterTransformed" class="execution">
+  <p>Product one cost: {{ formatCostOne }}</p> 
+  <p>Product two cost: {{ formatCostTwo }}</p> 
+  <p>Product three cost: {{ formatCostThree }}</p> 
+</div>
+<script>
+  new Vue({
+    el: "#appFilterTransformed",
+    data: {
+      productOneCost: 998,
+      productTwoCost: 2399,
+      productThreeCost: 5300
+    },
+    methods: {
+      formatCost(value) {
+        return (value/100).toFixed(2)+"€";
+      }
+    },
+    computed: {
+      formatCostOne()   { return this.formatCost(this.productOneCost) },
+      formatCostTwo()   { return this.formatCost(this.productTwoCost) },
+      formatCostThree() { return this.formatCost(this.productThreeCost) },
+    }
+  })
+</script>
+```
+
+<div id="appFilterTransformed" class="execution">
+  <p>Product one cost:   {{ formatCost(productOneCost) }}</p> 
+  <p>Product two cost:   {{ formatCost(productTwoCost) }}</p> 
+  <p>Product three cost: {{ formatCost(productThreeCost) }}</p> 
+</div>
+<script>
+  new Vue({
+    el: "#appFilterTransformed",
+    data: {
+      productOneCost: 998,
+      productTwoCost: 2399,
+      productThreeCost: 5300
+    },
+    methods: {
+      formatCost(value) {
+        return (value/100).toFixed(2)+"€";
       }
     }
   })
