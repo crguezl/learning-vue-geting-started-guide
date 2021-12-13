@@ -1607,6 +1607,7 @@ calling <code>axios.get('https://yesno.wtf/api')</code> for each pressed key. So
 <h3 id="filters">Filters</h3>
 <p>As other template languages, Vue allows the use of <em>filters</em>.</p>
 <p>Filters are usable in two places: mustache interpolations and <code>v-bind</code> expressions (the latter supported in 2.1.0+).</p>
+<p>In 3.x, filters are removed and no longer supported. Instead, they recommend replacing them with method calls or computed properties.</p>
 <p>Filters should be appended to the end of the JavaScript expression, denoted by the <em>pipe</em> symbol:</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;appfilter&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>Product one cost: {{ productOneCost | formatCost }}<span class="kw">&lt;/p&gt;</span> </span>

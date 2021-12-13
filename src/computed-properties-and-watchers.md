@@ -412,6 +412,8 @@ As other template languages, Vue allows the use of *filters*.
 Filters are usable in two places: mustache interpolations and `v-bind` expressions 
 (the latter supported in 2.1.0+). 
 
+In 3.x, filters are removed and no longer supported. Instead, they recommend replacing them with method calls or computed properties.
+
 Filters should be appended to the end of the JavaScript expression, denoted by the *pipe* symbol:
 
 ```html
