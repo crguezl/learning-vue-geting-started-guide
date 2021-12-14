@@ -1792,7 +1792,7 @@ new Vue({
 })
 </script>
 <p>To achieve it we have to have access to the textarea DOM element and for that we use the <code>&lt;textarea ref="editorRef" ...&gt;</code></p>
-<p>When the button is clicked the execution of the method <code>focusEditor</code> uses the <code>[HTMLElement.focus()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus)</code> method to set the focus. To get the element we use <code>this.$refs.editorRef</code></p>
+<p>When the button is clicked the execution of the method <code>focusEditor</code> uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus">HTMLElement.focus()</a> method to set the focus. To get the element we use <code>this.$refs.editorRef</code></p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;appRefs&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;editor&gt;&lt;/editor&gt;</span></span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
