@@ -206,10 +206,90 @@ That’s why Vue provides a more generic way to react to data changes through th
 
 This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
 
-For example:
+The following example taken from [@macrae2018vue] shows a Vue app where we have an `input` where a user can type in and displays 
+on the page what was the value of the input 5 seconds ago.
+
 
 ```html
-<div id="watch-example">
+<div id="watch-5-seconds-ago" class="execution">
+ <input type="text" v-model="inputValue">
+ <p>Five seconds ago, the input was: "{{ oldInputValue }}"</p>
+</div>
+
+<script>
+new Vue({
+  el: "#watch-5-seconds-ago",
+  data: {
+    inputValue: '',
+    oldInputValue: ''
+  },
+  watch: {
+    inputValue(newValue, oldValue) {
+      const store = newValue;
+      setTimeout(() => {
+        this.oldInputValue = store;
+      }, 5000);
+    }
+  }
+})
+</script>
+```
+
+<div id="watch-5-seconds-ago" class="execution">
+ <input type="text" v-model="inputValue">
+ <p>Five seconds ago, the input was: "{{ oldInputValue }}"</p>
+</div>
+
+<script>
+new Vue({
+  el: "#watch-5-seconds-ago",
+  data: {
+    inputValue: '',
+    oldInputValue: ''
+  },
+  watch: {
+    inputValue(newValue, oldValue) {
+      const store = newValue;
+      setTimeout(() => {
+        this.oldInputValue = store;
+      }, 5000);
+    }
+  }
+})
+</script>
+
+Remember that `v-model` is a two-way binding for form inputs. 
+It combines `v-bind`, which brings a JavaScript value from `.data` into the template, and `v-on:input` to update the JavaScript value. 
+
+The `v-model` directive works with all the basic HTML input types (`text`, `textarea`, `number`, `radio`, `checkbox`, `select`).
+
+The `watch` entry of the Vue instance has to be an object where 
+
+1. **keys** are expressions to watch (`inputValue`) and 
+2. **values** are the corresponding callbacks `function(newValue, oldValue) { ... }`
+3. Callbacks are called with two arguments when their watched property is changed: the new value and the old value
+4. The value can also be a string of a method name, or an Object that contains additional options. 
+5. The Vue instance will call [$watch()](https://vuejs.org/v2/api/#vm-watch) for each entry in the object at instantiation.
+
+
+#### Answering your Question with the yesno.wtf API
+
+The following examples has an input where you can formulate a question. 
+
+The Vue app binds the `input` value to the `question` data variable and watches for changes 
+of `question`. 
+
+The question will be sent using `axios.get` for an answer to https://yesno.wtf/api.
+
+The simple Yes or No API is made for automating boolean decision making within mobile environments. API calls will return a "Yes", "No" or "Maybe." Returns include fun links to comical Gifs.
+
+We use lodash method `_.debounce` to limit how often 
+we access https://yesno.wtf/api, waiting until the user has completely
+finished typing before making the ajax request. 
+(To learn more about the `_.debounce` function (and its cousin `_.throttle`), visit: <https://lodash.com/docs#debounce>
+
+```html
+<div id="watch-example" class="execution">
   <p>
     Ask a yes/no question:
     <input v-model="question">
@@ -247,20 +327,20 @@ var watchExampleVM = new Vue({
     this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
   },
   methods: {
-    getAnswer: function () {
+    getAnswer: async function () {
       if (this.question.indexOf('?') === -1) {
         this.answer = 'Questions usually contain a question mark. ;-)'
         return
       }
       this.answer = 'Thinking...'
       var vm = this
-      axios.get('https://yesno.wtf/api')
-        .then(function (response) {
-          vm.answer = _.capitalize(response.data.answer)
-        })
-        .catch(function (error) {
+      try {
+        let response = await axios.get('https://yesno.wtf/api')
+        vm.answer = _.capitalize(response.data.answer)
+      }
+      catch (error) {
           vm.answer = 'Error! Could not reach the API. ' + error
-        })
+      }
     }
   }
 })
@@ -308,29 +388,24 @@ var watchExampleVM = new Vue({
     this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
   },
   methods: {
-    getAnswer: function () {
+    getAnswer: async function () {
       if (this.question.indexOf('?') === -1) {
         this.answer = 'Questions usually contain a question mark. ;-)'
         return
       }
       this.answer = 'Thinking...'
       var vm = this
-      axios.get('https://yesno.wtf/api')
-        .then(function (response) {
-          vm.answer = _.capitalize(response.data.answer)
-        })
-        .catch(function (error) {
+      try {
+        let response = await axios.get('https://yesno.wtf/api')
+        vm.answer = _.capitalize(response.data.answer)
+      }
+      catch (error) {
           vm.answer = 'Error! Could not reach the API. ' + error
-        })
+      }
     }
   }
 })
 </script>
-
-Remember that `v-model` is a two-way binding for form inputs. 
-It combines `v-bind`, which brings a JavaScript value from `.data` into the template, and `v-on:input` to update the JavaScript value. 
-
-The `v-model` directive works with all the basic HTML input types (`text`, `textarea`, `number`, `radio`, `checkbox`, `select`).
 
 In this example this bidirectional behavior of `v-model` constitutes a problem  😢 since each time the user press a key the input changes producing a call to the [watch handler function](https://vuejs.org/v2/api/#watch) associated to changes in `question`.
 
@@ -382,12 +457,6 @@ In this case, using the `watch` option allows us
 
 None of that would be possible with a computed property.
 
-The `watch` entry of the Vue instance has to be an object where 
-
-1. **keys** are expressions to watch and 
-2. **values** are the corresponding callbacks. 
-3. The value can also be a string of a method name, or an Object that contains additional options. 
-4. The Vue instance will call [$watch()](https://vuejs.org/v2/api/#vm-watch) for each entry in the object at instantiation.
 
 ::: tip
 Note that you should not use an arrow function to define a watcher (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue))`. 
