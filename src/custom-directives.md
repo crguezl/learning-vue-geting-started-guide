@@ -1,7 +1,7 @@
 ## Custom Directives
 
 In addition to the built-in directives it is possible to build your own custom directives.
-An example would be focusing on an <input> element.
+An example would be focusing on an `input` element.
 
 ```html
 <script>
