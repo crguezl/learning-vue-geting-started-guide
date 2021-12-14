@@ -220,6 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li><a href="#exercise-examining-update-events-with-computed-properties-in-vue.js">Exercise: Examining Update Events with Computed Properties in Vue.js</a></li>
           <li><a href="#filters-not-supported-in-3.x">Filters (Not supported in 3.x)</a></li>
           </ul></li>
+          <li><a href="#accesing-elements-directly-using-ref">Accesing Elements Directly Using ref</a></li>
           <li><a href="#exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</a></li>
           <li><a href="#references">References</a></li>
           </ul></li>
@@ -1761,6 +1762,66 @@ Product three cost: {{ formatCost(productThreeCost) }}
     }
   })
 </script>
+<h2 id="accesing-elements-directly-using-ref">Accesing Elements Directly Using ref</h2>
+<p>There are times when we want to access the DOM element. May be we want the position of an element in the page or we are using a library that manipulates the DOM and it need to access to specific elements.</p>
+<p>We can use <a href="https://vuejs.org/v2/guide/components-edge-cases.html#Accessing-Child-Component-Instances-amp-Child-Elements">ref</a> to access the DOM element directly without having to use <code>querySelector</code>or one of the other native ways to select an element of the DON.</p>
+<p>If you use <code>this.$ref.blah</code>in a component, it will refer to the element in that component, not anywhere else in the document.</p>
+<p>In the following example, taken from <span class="citation" data-cites="refsvue2">(<a href="#ref-refsvue2" role="doc-biblioref">LogRocket 2020</a>)</span>, the idea is that clicking the button will set the focus on the textarea below.</p>
+<div id="appRefs" class="execution">
+<p><editor></editor></p>
+</div>
+<script>
+Vue.component("editor", {
+    template: `
+        <div>
+            <h2>Editor</h2>
+            <button @click="focusEditor">Focus Editor</button>
+            <br/>
+            <textarea ref="editorRef" name="" id="" cols="30" rows="3"></textarea>
+        </div>
+    `,
+    methods: {
+        focusEditor(e) {
+            this.$refs.editorRef.focus()
+        }
+    }
+})
+
+new Vue({
+    el: "#appRefs"
+})
+</script>
+<p>To achieve it we have to have access to the textarea DOM element and for that we use the <code>&lt;textarea ref="editorRef" ...&gt;</code></p>
+<p>When the button is clicked the execution of the method <code>focusEditor</code> uses the <code>[HTMLElement.focus()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus)</code> method to set the focus. To get the element we use <code>this.$refs.editorRef</code></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;appRefs&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;editor&gt;&lt;/editor&gt;</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&quot;editor&quot;</span><span class="op">,</span> {</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">template</span><span class="op">:</span> <span class="vs">`</span></span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div&gt;</span></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="vs">            &lt;h2&gt;Editor&lt;/h2&gt;</span></span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a><span class="vs">            &lt;button @click=&quot;focusEditor&quot;&gt;Focus Editor&lt;/button&gt;</span></span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a><span class="vs">            &lt;br/&gt;</span></span>
+<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="vs">            &lt;textarea ref=&quot;editorRef&quot; name=&quot;&quot; id=&quot;&quot; cols=&quot;30&quot; rows=&quot;3&quot;&gt;&lt;/textarea&gt;</span></span>
+<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
+<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a><span class="vs">    `</span><span class="op">,</span></span>
+<span id="cb71-15"><a href="#cb71-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">methods</span><span class="op">:</span> {</span>
+<span id="cb71-16"><a href="#cb71-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">focusEditor</span>(e) {</span>
+<span id="cb71-17"><a href="#cb71-17" aria-hidden="true" tabindex="-1"></a>            <span class="kw">this</span><span class="op">.</span><span class="at">$refs</span><span class="op">.</span><span class="at">editorRef</span><span class="op">.</span><span class="fu">focus</span>()</span>
+<span id="cb71-18"><a href="#cb71-18" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb71-19"><a href="#cb71-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb71-20"><a href="#cb71-20" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb71-21"><a href="#cb71-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-22"><a href="#cb71-22" aria-hidden="true" tabindex="-1"></a><span class="kw">new</span> <span class="fu">Vue</span>({</span>
+<span id="cb71-23"><a href="#cb71-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">el</span><span class="op">:</span> <span class="st">&quot;#appRefs&quot;</span></span>
+<span id="cb71-24"><a href="#cb71-24" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb71-25"><a href="#cb71-25" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div class="tip">
+<p><code>$ref</code>s are only populated after the component has been rendered, and they are not reactive.</p>
+<p>It is only meant as an escape hatch for direct child manipulation - you should avoid accessing <code>$refs</code> from within templates or computed properties.</p>
+</div>
 <h2 id="exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</h2>
 <p>Follow the tutorial at <span class="citation" data-cites="vuejsfundamentals">(<a href="#ref-vuejsfundamentals" role="doc-biblioref">VueSchool 2018</a>)</span>, reproduce the examples and leave the results in folder <code>vuejsfundamentals</code> of the assignment repo</p>
 <p>The source is at repo <a href="https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf">vueschool/vuejs-fundamentals</a>. The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf</p>
@@ -1783,6 +1844,9 @@ Erik, Program With. 2017. <span>“A Better Way to Create Templates in Vue.js? R
 </div>
 <div id="ref-computedproperties" class="csl-entry" role="doc-biblioentry">
 Hanchett, Erik, and Benjamin Listwon. 2019. <span>“Examining Update Events with Computed Properties in Vue.js.”</span> <a href="https://manningbooks.medium.com/examining-update-events-with-computed-properties-in-vue-js-85c7fd8ad657">https://manningbooks.medium.com/examining-update-events-with-computed-properties-in-vue-js-85c7fd8ad657</a>.
+</div>
+<div id="ref-refsvue2" class="csl-entry" role="doc-biblioentry">
+LogRocket. 2020. <span>“Using Refs to Access Vue.js DOM Nodes.”</span> <a href="https://youtu.be/hBHViaKmpZs">https://youtu.be/hBHViaKmpZs</a>.
 </div>
 <div id="ref-macrae2018vue" class="csl-entry" role="doc-biblioentry">
 Macrae, C. 2018. <em>Vue.js: Up and Running: Building Accessible and Performant Web Apps</em>. O’Reilly Media. <a href="https://books.google.es/books?id=bJpNDwAAQBAJ">https://books.google.es/books?id=bJpNDwAAQBAJ</a>.

@@ -84,6 +84,8 @@ To see the result, you can
 
 !include computed-properties-and-watchers.md
 
+!include refs.md
+
 ## Exercise: Vuejs Fundamentals
 
 Follow the tutorial at [@vuejsfundamentals], reproduce the examples and leave the results in folder `vuejsfundamentals` of the assignment repo
