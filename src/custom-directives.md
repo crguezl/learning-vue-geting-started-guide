@@ -1,7 +1,7 @@
 ## Custom Directives
 
 In addition to the built-in directives it is possible to build your own custom directives.
-An example would be focusing on an input element.
+An example would be focusing on an <input> element.
 
 ```html
 <script>
@@ -29,3 +29,6 @@ An example would be focusing on an input element.
 ```
 
 Follow this [link](examples/custom-directives.html) to see the example working.
+
+A directive definition object can provide several hook functions (all optional) like `bind` or `inserted`.
+`inserted` is called when the bound element has been inserted into its parent node.

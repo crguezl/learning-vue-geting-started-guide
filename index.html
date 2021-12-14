@@ -1825,7 +1825,7 @@ new Vue({
 <p>In most cases, it’s best to avoid reaching into other component instances or manually manipulating DOM elements. There are cases, however, when it can be appropriate.</p>
 </div>
 <h2 id="custom-directives">Custom Directives</h2>
-<p>In addition to the built-in directives it is possible to build your own custom directives. An example would be focusing on an input element.</p>
+<p>In addition to the built-in directives it is possible to build your own custom directives. An example would be focusing on an <input> element.</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Register a global custom directive called `v-focus`</span></span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    Vue<span class="op">.</span><span class="fu">directive</span>(<span class="st">&#39;focus&#39;</span><span class="op">,</span> {</span>
@@ -1849,6 +1849,7 @@ new Vue({
 <span id="cb72-21"><a href="#cb72-21" aria-hidden="true" tabindex="-1"></a>    })</span>
 <span id="cb72-22"><a href="#cb72-22" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <p>Follow this <a href="examples/custom-directives.html">link</a> to see the example working.</p>
+<p>A directive definition object can provide several hook functions (all optional) like <code>bind</code> or <code>inserted</code>. <code>inserted</code> is called when the bound element has been inserted into its parent node.</p>
 <h2 id="exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</h2>
 <p>Follow the tutorial at <span class="citation" data-cites="vuejsfundamentals">(<a href="#ref-vuejsfundamentals" role="doc-biblioref">VueSchool 2018</a>)</span>, reproduce the examples and leave the results in folder <code>vuejsfundamentals</code> of the assignment repo</p>
 <p>The source is at repo <a href="https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf">vueschool/vuejs-fundamentals</a>. The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf</p>
