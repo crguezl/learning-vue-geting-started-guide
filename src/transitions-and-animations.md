@@ -38,3 +38,9 @@ Vue provides a transition wrapper component, allowing you to add entering/leavin
 ```
 
 See it working at [examples/css-transitions-2.html](examples/css-transitions-2.html)
+
+
+The way that this works  is that Vue takes the name of the transition `"fade"` and uses it to add 
+CSS classes to the contained element (the paragraph `<p>hello</p>`) at various points through the transition.
+
+Two types of transition **enter** and **leave**, are applied when the element is added and removed from the document, respectively.
