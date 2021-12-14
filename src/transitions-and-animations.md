@@ -1,6 +1,6 @@
 ## Transitions
 
-Vue provides a transition wrapper component, allowing you to add entering/leaving transitions for any element or component in several  contexts like in Conditional rendering (using `v-if`)
+Vue provides a transition wrapper component, allowing you to add entering/leaving transitions for any element or component in several  contexts like in conditional rendering (using `v-if`)
 
 ```html 
 <head>
