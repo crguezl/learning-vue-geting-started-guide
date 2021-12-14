@@ -46,7 +46,7 @@ nocite: |
 # Annotated Reading of the **Essentials** Section of the *Vue.js Guide*
 
 <!--
-https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attributes-how-to-prevent-this
+https:  //stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attributes-how-to-prevent-this
 -->
 
 
@@ -87,6 +87,8 @@ To see the result, you can
 !include refs.md
 
 !include custom-directives.md
+
+!include transitions-and-animations.md
 
 ## Exercise: Vuejs Fundamentals
 
