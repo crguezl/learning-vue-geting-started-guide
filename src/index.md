@@ -92,6 +92,7 @@ To see the result, you can
 
 !include events.md
 
+!include component-props.md
 
 ## Exercise: Vuejs Fundamentals
 

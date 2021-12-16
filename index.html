@@ -227,6 +227,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <ul>
           <li><a href="#vm.emit-eventname-args">vm.$emit( eventName, […args] )</a></li>
           </ul></li>
+          <li><a href="#component-props">Component Props</a>
+          <ul>
+          <li><a href="#prop-casing-camelcase-vs-kebab-case">Prop Casing (camelCase vs kebab-case)</a></li>
+          </ul></li>
           <li><a href="#exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</a></li>
           <li><a href="#references">References</a></li>
           </ul></li>
@@ -1971,6 +1975,18 @@ let emitExampleArgument = new Vue({
   }
 })
 </script>
+<h2 id="component-props">Component Props</h2>
+<h3 id="prop-casing-camelcase-vs-kebab-case">Prop Casing (camelCase vs kebab-case)</h3>
+<p>HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase.</p>
+<p>That means when you’re using <strong>in-DOM templates</strong>, <em>camelCased</em> prop names need to use their <em>kebab-cased</em> (hyphen-delimited) equivalents:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;blog-post&#39;</span><span class="op">,</span> {</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// camelCase in JavaScript</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> [<span class="st">&#39;postTitle&#39;</span>]<span class="op">,</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">template</span><span class="op">:</span> <span class="st">&#39;&lt;h3&gt;{{ postTitle }}&lt;/h3&gt;&#39;</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span> kebab<span class="op">-</span><span class="cf">case</span> <span class="kw">in</span> HTML <span class="op">--&gt;</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>blog<span class="op">-</span>post post<span class="op">-</span>title<span class="op">=</span><span class="st">&quot;hello!&quot;</span><span class="op">&gt;&lt;/</span>blog<span class="op">-</span>post<span class="op">&gt;</span></span></code></pre></div>
+<p>Again, if you’re using <strong>string templates</strong>, this limitation does not apply.</p>
 <h2 id="exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</h2>
 <p>Follow the tutorial at <span class="citation" data-cites="vuejsfundamentals">(<a href="#ref-vuejsfundamentals" role="doc-biblioref">VueSchool 2018</a>)</span>, reproduce the examples and leave the results in folder <code>vuejsfundamentals</code> of the assignment repo</p>
 <p>The source is at repo <a href="https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf">vueschool/vuejs-fundamentals</a>. The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf</p>
