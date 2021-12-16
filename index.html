@@ -1898,7 +1898,7 @@ new Vue({
 <h3 id="vm.emit-eventname-args">vm.$emit( eventName, […args] )</h3>
 <p>See the Vue.js API specification on <a href="https://vuejs.org/v2/api/#vm-emit"><code>vm.$emit( eventName, […args]</code></a></p>
 <p>It trigger an event on the current instance.</p>
-<p>Any additional arguments will be passed into the listener’s callback function.</p>
+<p><strong>Any additional arguments will be passed into the listener’s callback function</strong>.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;magic-eight-ball&#39;</span><span class="op">,</span> {</span>
@@ -1935,6 +1935,8 @@ new Vue({
 <span id="cb74-34"><a href="#cb74-34" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb74-35"><a href="#cb74-35" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb74-36"><a href="#cb74-36" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<p>The method <code>showAdvice</code> is triggered on the <code>give-advice</code> event. That is, when the code <code>this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])</code> is executed (that was triggered by click on the button).</p>
+<p>When called, the method <code>showAdvice</code> receives as arguments the additional arguments of the <code>this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])</code>: that is, the randomly generated element of the <code>possibleAdvice</code> array</p>
 <script>
 Vue.component('magic-eight-ball', {
   data: function () {

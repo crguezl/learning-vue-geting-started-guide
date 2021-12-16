@@ -10,7 +10,7 @@ See the Vue.js API specification on [`vm.$emit( eventName, […args]`](https://v
 
 It trigger an event on the current instance. 
 
-Any additional arguments will be passed into the listener’s callback function.
+**Any additional arguments will be passed into the listener’s callback function**.
 
 ```html 
 
@@ -50,6 +50,13 @@ let emitExampleArgument = new Vue({
 })
 </script>
 ```
+
+The method `showAdvice` is triggered on the `give-advice` event. That is, when the code `this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])` is executed 
+(that was triggered by click on the button).
+
+When called, the method `showAdvice` receives as arguments the additional arguments of the `this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])`: that is,
+the randomly generated element of the `possibleAdvice` array
+
 
 <script>
 Vue.component('magic-eight-ball', {
