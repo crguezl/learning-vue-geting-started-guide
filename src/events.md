@@ -57,7 +57,7 @@ The method `showAdvice` is triggered on the `give-advice` event. That is, when t
 When called, the method `showAdvice` receives as arguments the additional arguments of the `this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])`: that is,
 the randomly generated element of the `possibleAdvice` array.
 
-This mechanism allows to the root component to obtain information from the child component `magic-eight-ball`
+This mechanism allows to the root component to obtain information from the child component `magic-eight-ball`. See lab [crguezl/vuejs-components-basics-plan-picker-component](https://github.com/crguezl/vuejs-components-basics-plan-picker-component) for another example.
 
 
 <script>
