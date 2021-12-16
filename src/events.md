@@ -51,8 +51,7 @@ let emitExampleArgument = new Vue({
 </script>
 ```
 
-The method `showAdvice` is triggered on the `give-advice` event. That is, when the code `this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])` is executed 
-(that was triggered by click on the button).
+The method `showAdvice` is triggered on the `give-advice` event. That is, when inside the `magic-eight-ball` component is executed the code `this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])`.  The last was triggered by the user click on the button `Click me for advice`.
 
 When called, the method `showAdvice` receives as arguments the additional arguments of the `this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])`: that is,
 the randomly generated element of the `possibleAdvice` array.
