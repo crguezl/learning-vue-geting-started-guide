@@ -230,6 +230,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li><a href="#component-props">Component Props</a>
           <ul>
           <li><a href="#prop-casing-camelcase-vs-kebab-case">Prop Casing (camelCase vs kebab-case)</a></li>
+          <li><a href="#dom-templates-and-string-templates">DOM Templates and String Templates</a></li>
+          <li><a href="#dom-templates">DOM templates</a></li>
+          <li><a href="#string-templates">String templates</a></li>
+          <li><a href="#sfc-templates">SFC templates</a></li>
           </ul></li>
           <li><a href="#exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</a></li>
           <li><a href="#references">References</a></li>
@@ -1987,6 +1991,65 @@ let emitExampleArgument = new Vue({
 <span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span> kebab<span class="op">-</span><span class="cf">case</span> <span class="kw">in</span> HTML <span class="op">--&gt;</span></span>
 <span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>blog<span class="op">-</span>post post<span class="op">-</span>title<span class="op">=</span><span class="st">&quot;hello!&quot;</span><span class="op">&gt;&lt;/</span>blog<span class="op">-</span>post<span class="op">&gt;</span></span></code></pre></div>
 <p>Again, if you’re using <strong>string templates</strong>, this limitation does not apply.</p>
+<h3 id="dom-templates-and-string-templates">DOM Templates and String Templates</h3>
+<p>See <a href="https://stackoverflow.com/questions/68578348/what-exactly-is-a-dom-template-in-vue-js">What exactly is a DOM Template in Vue.js?</a></p>
+<p>In the context of Vue, <strong>“DOM template”</strong> (commonly seen as “in-DOM template” in the rest of the Vue docs) refers to a component’s markup <em>specified in the document body/head</em>, as opposed to a <em>string template</em> or <em>SFC template</em>.</p>
+<p>While DOM templates include <code>&lt;script type="text/html"&gt;</code> or <code>&lt;template&gt;</code> in the document, these two tags (along with string templates and SFC templates) are not subject to the known <a href="https://v3.vuejs.org/guide/component-basics.html#dom-template-parsing-caveats">DOM template parsing caveats</a> because they’re inert.</p>
+<h3 id="dom-templates">DOM templates</h3>
+<p><em>in-DOM template:</em></p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>// index.html</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;ul&gt;</span></span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;li</span> <span class="er">v-for</span><span class="ot">=</span><span class="st">&quot;i in 5&quot;</span><span class="kw">&gt;</span>{{ i }}<span class="kw">&lt;/li&gt;</span></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/ul&gt;</span></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span></code></pre></div>
+<p><a href="https://codepen.io/tony19/pen/PomePZJ">demo</a></p>
+<p><em>in-DOM template with <code>&lt;script type="text/html"&gt;</code>:</em></p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>// index.html</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/html&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;my-comp-template&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;ul&gt;</span></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;li</span> <span class="er">v-for</span><span class="ot">=</span><span class="st">&quot;i in 5&quot;</span><span class="kw">&gt;</span>{{ i }}<span class="kw">&lt;/li&gt;</span></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/ul&gt;</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/script&gt;</span></span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;my-comp&gt;&lt;/my-comp&gt;</span></span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span></code></pre></div>
+<p><a href="https://codepen.io/tony19/pen/NWjMGWy?editors=1010">demo</a></p>
+<p><em>in-DOM template with <code>&lt;template&gt;</code>:</em></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>// index.html</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;template</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;my-comp-template&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;ul&gt;</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;li</span> <span class="er">v-for</span><span class="ot">=</span><span class="st">&quot;i in 5&quot;</span><span class="kw">&gt;</span>{{ i }}<span class="kw">&lt;/li&gt;</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/ul&gt;</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/template&gt;</span></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;my-comp&gt;&lt;/my-comp&gt;</span></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span></code></pre></div>
+<p><a href="https://codepen.io/tony19/pen/BaRxoaw?editors=1010">demo</a></p>
+<h3 id="string-templates">String templates</h3>
+<div class="sourceCode" id="cb79"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co">// MyComponent.js</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;my-comp&#39;</span><span class="op">,</span> {</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">template</span><span class="op">:</span> <span class="vs">`&lt;ul&gt;</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="vs">               &lt;li v-for=&quot;i in 5&quot;&gt;{{ i }}&lt;/li&gt;</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="vs">             &lt;/ul&gt;`</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><a href="https://codepen.io/tony19/pen/zYwjvKO?editors=1010">demo</a></p>
+<h3 id="sfc-templates">SFC templates</h3>
+<div class="sourceCode" id="cb80"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>// MyComponent.vue</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;template&gt;</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;ul&gt;</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li</span> <span class="er">v-for</span><span class="ot">=</span><span class="st">&quot;i in 5&quot;</span><span class="kw">&gt;</span>{{ i }}<span class="kw">&lt;/li&gt;</span></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/ul&gt;</span></span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/template&gt;</span></span></code></pre></div>
+<p><a href="https://codepen.io/tony19/pen/PomePGO">demo</a></p>
 <h2 id="exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</h2>
 <p>Follow the tutorial at <span class="citation" data-cites="vuejsfundamentals">(<a href="#ref-vuejsfundamentals" role="doc-biblioref">VueSchool 2018</a>)</span>, reproduce the examples and leave the results in folder <code>vuejsfundamentals</code> of the assignment repo</p>
 <p>The source is at repo <a href="https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf">vueschool/vuejs-fundamentals</a>. The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf</p>
