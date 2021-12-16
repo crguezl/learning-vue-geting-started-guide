@@ -8,9 +8,9 @@ See [Custom Events](https://vuejs.org/v2/guide/components-custom-events.html) on
 
 See the Vue.js API specification on [`vm.$emit( eventName, […args]`](https://vuejs.org/v2/api/#vm-emit)
 
-It trigger an event on the current instance. 
+It triggers an event with name `eventName` on the current instance. 
 
-**Any additional arguments will be passed into the listener’s callback function**.
+**Any additional arguments will be passed into the listener’s callback function** potentially associated with the `v-on`.
 
 ```html 
 

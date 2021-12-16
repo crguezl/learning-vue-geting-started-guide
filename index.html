@@ -1897,8 +1897,8 @@ new Vue({
 <p>See <a href="https://vuejs.org/v2/guide/components-custom-events.html">Custom Events</a> on the Vue.js guide.</p>
 <h3 id="vm.emit-eventname-args">vm.$emit( eventName, […args] )</h3>
 <p>See the Vue.js API specification on <a href="https://vuejs.org/v2/api/#vm-emit"><code>vm.$emit( eventName, […args]</code></a></p>
-<p>It trigger an event on the current instance.</p>
-<p><strong>Any additional arguments will be passed into the listener’s callback function</strong>.</p>
+<p>It triggers an event with name <code>eventName</code> on the current instance.</p>
+<p><strong>Any additional arguments will be passed into the listener’s callback function</strong> potentially associated with the <code>v-on</code>.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;magic-eight-ball&#39;</span><span class="op">,</span> {</span>
