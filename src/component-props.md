@@ -26,7 +26,7 @@ In the context of Vue, **"DOM template"** (commonly seen as "in-DOM template" in
 
 While DOM templates include `<script type="text/html">` or `<template>` in the document, these two tags (along with string templates and SFC templates) are not subject to the known [DOM template parsing caveats](https://v3.vuejs.org/guide/component-basics.html#dom-template-parsing-caveats) because they're inert.
 
-### DOM templates
+#### DOM templates
 
 *in-DOM template:*
 
@@ -81,7 +81,7 @@ While DOM templates include `<script type="text/html">` or `<template>` in the d
 
 [demo](https://codepen.io/tony19/pen/BaRxoaw?editors=1010)
 
-### String templates
+#### String templates
 
 ```js
 // MyComponent.js
@@ -94,7 +94,7 @@ Vue.component('my-comp', {
 
 [demo](https://codepen.io/tony19/pen/zYwjvKO?editors=1010)
 
-### SFC templates
+#### SFC templates
 
 ```html
 // MyComponent.vue

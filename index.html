@@ -230,10 +230,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li><a href="#component-props">Component Props</a>
           <ul>
           <li><a href="#prop-casing-camelcase-vs-kebab-case">Prop Casing (camelCase vs kebab-case)</a></li>
-          <li><a href="#dom-templates-and-string-templates">DOM Templates and String Templates</a></li>
+          <li><a href="#dom-templates-and-string-templates">DOM Templates and String Templates</a>
+          <ul>
           <li><a href="#dom-templates">DOM templates</a></li>
           <li><a href="#string-templates">String templates</a></li>
           <li><a href="#sfc-templates">SFC templates</a></li>
+          </ul></li>
           </ul></li>
           <li><a href="#exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</a></li>
           <li><a href="#references">References</a></li>
@@ -1995,7 +1997,7 @@ let emitExampleArgument = new Vue({
 <p>See <a href="https://stackoverflow.com/questions/68578348/what-exactly-is-a-dom-template-in-vue-js">What exactly is a DOM Template in Vue.js?</a></p>
 <p>In the context of Vue, <strong>“DOM template”</strong> (commonly seen as “in-DOM template” in the rest of the Vue docs) refers to a component’s markup <em>specified in the document body/head</em>, as opposed to a <em>string template</em> or <em>SFC template</em>.</p>
 <p>While DOM templates include <code>&lt;script type="text/html"&gt;</code> or <code>&lt;template&gt;</code> in the document, these two tags (along with string templates and SFC templates) are not subject to the known <a href="https://v3.vuejs.org/guide/component-basics.html#dom-template-parsing-caveats">DOM template parsing caveats</a> because they’re inert.</p>
-<h3 id="dom-templates">DOM templates</h3>
+<h4 id="dom-templates">DOM templates</h4>
 <p><em>in-DOM template:</em></p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>// index.html</span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
@@ -2034,7 +2036,7 @@ let emitExampleArgument = new Vue({
 <span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
 <span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span></code></pre></div>
 <p><a href="https://codepen.io/tony19/pen/BaRxoaw?editors=1010">demo</a></p>
-<h3 id="string-templates">String templates</h3>
+<h4 id="string-templates">String templates</h4>
 <div class="sourceCode" id="cb79"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co">// MyComponent.js</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">component</span>(<span class="st">&#39;my-comp&#39;</span><span class="op">,</span> {</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">template</span><span class="op">:</span> <span class="vs">`&lt;ul&gt;</span></span>
@@ -2042,7 +2044,7 @@ let emitExampleArgument = new Vue({
 <span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="vs">             &lt;/ul&gt;`</span></span>
 <span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p><a href="https://codepen.io/tony19/pen/zYwjvKO?editors=1010">demo</a></p>
-<h3 id="sfc-templates">SFC templates</h3>
+<h4 id="sfc-templates">SFC templates</h4>
 <div class="sourceCode" id="cb80"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>// MyComponent.vue</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;template&gt;</span></span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;ul&gt;</span></span>
