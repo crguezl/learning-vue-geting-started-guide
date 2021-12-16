@@ -1936,7 +1936,8 @@ new Vue({
 <span id="cb74-35"><a href="#cb74-35" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb74-36"><a href="#cb74-36" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <p>The method <code>showAdvice</code> is triggered on the <code>give-advice</code> event. That is, when the code <code>this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])</code> is executed (that was triggered by click on the button).</p>
-<p>When called, the method <code>showAdvice</code> receives as arguments the additional arguments of the <code>this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])</code>: that is, the randomly generated element of the <code>possibleAdvice</code> array</p>
+<p>When called, the method <code>showAdvice</code> receives as arguments the additional arguments of the <code>this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])</code>: that is, the randomly generated element of the <code>possibleAdvice</code> array.</p>
+<p>This mechanism allows to the root component to obtain information from the child component <code>magic-eight-ball</code></p>
 <script>
 Vue.component('magic-eight-ball', {
   data: function () {
