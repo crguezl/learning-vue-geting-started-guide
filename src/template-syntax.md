@@ -399,7 +399,9 @@ const appModifierPrevent = new Vue({
     <div class="execution">
       <p>Default Behavior: to take you to www.google.com</p>
       <p>
-        <a v-on:click.prevent="setEv" href="https://www.google.com">Click Me, and I show you the value of the event</a>
+        <a v-on:click.prevent="setEv" href="https://www.google.com">
+          Click Me, and I show you the value of the event
+        </a>
       </p>
       <p>{{ ev }}</p>
     </div>
