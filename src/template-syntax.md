@@ -382,7 +382,7 @@ For example, the `.prevent` modifier tells the `v-on` directive to call event
 <form v-on:submit.prevent="onSubmit"> ... </form>
 ```
 
-Read the tutorial [Handling Click Events with Vue](https://masteringjs.io/tutorials/vue/click). Her is another example of modifier:
+Read the tutorial [Handling Click Events with Vue](https://masteringjs.io/tutorials/vue/click). Here is another example of modifier:
 
 ```html
 <div id="modifier-prevent" class="execution"></div>
