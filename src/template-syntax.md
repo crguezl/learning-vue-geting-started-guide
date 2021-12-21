@@ -382,6 +382,55 @@ For example, the `.prevent` modifier tells the `v-on` directive to call event
 <form v-on:submit.prevent="onSubmit"> ... </form>
 ```
 
+Read the tutorial [Handling Click Events with Vue](https://masteringjs.io/tutorials/vue/click). Her is another example of modifier:
+
+```html
+<div id="modifier-prevent" class="execution"></div>
+<script>
+const appModifierPrevent = new Vue({
+  el: "#modifier-prevent",
+  data: () => ({ev: null}),
+  methods: {
+    setEv(ev) {
+      this.ev = JSON.stringify(ev); 
+    }
+  },
+  template: `
+    <div class="execution">
+      <p>Default Behavior: to take you to www.google.com</p>
+      <p>
+        <a v-on:click.prevent="setEv" href="https://www.google.com">Click Me, and I show you the value of the event</a>
+      </p>
+      <p>{{ ev }}</p>
+    </div>
+  `
+});
+</script>
+``` 
+
+<div id="modifier-prevent" class="execution"></div>
+<script>
+const appModifierPrevent = new Vue({
+  el: "#modifier-prevent",
+  data: () => ({ev: null}),
+  methods: {
+    setEv(ev) {
+      this.ev = JSON.stringify(ev); 
+    }
+  },
+  template: `
+    <div class="execution">
+      <p>Default Behavior: to take you to www.google.com</p>
+      <p>
+        <a v-on:click.prevent="setEv" href="https://www.google.com">Click Me, and I show you the value of the event</a>
+      </p>
+      <p>{{ ev }}</p>
+    </div>
+  `
+});
+</script>
+
+
 ### Shorthands
 
 The `v-` prefix serves as a visual cue for identifying Vue-specific attributes in your templates. 
