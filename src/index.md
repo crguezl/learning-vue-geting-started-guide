@@ -94,6 +94,8 @@ To see the result, you can
 
 !include component-props.md
 
+!include base-component.md
+
 ## Exercise: Vuejs Fundamentals
 
 Follow the tutorial at [@vuejsfundamentals], reproduce the examples and leave the results in folder `vuejsfundamentals` of the assignment repo

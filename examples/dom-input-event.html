@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="execution">
+        <input placeholder="Enter some text" name="name" id="#dom-input-event"/>
+        <p id="values-for-input-event"></p>
+        </div>
+        
+        <script>
+        const input = document.getElementById('#dom-input-event');
+        const log = document.getElementById('values-for-input-event');
+        
+        input.addEventListener('input', updateValue);
+        
+        function updateValue(e) {
+          console.log(e);
+          log.textContent = e.target.value;
+        }
+        </script>
+    </div>       
+</body>
+</html>

@@ -237,6 +237,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li><a href="#sfc-templates">SFC templates</a></li>
           </ul></li>
           </ul></li>
+          <li><a href="#creating-a-transparent-base-component-with-vue.js">Creating a transparent base component with Vue.js</a>
+          <ul>
+          <li><a href="#creating-the-workspace-with-vuecli">Creating the WorkSpace with <span class="citation" data-cites="vue/cli">(<span><strong>vue/cli?</strong></span>)</span></a></li>
+          <li><a href="#how-v-model-works-under-the-hood">How <code>v-model</code> works under the hood</a></li>
+          <li><a href="#building-the-base-component">Building the base component</a></li>
+          </ul></li>
           <li><a href="#exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</a></li>
           <li><a href="#references">References</a></li>
           </ul></li>
@@ -2099,6 +2105,115 @@ let emitExampleArgument = new Vue({
 <span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/ul&gt;</span></span>
 <span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/template&gt;</span></span></code></pre></div>
 <p><a href="https://codepen.io/tony19/pen/PomePGO">demo</a></p>
+<h2 id="creating-a-transparent-base-component-with-vue.js">Creating a transparent base component with Vue.js</h2>
+<p>See the article <span class="citation" data-cites="basecomponent">(<a href="#ref-basecomponent" role="doc-biblioref">Sieder 2019</a>)</span> for the source that I have used for this section.</p>
+<p>According to the official Vue js style guide you should name a component a base component if</p>
+<ol type="1">
+<li><strong>It is unique to your application</strong> and <strong>you are using it in many places</strong> inside your app.</li>
+<li>You can name it like <em>BaseIcon.vue</em> or every other name starting with <em>Base</em>.</li>
+</ol>
+<p>An example could be a form field.</p>
+<p>You usually want to have a label along with an input field (or select, radio button, etc) but you would also like to avoid to repeat the same code over and over again for multiple input fields.</p>
+<h3 id="creating-the-workspace-with-vuecli">Creating the WorkSpace with <span class="citation" data-cites="vue/cli">(<a href="#ref-vue/cli" role="doc-biblioref"><strong>vue/cli?</strong></a>)</span></h3>
+<pre><code>$ npm update -g @vue/cli
+$ npm install -g @vue/cli-service-global
+$  pwd
+/Users/casianorodriguezleon/campus-virtual/2122/learning/vue-learning/creating-a-transparent-base-component-with-vue.js
+$ vue create transparent-base-component
+$ cd transparent-base-component
+$ tree -I node_modules
+.
+├── README.md
+├── babel.config.js
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   └── index.html
+└── src
+    ├── App.vue
+    ├── assets
+    │   └── logo.png
+    ├── components
+    │   └── HelloWorld.vue
+    └── main.js</code></pre>
+<h3 id="how-v-model-works-under-the-hood">How <code>v-model</code> works under the hood</h3>
+<p>The classical <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event">DOM <code>input</code> event</a> fires when the value of an <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code>, or <code>&lt;textarea&gt;</code> element has been changed.</p>
+<p>See this example running at <a href="examples/dom-input-event.html">examples/dom-input-event.html</a>:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;input</span> <span class="er">placeholder</span><span class="ot">=</span><span class="st">&quot;Enter some text&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;name&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;#dom-input-event&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;p</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;values-for-input-event&quot;</span><span class="kw">&gt;&lt;/p&gt;</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;script&gt;</span></span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> input <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&#39;#dom-input-event&#39;</span>)<span class="op">;</span></span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> log <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&#39;values-for-input-event&#39;</span>)<span class="op">;</span></span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a>        input<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">&#39;input&#39;</span><span class="op">,</span> updateValue)<span class="op">;</span></span>
+<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb83-12"><a href="#cb83-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">function</span> <span class="fu">updateValue</span>(e) {</span>
+<span id="cb83-13"><a href="#cb83-13" aria-hidden="true" tabindex="-1"></a>          <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(e)<span class="op">;</span></span>
+<span id="cb83-14"><a href="#cb83-14" aria-hidden="true" tabindex="-1"></a>          log<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> e<span class="op">.</span><span class="at">target</span><span class="op">.</span><span class="at">value</span><span class="op">;</span></span>
+<span id="cb83-15"><a href="#cb83-15" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb83-16"><a href="#cb83-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;/script&gt;</span></span>
+<span id="cb83-17"><a href="#cb83-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span>   </span></code></pre></div>
+<p>To build this base component, we’re going to use Vue’s <code>v-model</code> directive.</p>
+<p>To recap, let’s a simple component <code>src/components/BaseInput.vue</code> to remember how to use <code>v-model</code>:</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+  &lt;input type=&quot;text&quot; v-model=&quot;username&quot;&gt;  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      username: &#39;&#39;
+    }
+  }
+}
+&lt;/script&gt;</code></pre>
+<p>In our Vue.js instance, we have the <code>data</code> property <code>username</code> and in our <code>template</code> we bind that variable to the input field.</p>
+<p>All the <code>v-model</code> directive really does, is to bind the value of <code>username</code> to the <code>value</code> property of the <code>input</code> field (and therefor keep the content of that <code>input</code> field always in <strong>sync</strong> with the variable) and update the <code>username</code> variable with the new <code>value</code> whenever someone types something into the <code>input</code> field.</p>
+<p>We can use this directive also for our base component, but we first need to understand, how <code>v-model</code> works under the hood.</p>
+<p>By default, on a <code>input</code>, the <code>v-model="variable"</code></p>
+<ol type="1">
+<li>Binds the <code>variable</code> you pass to the directive to the <code>value</code> property of the <code>input</code> and</li>
+<li>Whenever that <code>input</code> element emits an <code>input</code> event, the <code>variable</code> will be updated with the new <code>value</code> automatically.</li>
+</ol>
+<p>This means, that in our base component we can expect</p>
+<ol type="1">
+<li>To listen for the <code>input</code> event and get the <code>target.value</code> of the event and</li>
+<li>To <code>$emit</code> an <code>input</code> event back to the parent with the new <code>$event.target.value</code></li>
+</ol>
+<h3 id="building-the-base-component">Building the base component</h3>
+<p>We name our component <code>BaseInput.vue</code> and store it in the <code>components</code> folder following the recomendations.</p>
+<p>It has props <code>label</code> for the label of the input, and <code>type</code> (<code>input</code>, <code>textarea</code>, <code>select</code>) plus the <code>placeholder</code> prop.</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+    &lt;label&gt;
+      {{ label }}
+      &lt;input
+        :type=&quot;type&quot;
+        :placeholder=&quot;placeholder&quot;
+        @input=&quot;$emit(&#39;input&#39;, $event.target.value)&quot;
+      &gt;
+    &lt;/label&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: &quot;BaseInput&quot;,
+  props: {
+    label: String,
+    type: String,
+    placeholder: String
+  }
+};
+&lt;/script&gt;</code></pre>
+<p>We listen for the <code>input</code> event and <code>emit</code> another <code>input</code> event back to the parent component in order to let the parent <code>v-model</code> directive update the corresponding variable accordingly.</p>
+<p>This way, our <code>BaseInput</code> component is a <strong>transparent component</strong>, which can be used with <code>v-model</code>.</p>
 <h2 id="exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</h2>
 <p>Follow the tutorial at <span class="citation" data-cites="vuejsfundamentals">(<a href="#ref-vuejsfundamentals" role="doc-biblioref">VueSchool 2018</a>)</span>, reproduce the examples and leave the results in folder <code>vuejsfundamentals</code> of the assignment repo</p>
 <p>The source is at repo <a href="https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf">vueschool/vuejs-fundamentals</a>. The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf</p>
@@ -2133,6 +2248,9 @@ Mushiyo. 2017. <span>“Pandoc-Toc-Sidebar.”</span> <a href="https://github.co
 </div>
 <div id="ref-citationstyles" class="csl-entry" role="doc-biblioentry">
 Org, Citation-Style-Language GitHub. 2021. <span>“GitHub Repo with Citation Styles.”</span> <a href="https://github.com/citation-style-language/styles">https://github.com/citation-style-language/styles</a>.
+</div>
+<div id="ref-basecomponent" class="csl-entry" role="doc-biblioentry">
+Sieder, Ivan. 2019. <span>“Creating a Transparent Base Component with Vue.js.”</span> <a href="https://simedia.tech/blog/creating-a-transparent-base-component-with-vue-js/">https://simedia.tech/blog/creating-a-transparent-base-component-with-vue-js/</a>.
 </div>
 <div id="ref-vuestart" class="csl-entry" role="doc-biblioentry">
 Vue. 2021. <span>“Vue: Getting Started (V2).”</span> <a href="https://vuejs.org/v2/guide/#Getting-Started">https://vuejs.org/v2/guide/#Getting-Started</a>.
