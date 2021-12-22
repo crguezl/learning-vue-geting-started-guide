@@ -2214,6 +2214,44 @@ export default {
 &lt;/script&gt;</code></pre>
 <p>We listen for the <code>input</code> event and <code>emit</code> another <code>input</code> event back to the parent component in order to let the parent <code>v-model</code> directive update the corresponding variable accordingly.</p>
 <p>This way, our <code>BaseInput</code> component is a <strong>transparent component</strong>, which can be used with <code>v-model</code>.</p>
+<p>Here is our main <code>App.vue</code> component:</p>
+<pre class="vue"><code>&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;BaseInput label=&quot;Username&quot; type=&quot;text&quot; placeholder=&quot;Username&quot; v-model=&quot;username&quot;/&gt;
+    &lt;BaseInput label=&quot;Password&quot; type=&quot;password&quot; placeholder=&quot;********&quot; v-model=&quot;password&quot;/&gt;
+
+    &lt;hr&gt;
+    {{ username }} - {{ password }}
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import BaseInput from &quot;./components/BaseInput&quot;;
+
+export default {
+  name: &quot;App&quot;,
+  components: {
+    BaseInput
+  },
+  data() {
+    return {
+      username: &quot;&quot;,
+      password: &quot;&quot;
+    };
+  }
+};
+&lt;/script&gt;
+
+&lt;style&gt;
+#app {
+  font-family: &quot;Avenir&quot;, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+&lt;/style&gt;</code></pre>
 <h2 id="exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</h2>
 <p>Follow the tutorial at <span class="citation" data-cites="vuejsfundamentals">(<a href="#ref-vuejsfundamentals" role="doc-biblioref">VueSchool 2018</a>)</span>, reproduce the examples and leave the results in folder <code>vuejsfundamentals</code> of the assignment repo</p>
 <p>The source is at repo <a href="https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf">vueschool/vuejs-fundamentals</a>. The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf</p>

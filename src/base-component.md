@@ -141,3 +141,44 @@ We listen for the `input` event and `emit` another `input` event back to the par
 
 This way, our `BaseInput` component is a **transparent component**, which can be used with `v-model`.
 
+Here is our main `App.vue` component:
+
+```vue 
+<template>
+  <div id="app">
+    <BaseInput label="Username" type="text" placeholder="Username" v-model="username"/>
+    <BaseInput label="Password" type="password" placeholder="********" v-model="password"/>
+
+    <hr>
+    {{ username }} - {{ password }}
+  </div>
+</template>
+
+<script>
+import BaseInput from "./components/BaseInput";
+
+export default {
+  name: "App",
+  components: {
+    BaseInput
+  },
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  }
+};
+</script>
+
+<style>
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+```
