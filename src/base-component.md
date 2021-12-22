@@ -95,8 +95,24 @@ In our Vue.js instance, we have the `data` property `username` and in our `templ
 
 According to the [Vue Guide on components](https://zendev.com/2018/05/31/transparent-wrapper-components-in-vue.html), `v-model `on a component essentially works by passing in a `value` prop, and applying and `input` event handler.
 
-All the `v-model` directive really does, is to bind the value of `username` to the `value` property of the `input` field 
+The `v-model` directive binds the value of `username` to the `value` property of the `input` field 
 (and therefor keep the content of that `input` field always in **sync** with the variable) and update the `username` variable with the new `value` whenever someone types something into the `input` field.
+
+That is, this code:
+
+```html
+<input v-model="searchText">
+``` 
+
+is the same as 
+
+```html
+  <input
+      v-bind:value="searchText"
+      v-on:input="searchText = $event.target.value"
+    >
+    <h1>{{searchText}}</h1>
+```
 
 We can use this directive also for our base component, but we first need to understand, how `v-model` works under the hood. 
 
@@ -105,6 +121,19 @@ By default, on a `input`, the `v-model="variable"`
 1. Binds the `variable` you pass to the directive to the `value` property of the `input` and 
 2. Whenever that `input` element emits an `input` event,  the `variable` will be updated with the new `value` automatically.
 
+When used on a component, `v-model` instead does this:
+
+```html
+<custom-input
+  v-bind:value="searchText"
+  v-on:input="searchText = $event"
+></custom-input>
+```
+
+For this to actually work though, the `<input>` inside the component must:
+
+* Bind the `value` attribute to a `value` prop
+* On `input`, **emit its own custom `input` event** with the new value
 
 This means, that in our base component we can expect 
 

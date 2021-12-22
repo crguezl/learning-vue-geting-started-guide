@@ -2176,13 +2176,31 @@ export default {
 &lt;/script&gt;</code></pre>
 <p>In our Vue.js instance, we have the <code>data</code> property <code>username</code> and in our <code>template</code> we bind that variable to the input field.</p>
 <p>According to the <a href="https://zendev.com/2018/05/31/transparent-wrapper-components-in-vue.html">Vue Guide on components</a>, <code>v-model</code>on a component essentially works by passing in a <code>value</code> prop, and applying and <code>input</code> event handler.</p>
-<p>All the <code>v-model</code> directive really does, is to bind the value of <code>username</code> to the <code>value</code> property of the <code>input</code> field (and therefor keep the content of that <code>input</code> field always in <strong>sync</strong> with the variable) and update the <code>username</code> variable with the new <code>value</code> whenever someone types something into the <code>input</code> field.</p>
+<p>The <code>v-model</code> directive binds the value of <code>username</code> to the <code>value</code> property of the <code>input</code> field (and therefor keep the content of that <code>input</code> field always in <strong>sync</strong> with the variable) and update the <code>username</code> variable with the new <code>value</code> whenever someone types something into the <code>input</code> field.</p>
+<p>That is, this code:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;input</span> <span class="er">v-model</span><span class="ot">=</span><span class="st">&quot;searchText&quot;</span><span class="kw">&gt;</span></span></code></pre></div>
+<p>is the same as</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;input</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="ot">      v-bind:value=</span><span class="st">&quot;searchText&quot;</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="ot">      v-on:input=</span><span class="st">&quot;searchText = $event.target.value&quot;</span></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&gt;</span></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>{{searchText}}<span class="kw">&lt;/h1&gt;</span></span></code></pre></div>
 <p>We can use this directive also for our base component, but we first need to understand, how <code>v-model</code> works under the hood.</p>
 <p>By default, on a <code>input</code>, the <code>v-model="variable"</code></p>
 <ol type="1">
 <li>Binds the <code>variable</code> you pass to the directive to the <code>value</code> property of the <code>input</code> and</li>
 <li>Whenever that <code>input</code> element emits an <code>input</code> event, the <code>variable</code> will be updated with the new <code>value</code> automatically.</li>
 </ol>
+<p>When used on a component, <code>v-model</code> instead does this:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;custom-input</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  v-bind:value=</span><span class="st">&quot;searchText&quot;</span></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  v-on:input=</span><span class="st">&quot;searchText = $event&quot;</span></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&lt;/custom-input&gt;</span></span></code></pre></div>
+<p>For this to actually work though, the <code>&lt;input&gt;</code> inside the component must:</p>
+<ul>
+<li>Bind the <code>value</code> attribute to a <code>value</code> prop</li>
+<li>On <code>input</code>, <strong>emit its own custom <code>input</code> event</strong> with the new value</li>
+</ul>
 <p>This means, that in our base component we can expect</p>
 <ol type="1">
 <li>To listen for the <code>input</code> event and get the <code>target.value</code> of the event and</li>
