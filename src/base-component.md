@@ -16,7 +16,7 @@ A **Component is Transparent**  when it behaves as closely as possible to some n
 You usually want to have a label along with an input field (or select, radio button, etc) but you would also like to avoid to repeat the same code over and over again for multiple input fields. 
 
 
-### Creating the WorkSpace with @vue/cli 
+### Creating the WorkSpace with \@vue/cli 
 
 ```
 $ npm update -g @vue/cli
