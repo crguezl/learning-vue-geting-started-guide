@@ -1,4 +1,4 @@
-## Creating a transparent base component with Vue.js
+## Creating a Transparent Base Component with Vue.js
 
 See the article [@basecomponent] and the repo <https://github.com/crguezl/transparent-base-component> 
 for additional information. Also [@trasparentcomponent].
