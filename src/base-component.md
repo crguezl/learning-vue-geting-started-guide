@@ -11,7 +11,7 @@ According to the official Vue js style guide you should name a component a **bas
 Sometimes you have a couple different components that are almost just native elements, but with a slight wrapper around them that adds functionality. 
 Examples include an input field or  a textarea that auto resizes.
 
-A **Component is Transparent**  when it behaves as closely as possible to if a native components - allowing us to *transparently pass through attributes, add event listeners, and more*. 
+A **Component is Transparent**  when it behaves as closely as possible to some native component - allowing us to *transparently pass through attributes, add event listeners, and more*. 
 
 You usually want to have a label along with an input field (or select, radio button, etc) but you would also like to avoid to repeat the same code over and over again for multiple input fields. 
 
