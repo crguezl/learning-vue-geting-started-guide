@@ -46,6 +46,8 @@ $ tree -I node_modules
 ### How `v-model` works under the hood
 
 
+Let us remember the DOM `input` event.
+
 The classical [DOM `input` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) fires when the value of an `<input>`, `<select>`, or `<textarea>` element has been changed.
 
 See this example running at [examples/dom-input-event.html](examples/dom-input-event.html):
