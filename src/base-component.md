@@ -1,7 +1,7 @@
 ## Creating a Transparent Base Component with Vue.js
 
-See the article [@basecomponent] and the repo <https://github.com/crguezl/transparent-base-component> 
-for additional information. Also [@trasparentcomponent].
+See the article [@trasparentcomponent], [@basecomponent] and the repo <https://github.com/crguezl/transparent-base-component> 
+for additional information.
 
 According to the official Vue js style guide you should name a component a base component if 
 
