@@ -74,7 +74,7 @@ See this example running at [examples/dom-input-event.html](examples/dom-input-e
 
 To build this base component, we're going to use Vue's `v-model` directive. 
 
-To recap, let's a simple component `src/components/BaseInput.vue`  to remember  how to use `v-model`:
+To recap, let's consider this simple component to remember  how to use `v-model`:
 
 ```vue
 <template>
