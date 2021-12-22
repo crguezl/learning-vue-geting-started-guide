@@ -3,7 +3,7 @@
 See the article [@trasparentcomponent], [@basecomponent] and the repo <https://github.com/crguezl/transparent-base-component> 
 for additional information.
 
-According to the official Vue js style guide you should name a component a base component if 
+According to the official Vue js style guide you should name a component a **base component** if 
 
 1. **It is unique to your application** and **you are using it in many places** inside your app. 
 2. You can name it like *BaseIcon.vue* or every other name starting with *Base*.
