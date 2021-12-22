@@ -109,7 +109,7 @@ This means, that in our base component we can expect
 
 We name our component `BaseInput.vue`  and store it in the `components` folder following the recomendations.
 
-It has props `label` for the label of the input, and `type` (`input`, `textarea`, `select`) plus the `placeholder` prop.
+It has props `label` for the label of the input, and `type` (`button`, `checkbox`, `date`, ... ) plus the `placeholder` prop.
 
 ```vue
 <template>
