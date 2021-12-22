@@ -2106,13 +2106,14 @@ let emitExampleArgument = new Vue({
 <span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/template&gt;</span></span></code></pre></div>
 <p><a href="https://codepen.io/tony19/pen/PomePGO">demo</a></p>
 <h2 id="creating-a-transparent-base-component-with-vue.js">Creating a transparent base component with Vue.js</h2>
-<p>See the article <span class="citation" data-cites="basecomponent">(<a href="#ref-basecomponent" role="doc-biblioref">Sieder 2019</a>)</span> and the repo <a href="https://github.com/crguezl/transparent-base-component" class="uri">https://github.com/crguezl/transparent-base-component</a> for additional information.</p>
+<p>See the article <span class="citation" data-cites="basecomponent">(<a href="#ref-basecomponent" role="doc-biblioref">Sieder 2019</a>)</span> and the repo <a href="https://github.com/crguezl/transparent-base-component" class="uri">https://github.com/crguezl/transparent-base-component</a> for additional information. Also <span class="citation" data-cites="trasparentcomponent">(<a href="#ref-trasparentcomponent" role="doc-biblioref">Ball 2018</a>)</span>.</p>
 <p>According to the official Vue js style guide you should name a component a base component if</p>
 <ol type="1">
 <li><strong>It is unique to your application</strong> and <strong>you are using it in many places</strong> inside your app.</li>
 <li>You can name it like <em>BaseIcon.vue</em> or every other name starting with <em>Base</em>.</li>
 </ol>
-<p>An example could be a form field.</p>
+<p>Sometimes you have a couple different components that are almost just native elements, but with a slight wrapper around them that adds functionality. Examples include an input field or a textarea that auto resizes.</p>
+<p>For these components, I want them to behave as closely as possible to if they are native components - allowing me to transparently pass through attributes, add event listeners, and more.</p>
 <p>You usually want to have a label along with an input field (or select, radio button, etc) but you would also like to avoid to repeat the same code over and over again for multiple input fields.</p>
 <h3 id="creating-the-workspace-with-vuecli">Creating the WorkSpace with <span class="citation" data-cites="vue/cli">(<a href="#ref-vue/cli" role="doc-biblioref"><strong>vue/cli?</strong></a>)</span></h3>
 <pre><code>$ npm update -g @vue/cli
@@ -2174,6 +2175,7 @@ export default {
 }
 &lt;/script&gt;</code></pre>
 <p>In our Vue.js instance, we have the <code>data</code> property <code>username</code> and in our <code>template</code> we bind that variable to the input field.</p>
+<p>According to the <a href="https://zendev.com/2018/05/31/transparent-wrapper-components-in-vue.html">Vue Guide on components</a>, <code>v-model</code>on a component essentially works by passing in a <code>value</code> prop, and applying and <code>input</code> event handler.</p>
 <p>All the <code>v-model</code> directive really does, is to bind the value of <code>username</code> to the <code>value</code> property of the <code>input</code> field (and therefor keep the content of that <code>input</code> field always in <strong>sync</strong> with the variable) and update the <code>username</code> variable with the new <code>value</code> whenever someone types something into the <code>input</code> field.</p>
 <p>We can use this directive also for our base component, but we first need to understand, how <code>v-model</code> works under the hood.</p>
 <p>By default, on a <code>input</code>, the <code>v-model="variable"</code></p>
@@ -2257,6 +2259,11 @@ export default {
 <p>The source is at repo <a href="https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf">vueschool/vuejs-fundamentals</a>. The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf</p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-trasparentcomponent" class="csl-entry" role="doc-biblioentry">
+Ball, Kevin. 2018. <span>“Transparent Wrapper Components in Vue.”</span> <a href="https://zendev.com/2018/05/31/transparent-wrapper-components-in-vue.html
+">https://zendev.com/2018/05/31/transparent-wrapper-components-in-vue.html
+</a>.
+</div>
 <div id="ref-casiano" class="csl-entry" role="doc-biblioentry">
 Casiano. 2021a. <span>“Annotated Reading of the Essentials Section of the Vue.js Guide. From Section Introduction to Section Computed Properties and Watchers.”</span> <a href="https://github.com/crguezl/learning-vue-geting-started-guide">https://github.com/crguezl/learning-vue-geting-started-guide</a>.
 </div>

@@ -1,14 +1,17 @@
 ## Creating a transparent base component with Vue.js
 
 See the article [@basecomponent] and the repo <https://github.com/crguezl/transparent-base-component> 
-for additional information.
+for additional information. Also [@trasparentcomponent].
 
 According to the official Vue js style guide you should name a component a base component if 
 
 1. **It is unique to your application** and **you are using it in many places** inside your app. 
 2. You can name it like *BaseIcon.vue* or every other name starting with *Base*.
 
-An example could be a form field. 
+Sometimes you have a couple different components that are almost just native elements, but with a slight wrapper around them that adds functionality. 
+Examples include an input field or  a textarea that auto resizes.
+
+For these components, I want them to behave as closely as possible to if they are native components - allowing me to transparently pass through attributes, add event listeners, and more. 
 
 You usually want to have a label along with an input field (or select, radio button, etc) but you would also like to avoid to repeat the same code over and over again for multiple input fields. 
 
@@ -89,6 +92,8 @@ export default {
 ```
 
 In our Vue.js instance, we have the `data` property `username` and in our `template` we bind that variable to the input field. 
+
+According to the [Vue Guide on components](https://zendev.com/2018/05/31/transparent-wrapper-components-in-vue.html), `v-model `on a component essentially works by passing in a `value` prop, and applying and `input` event handler.
 
 All the `v-model` directive really does, is to bind the value of `username` to the `value` property of the `input` field 
 (and therefor keep the content of that `input` field always in **sync** with the variable) and update the `username` variable with the new `value` whenever someone types something into the `input` field.
