@@ -2210,69 +2210,69 @@ export default {
 <h3 id="building-the-base-component">Building the base component</h3>
 <p>We name our component <code>BaseInput.vue</code> and store it in the <code>components</code> folder following the recomendations.</p>
 <p>It has props <code>label</code> for the label of the input, and <code>type</code> (<code>button</code>, <code>checkbox</code>, <code>date</code>, … ) plus the <code>placeholder</code> prop.</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;div class=&quot;hello&quot;&gt;
-    &lt;label&gt;
-      {{ label }}
-      &lt;input
-        :type=&quot;type&quot;
-        :placeholder=&quot;placeholder&quot;
-        @input=&quot;$emit(&#39;input&#39;, $event.target.value)&quot;
-      &gt;
-    &lt;/label&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default {
-  name: &quot;BaseInput&quot;,
-  props: {
-    label: String,
-    type: String,
-    placeholder: String
-  }
-};
-&lt;/script&gt;</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;template&gt;</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;hello&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;label&gt;</span></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>      {{ label }}</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;input</span></span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="ot">        :type=</span><span class="st">&quot;type&quot;</span></span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="ot">        :placeholder=</span><span class="st">&quot;placeholder&quot;</span></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a>        <span class="er">@input</span><span class="ot">=</span><span class="st">&quot;$emit(&#39;input&#39;, $event.target.value)&quot;</span></span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&gt;</span></span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/label&gt;</span></span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/template&gt;</span></span>
+<span id="cb88-13"><a href="#cb88-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-14"><a href="#cb88-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb88-15"><a href="#cb88-15" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> {</span>
+<span id="cb88-16"><a href="#cb88-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">name</span><span class="op">:</span> <span class="st">&quot;BaseInput&quot;</span><span class="op">,</span></span>
+<span id="cb88-17"><a href="#cb88-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">props</span><span class="op">:</span> {</span>
+<span id="cb88-18"><a href="#cb88-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="bu">String</span><span class="op">,</span></span>
+<span id="cb88-19"><a href="#cb88-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="bu">String</span><span class="op">,</span></span>
+<span id="cb88-20"><a href="#cb88-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">placeholder</span><span class="op">:</span> <span class="bu">String</span></span>
+<span id="cb88-21"><a href="#cb88-21" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb88-22"><a href="#cb88-22" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb88-23"><a href="#cb88-23" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 <p>We listen for the <code>input</code> event and <code>emit</code> another <code>input</code> event back to the parent component in order to let the parent <code>v-model</code> directive update the corresponding variable accordingly.</p>
 <p>This way, our <code>BaseInput</code> component is a <strong>transparent component</strong>, which can be used with <code>v-model</code>.</p>
 <p>Here is our main <code>App.vue</code> component:</p>
-<pre class="vue"><code>&lt;template&gt;
-  &lt;div id=&quot;app&quot;&gt;
-    &lt;BaseInput label=&quot;Username&quot; type=&quot;text&quot; placeholder=&quot;Username&quot; v-model=&quot;username&quot;/&gt;
-    &lt;BaseInput label=&quot;Password&quot; type=&quot;password&quot; placeholder=&quot;********&quot; v-model=&quot;password&quot;/&gt;
-
-    &lt;hr&gt;
-    {{ username }} - {{ password }}
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-import BaseInput from &quot;./components/BaseInput&quot;;
-
-export default {
-  name: &quot;App&quot;,
-  components: {
-    BaseInput
-  },
-  data() {
-    return {
-      username: &quot;&quot;,
-      password: &quot;&quot;
-    };
-  }
-};
-&lt;/script&gt;
-
-&lt;style&gt;
-#app {
-  font-family: &quot;Avenir&quot;, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-&lt;/style&gt;</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;template&gt;</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;BaseInput</span> <span class="er">label</span><span class="ot">=</span><span class="st">&quot;Username&quot;</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">placeholder</span><span class="ot">=</span><span class="st">&quot;Username&quot;</span> <span class="er">v-model</span><span class="ot">=</span><span class="st">&quot;username&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;BaseInput</span> <span class="er">label</span><span class="ot">=</span><span class="st">&quot;Password&quot;</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;password&quot;</span> <span class="er">placeholder</span><span class="ot">=</span><span class="st">&quot;********&quot;</span> <span class="er">v-model</span><span class="ot">=</span><span class="st">&quot;password&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;hr&gt;</span></span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>    {{ username }} - {{ password }}</span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/template&gt;</span></span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> BaseInput <span class="im">from</span> <span class="st">&quot;./components/BaseInput&quot;</span><span class="op">;</span></span>
+<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> {</span>
+<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">name</span><span class="op">:</span> <span class="st">&quot;App&quot;</span><span class="op">,</span></span>
+<span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">components</span><span class="op">:</span> {</span>
+<span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a>    BaseInput</span>
+<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data</span>() {</span>
+<span id="cb89-20"><a href="#cb89-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb89-21"><a href="#cb89-21" aria-hidden="true" tabindex="-1"></a>      <span class="dt">username</span><span class="op">:</span> <span class="st">&quot;&quot;</span><span class="op">,</span></span>
+<span id="cb89-22"><a href="#cb89-22" aria-hidden="true" tabindex="-1"></a>      <span class="dt">password</span><span class="op">:</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb89-23"><a href="#cb89-23" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb89-24"><a href="#cb89-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb89-25"><a href="#cb89-25" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb89-26"><a href="#cb89-26" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span>
+<span id="cb89-27"><a href="#cb89-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-28"><a href="#cb89-28" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;style&gt;</span></span>
+<span id="cb89-29"><a href="#cb89-29" aria-hidden="true" tabindex="-1"></a><span class="pp">#app</span> {</span>
+<span id="cb89-30"><a href="#cb89-30" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-family</span>: <span class="st">&quot;Avenir&quot;</span><span class="op">,</span> Helvetica<span class="op">,</span> Arial<span class="op">,</span> <span class="dv">sans-serif</span><span class="op">;</span></span>
+<span id="cb89-31"><a href="#cb89-31" aria-hidden="true" tabindex="-1"></a>  -webkit-font-smoothing: antialiased<span class="op">;</span></span>
+<span id="cb89-32"><a href="#cb89-32" aria-hidden="true" tabindex="-1"></a>  -moz-osx-font-smoothing: grayscale<span class="op">;</span></span>
+<span id="cb89-33"><a href="#cb89-33" aria-hidden="true" tabindex="-1"></a>  <span class="kw">text-align</span>: <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb89-34"><a href="#cb89-34" aria-hidden="true" tabindex="-1"></a>  <span class="kw">color</span>: <span class="cn">#2c3e50</span><span class="op">;</span></span>
+<span id="cb89-35"><a href="#cb89-35" aria-hidden="true" tabindex="-1"></a>  <span class="kw">margin-top</span>: <span class="dv">60</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb89-36"><a href="#cb89-36" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb89-37"><a href="#cb89-37" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/style&gt;</span></span></code></pre></div>
 <h2 id="exercise-vuejs-fundamentals">Exercise: Vuejs Fundamentals</h2>
 <p>Follow the tutorial at <span class="citation" data-cites="vuejsfundamentals">(<a href="#ref-vuejsfundamentals" role="doc-biblioref">VueSchool 2018</a>)</span>, reproduce the examples and leave the results in folder <code>vuejsfundamentals</code> of the assignment repo</p>
 <p>The source is at repo <a href="https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf">vueschool/vuejs-fundamentals</a>. The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf</p>

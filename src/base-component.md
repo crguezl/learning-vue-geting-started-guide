@@ -148,7 +148,7 @@ We name our component `BaseInput.vue`  and store it in the `components` folder f
 
 It has props `label` for the label of the input, and `type` (`button`, `checkbox`, `date`, ... ) plus the `placeholder` prop.
 
-```vue
+```html
 <template>
   <div class="hello">
     <label>
@@ -180,7 +180,7 @@ This way, our `BaseInput` component is a **transparent component**, which can be
 
 Here is our main `App.vue` component:
 
-```vue 
+```html
 <template>
   <div id="app">
     <BaseInput label="Username" type="text" placeholder="Username" v-model="username"/>
